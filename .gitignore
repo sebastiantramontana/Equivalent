@@ -1,7 +1,7 @@
 /.vs
-/Skyrmium.Composed.Entities/.vs
-/Skyrmium.Composed.Entities/bin
-/Skyrmium.Composed.Entities/obj
+/Skyrmium.Equivalent.Entities/.vs
+/Skyrmium.Equivalent.Entities/bin
+/Skyrmium.Equivalent.Entities/obj
 EntitiesTests/.vs
 /EntitiesTests/obj
 /EntitiesTests/bin
