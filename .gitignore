@@ -1,0 +1,7 @@
+/.vs
+/Skyrmium.Composed.Entities/.vs
+/Skyrmium.Composed.Entities/bin
+/Skyrmium.Composed.Entities/obj
+EntitiesTests/.vs
+/EntitiesTests/obj
+/EntitiesTests/bin
