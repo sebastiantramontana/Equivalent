@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>namespace Skyrmium.Equivalent.DomainModel.Entities</AssemblyName>
+    <RootNamespace>namespace Skyrmium.Equivalent.DomainModel.Entities</RootNamespace>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Skyrmium.DomainModel.Entities.Contracts\Skyrmium.DomainModel.Entities.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

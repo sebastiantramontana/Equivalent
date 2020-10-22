@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Skyrmium.Composed.Entities\Skyrmium.Equivalent.Entities.csproj" />
-    <ProjectReference Include="..\Skyrmium.Equivalent.Entities\Skyrmium.Equivalent.Entities.csproj" />
+    <ProjectReference Include="..\Skyrmium.Equivalent.DomainModel.Entities\Skyrmium.Equivalent.DomainModel.Entities.csproj" />
   </ItemGroup>
 
 </Project>

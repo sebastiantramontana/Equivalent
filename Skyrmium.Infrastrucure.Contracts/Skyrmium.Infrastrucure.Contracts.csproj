@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>Skyrmium.Equivalent.Entities</AssemblyName>
-    <RootNamespace>Skyrmium.Equivalent.Entities</RootNamespace>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
 </Project>
