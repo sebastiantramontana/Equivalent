@@ -2,7 +2,7 @@
 
 namespace Skyrmium.Equivalent.DomainModel.Entities
 {
-   public class Generic : DistributableEntityBase
+   public class GenericMaterial : DistributableEntityBase
    {
       public string Name { get; set; }
 
