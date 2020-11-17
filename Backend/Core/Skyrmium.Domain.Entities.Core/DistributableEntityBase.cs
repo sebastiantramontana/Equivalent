@@ -4,7 +4,8 @@ namespace Skyrmium.Domain.Entities.Core
 {
    public abstract class DistributableEntityBase : EntityBase, IDistributableEntity
    {
-      protected DistributableEntityBase(IDistributableId distributedId)
+      protected DistributableEntityBase(long id, IDistributableId distributedId)
+         : base(id)
       {
          this.DistributedId = distributedId;
       }
@@ -28,37 +29,12 @@ namespace Skyrmium.Domain.Entities.Core
 
       public static bool operator ==(DistributableEntityBase? e1, DistributableEntityBase? e2)
       {
-         return Equals(e1, e2);
+         return e1?.Equals(e2) ?? false;
       }
 
       public static bool operator !=(DistributableEntityBase? e1, DistributableEntityBase? e2)
       {
-         return !Equals(e1, e2);
-      }
-
-      public static bool operator ==(DistributableEntityBase e1, IDistributableEntity e2)
-      {
-         return Equals(e1, e2);
-      }
-
-      public static bool operator !=(DistributableEntityBase e1, IDistributableEntity e2)
-      {
-         return !Equals(e1, e2);
-      }
-
-      public static bool operator ==(IDistributableEntity e1, DistributableEntityBase e2)
-      {
-         return Equals(e1, e2);
-      }
-
-      public static bool operator !=(IDistributableEntity e1, DistributableEntityBase e2)
-      {
-         return !Equals(e1, e2);
-      }
-
-      private static bool Equals(IDistributableEntity? e1, IDistributableEntity? e2)
-      {
-         return e1 is not null && e1.Equals(e2);
+         return !(e1 == e2);
       }
    }
 }

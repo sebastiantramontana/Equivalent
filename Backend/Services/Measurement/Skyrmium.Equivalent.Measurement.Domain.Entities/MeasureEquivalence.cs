@@ -1,18 +1,22 @@
 ﻿using Skyrmium.Domain.Entities.Contracts;
 using Skyrmium.Domain.Entities.Core;
-using System;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
-   public class MeasureEquivalence : OwnedDistributableEntityBase
+   public class MeasureEquivalence : OwnedEntityBase
    {
-      public MeasureEquivalence(IDistributableId distributableId, IDistributableId ownedBy) : base(distributableId, ownedBy)
+      public MeasureEquivalence(long id, IDistributableId ownedBy, Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo) : base(id, ownedBy)
       {
+         this.MeasureFrom = measureFrom;
+         this.MeasureTo = measureTo;
+         this.IngredientFrom = ingredientFrom;
+         this.IngredientTo = ingredientTo;
       }
 
-      public Measure From { get; set; }
-      public Measure To { get; set; }
-      public IDistributableId Ingredient { get; set; }
+      public Measure MeasureFrom { get; }
+      public Measure MeasureTo { get; }
+      public IDistributableId IngredientFrom { get; }
+      public IDistributableId IngredientTo { get; }
       public double Factor { get; set; }
    }
 }
