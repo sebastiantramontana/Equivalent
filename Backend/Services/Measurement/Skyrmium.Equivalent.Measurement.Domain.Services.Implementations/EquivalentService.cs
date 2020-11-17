@@ -19,12 +19,12 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       public double Convert(Measure from, Measure to)
       {
          var measureEquivalence = _repository
-             .Get()
-             .SingleOrDefault(me =>
+             .Get(me =>
                   me.MeasureFrom == from
                && me.MeasureTo == to
                && me.IngredientFrom == DistributableId.None
-               && me.IngredientTo == DistributableId.None);
+               && me.IngredientTo == DistributableId.None)
+             .SingleOrDefault();
 
          return measureEquivalence?.Factor ?? throw BusinessExceptionFactory.CreateInexistentEquivalenceException(from, to);
       }
@@ -32,12 +32,12 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       public double Convert(Measure from, Measure to, IDistributableId ingredient)
       {
          var measureEquivalence = _repository
-             .Get()
-             .SingleOrDefault(me =>
+             .Get(me =>
                   me.MeasureFrom == from
                && me.MeasureTo == to
                && me.IngredientFrom == ingredient
-               && me.IngredientTo == ingredient);
+               && me.IngredientTo == ingredient)
+             .SingleOrDefault();
 
          return measureEquivalence?.Factor ?? throw BusinessExceptionFactory.CreateInexistentEquivalenceException(from, to, ingredient);
       }
@@ -45,12 +45,12 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       public double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo)
       {
          var measureEquivalence = _repository
-             .Get()
-             .SingleOrDefault(me =>
+             .Get(me =>
                   me.MeasureFrom == measureFrom
                && me.MeasureTo == measureTo
                && me.IngredientFrom == ingredientFrom
-               && me.IngredientTo == ingredientTo);
+               && me.IngredientTo == ingredientTo)
+             .SingleOrDefault();
 
          return measureEquivalence?.Factor ?? throw BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo, ingredientFrom, ingredientTo);
       }
