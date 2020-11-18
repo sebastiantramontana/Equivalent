@@ -1,24 +1,23 @@
 ﻿using Skyrmium.Dal.Contracts;
 using Skyrmium.Domain.Entities.Contracts;
 using Skyrmium.Domain.Entities.Core;
+using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   public class EquivalentService : IEquivalenceService
+   public class EquivalentService : CrudServiceBase<MeasureEquivalence>, IEquivalenceService
    {
-      private readonly IRepository<MeasureEquivalence> _repository;
-
       public EquivalentService(IRepository<MeasureEquivalence> repository)
+         : base(repository)
       {
-         _repository = repository;
       }
 
       public double Convert(Measure from, Measure to)
       {
-         var measureEquivalence = _repository
+         var measureEquivalence = this.Repository
              .Get(me =>
                   me.MeasureFrom == from
                && me.MeasureTo == to
@@ -31,7 +30,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double Convert(Measure from, Measure to, IDistributableId ingredient)
       {
-         var measureEquivalence = _repository
+         var measureEquivalence = this.Repository
              .Get(me =>
                   me.MeasureFrom == from
                && me.MeasureTo == to
@@ -44,7 +43,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo)
       {
-         var measureEquivalence = _repository
+         var measureEquivalence = this.Repository
              .Get(me =>
                   me.MeasureFrom == measureFrom
                && me.MeasureTo == measureTo

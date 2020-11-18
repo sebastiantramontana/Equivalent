@@ -3,17 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Skyrmium.Dal.Contracts
+namespace Skyrmium.Domain.Services.Contracts
 {
-   public interface IRepository<T> where T : IEntity
+   public interface ICrudService<T> where T : IEntity
    {
       IEnumerable<T> GetAll();
+      IEnumerable<T> GetById(long id);
+      IEnumerable<T> GetByDistributedId(IDistributableId distributedId);
       IEnumerable<T> Get(Expression<Func<T, bool>> condition);
-      T GetById(long id);
-      T GetByDistributedId(IDistributableId distributedId);
       void Add(T entity);
       void Update(T entity);
       void Remove(T entity);
-
    }
 }

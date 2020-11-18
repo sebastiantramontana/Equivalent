@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

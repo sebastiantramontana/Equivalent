@@ -17,9 +17,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Domain.Entities", "Skyrmium.Equivalent.Measurement.Domain.Entities\Skyrmium.Equivalent.Measurement.Domain.Entities.csproj", "{2859A15B-E9FA-4F6B-9F9A-11DA53032CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Domain.Services.Contracts", "Skyrmium.Equivalent.Measurement.Domain.Services.Contracts\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.csproj", "{0B64EE0F-0F9F-473D-97B1-7262BACED541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Domain.Services.Contracts", "Skyrmium.Equivalent.Measurement.Domain.Services.Contracts\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.csproj", "{0B64EE0F-0F9F-473D-97B1-7262BACED541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations", "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations\Skyrmium.Equivalent.Measurement.Domain.Services.Implementations.csproj", "{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations", "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations\Skyrmium.Equivalent.Measurement.Domain.Services.Implementations.csproj", "{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Implementations", "..\..\Core\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj", "{9D05BBEB-B368-48D0-8575-41E22B02EF08}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Contracts", "..\..\Core\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj", "{82A3477C-72AC-454C-8683-47B83DD9238C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "..\..\Core\Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{34B17394-D6CA-474D-A1D2-72B6CAF52225}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +65,18 @@ Global
 		{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D05BBEB-B368-48D0-8575-41E22B02EF08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D05BBEB-B368-48D0-8575-41E22B02EF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D05BBEB-B368-48D0-8575-41E22B02EF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D05BBEB-B368-48D0-8575-41E22B02EF08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A3477C-72AC-454C-8683-47B83DD9238C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A3477C-72AC-454C-8683-47B83DD9238C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A3477C-72AC-454C-8683-47B83DD9238C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A3477C-72AC-454C-8683-47B83DD9238C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +86,9 @@ Global
 		{05A9EA84-7DAB-44A2-BAA2-16BEDA0FA45A} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{EAC877B7-02E5-4A3A-8E05-42D0239D6E9E} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{AB4853A2-0DA3-4BDE-9FC5-273EC299487C} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{9D05BBEB-B368-48D0-8575-41E22B02EF08} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{82A3477C-72AC-454C-8683-47B83DD9238C} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{34B17394-D6CA-474D-A1D2-72B6CAF52225} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {306BC64B-B739-441E-9FB4-94FC4846064E}
