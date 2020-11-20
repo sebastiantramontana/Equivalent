@@ -31,12 +31,12 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.GetAll();
       }
 
-      public IEnumerable<T> GetByDistributedId(IDistributableId distributedId)
+      public T GetByDistributedId(IDistributableId distributedId)
       {
          return this.Repository.GetByDistributedId(distributedId);
       }
 
-      public IEnumerable<T> GetById(long id)
+      public T GetById(long id)
       {
          return this.Repository.GetById(id);
       }

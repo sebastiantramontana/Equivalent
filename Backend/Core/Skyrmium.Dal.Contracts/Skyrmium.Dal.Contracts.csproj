@@ -8,5 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Skyrmium.Domain.Entities.Contracts\Skyrmium.Domain.Entities.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
   </ItemGroup>
 </Project>

@@ -13,9 +13,9 @@ namespace Skyrmium.Dal.Implementations
       where TDao : class, IDao
    {
       private readonly DbContext _dbContext;
-      private readonly IAdapter<TEntity, TDao> _adapter;
+      private readonly IDalAdapter<TEntity, TDao> _adapter;
 
-      public MappedRepository(DbContext dbContext, IAdapter<TEntity, TDao> adapter)
+      public MappedRepository(DbContext dbContext, IDalAdapter<TEntity, TDao> adapter)
       {
          _dbContext = dbContext;
          _adapter = adapter;
@@ -23,7 +23,8 @@ namespace Skyrmium.Dal.Implementations
 
       public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> condition)
       {
-         var daos = _dbContext.Set<TDao>()
+         var daos = _dbContext
+            .Set<TDao>()
             .Where(_adapter.MapCondition(condition))
             .ToList();
 
@@ -32,7 +33,8 @@ namespace Skyrmium.Dal.Implementations
 
       public IEnumerable<TEntity> GetAll()
       {
-         var daos = _dbContext.Set<TDao>()
+         var daos = _dbContext
+            .Set<TDao>()
             .ToList();
 
          return daos.Select(dao => _adapter.Map(dao));
@@ -40,7 +42,8 @@ namespace Skyrmium.Dal.Implementations
 
       public TEntity GetById(long id)
       {
-         var dao = _dbContext.Set<TDao>()
+         var dao = _dbContext
+            .Set<TDao>()
             .SingleOrDefault(dao => dao.Id == id)
             ?? throw new ObjectNotFoundException();
 
@@ -49,7 +52,8 @@ namespace Skyrmium.Dal.Implementations
 
       public TEntity GetByDistributedId(IDistributableId distributedId)
       {
-         var dao = _dbContext.Set<TDao>()
+         var dao = _dbContext
+            .Set<TDao>()
             .SingleOrDefault(dao => dao.DistributedId == distributedId.Value)
             ?? throw new ObjectNotFoundException();
 
