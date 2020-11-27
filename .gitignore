@@ -18,6 +18,7 @@
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Entities/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Contracts/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/bin
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/bin
 
 /Backend/Core/Skyrmium.Infrastructure.Contracts/obj
 /Backend/Core/Skyrmium.Dal.Contracts/obj
@@ -32,3 +33,4 @@
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Entities/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Contracts/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/obj
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/obj

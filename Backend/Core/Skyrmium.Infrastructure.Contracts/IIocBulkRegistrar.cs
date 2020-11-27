@@ -2,6 +2,6 @@
 {
    public interface IIocBulkRegistrar
    {
-      void Register(IContaner iocRegistrar);
+      void Register(IContaner contaner);
    }
 }

@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "..\..\Core\Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{34B17394-D6CA-474D-A1D2-72B6CAF52225}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Dal", "Skyrmium.Equivalent.Measurement.Dal\Skyrmium.Equivalent.Measurement.Dal.csproj", "{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34B17394-D6CA-474D-A1D2-72B6CAF52225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
