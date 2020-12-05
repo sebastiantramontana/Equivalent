@@ -1,52 +1,42 @@
 ﻿using Skyrmium.Dal.Contracts;
-using Skyrmium.Domain.Entities.Contracts;
+using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Skyrmium.Domain.Services.Implementations
 {
-   public abstract class CrudServiceBase<T> : ICrudService<T> where T : IEntity
+   public abstract class CrudServiceBase<TRepository, TEntity> : ICrudService<TEntity>
+      where TEntity : IEntity
+      where TRepository : IRepository<TEntity>
    {
-      protected CrudServiceBase(IRepository<T> repository)
+      protected CrudServiceBase(TRepository repository)
       {
          this.Repository = repository;
       }
 
-      protected IRepository<T> Repository { get; }
+      protected TRepository Repository { get; }
 
-      public void Add(T entity)
+      public void Add(TEntity entity)
       {
          this.Repository.Add(entity);
       }
 
-      public IEnumerable<T> Get(Expression<Func<T, bool>> condition)
+      public IEnumerable<TEntity> Get()
       {
-         return this.Repository.Get(condition);
+         return this.Repository.Query().ToEnumerable();
       }
 
-      public IEnumerable<T> GetAll()
-      {
-         return this.Repository.GetAll();
-      }
-
-      public T GetByDistributedId(IDistributableId distributedId)
-      {
-         return this.Repository.GetByDistributedId(distributedId);
-      }
-
-      public T GetById(long id)
+      public TEntity GetById(long id)
       {
          return this.Repository.GetById(id);
       }
 
-      public void Remove(T entity)
+      public void Remove(TEntity entity)
       {
          this.Repository.Remove(entity);
       }
 
-      public void Update(T entity)
+      public void Update(TEntity entity)
       {
          this.Repository.Update(entity);
       }

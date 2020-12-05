@@ -15,6 +15,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
          builder.Property(e => e.DistributedId).IsRequired();
          builder.Property(e => e.FullName).IsRequired();
          builder.Property(e => e.ShortName);
+         builder.Property(e => e.OwnedBy);
       }
    }
 }

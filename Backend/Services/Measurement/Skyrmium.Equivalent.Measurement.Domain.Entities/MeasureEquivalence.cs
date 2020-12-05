@@ -1,5 +1,5 @@
-﻿using Skyrmium.Domain.Entities.Contracts;
-using Skyrmium.Domain.Entities.Core;
+﻿using Skyrmium.Domain.Contracts;
+using Skyrmium.Domain.Implementations.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {

@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Infrastructure.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Contracts", "Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj", "{61CF0C12-72D0-42E8-89D0-91F284C93B11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Entities.Contracts", "Skyrmium.Domain.Entities.Contracts\Skyrmium.Domain.Entities.Contracts.csproj", "{FBB6C5E6-7575-4272-A3C4-6693B7965458}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts", "Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj", "{FBB6C5E6-7575-4272-A3C4-6693B7965458}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Entities.Core", "Skyrmium.Domain.Entities.Core\Skyrmium.Domain.Entities.Core.csproj", "{82806398-A695-49AE-AB89-AF276444CA29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Implementations", "Skyrmium.Domain.Implementations\Skyrmium.Domain.Implementations.csproj", "{82806398-A695-49AE-AB89-AF276444CA29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Dal.Implementations", "Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj", "{C7894747-96CF-4133-A9EB-42EAAE3B25FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Implementations", "Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj", "{C7894747-96CF-4133-A9EB-42EAAE3B25FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Domain.Services.Contracts", "Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj", "{FCAEB8DA-53AA-4122-8F5F-AE28A264C637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Contracts", "Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj", "{FCAEB8DA-53AA-4122-8F5F-AE28A264C637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Domain.Services.Implementations", "Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{8F813101-D43A-44FE-9CA8-450E88B10F06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{8F813101-D43A-44FE-9CA8-450E88B10F06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

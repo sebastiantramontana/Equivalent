@@ -3,7 +3,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Contracts
 {
-   public interface IMeasureService : ICrudService<Measure>
+   public interface IMeasureService : IOwnedDistributableCrudService<Measure>
    {
    }
 }

@@ -1,4 +1,5 @@
 ﻿using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Dal.Implementations

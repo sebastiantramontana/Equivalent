@@ -8,8 +8,8 @@
 /Backend/Core/Skyrmium.Infrastructure.Contracts/bin
 /Backend/Core/Skyrmium.Dal.Contracts/bin
 /Backend/Core/Skyrmium.Dal.Implementations/bin
-/Backend/Core/Skyrmium.Domain.Entities.Contracts/bin
-/Backend/Core/Skyrmium.Domain.Entities.Core/bin
+/Backend/Core/Skyrmium.Domain.Contracts/bin
+/Backend/Core/Skyrmium.Domain.Implementations/bin
 /Backend/Core/Skyrmium.Domain.Services.Contracts/bin
 /Backend/Core/Skyrmium.Domain.Services.Implementations/bin
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/bin
@@ -23,8 +23,8 @@
 /Backend/Core/Skyrmium.Infrastructure.Contracts/obj
 /Backend/Core/Skyrmium.Dal.Contracts/obj
 /Backend/Core/Skyrmium.Dal.Implementations/obj
-/Backend/Core/Skyrmium.Domain.Entities.Contracts/obj
-/Backend/Core/Skyrmium.Domain.Entities.Core/obj
+/Backend/Core/Skyrmium.Domain.Contracts/obj
+/Backend/Core/Skyrmium.Domain.Implementations/obj
 /Backend/Core/Skyrmium.Domain.Services.Contracts/obj
 /Backend/Core/Skyrmium.Domain.Services.Implementations/obj
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/obj

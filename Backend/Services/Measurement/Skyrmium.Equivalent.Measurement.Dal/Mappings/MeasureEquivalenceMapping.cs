@@ -12,13 +12,12 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
 
       protected override void Continue(EntityTypeBuilder<MeasureEquivalenceDao> builder)
       {
-         builder.Ignore(e => e.DistributedId);
-
          builder.Property(e => e.Factor).IsRequired();
          builder.Property(e => e.MeasureFrom).IsRequired();
          builder.Property(e => e.MeasureTo).IsRequired();
          builder.Property(e => e.IngredientFrom);
          builder.Property(e => e.IngredientTo);
+         builder.Property(e => e.OwnedBy);
       }
    }
 }

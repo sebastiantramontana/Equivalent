@@ -1,18 +1,14 @@
-﻿using Skyrmium.Domain.Entities.Contracts;
-using System;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Skyrmium.Domain.Services.Contracts
 {
-   public interface ICrudService<T> where T : IEntity
+   public interface ICrudService<TEntity> where TEntity : IEntity
    {
-      IEnumerable<T> GetAll();
-      IEnumerable<T> Get(Expression<Func<T, bool>> condition);
-      T GetById(long id);
-      T GetByDistributedId(IDistributableId distributedId);
-      void Add(T entity);
-      void Update(T entity);
-      void Remove(T entity);
+      IEnumerable<TEntity> Get();
+      TEntity GetById(long id);
+      void Add(TEntity entity);
+      void Update(TEntity entity);
+      void Remove(TEntity entity);
    }
 }

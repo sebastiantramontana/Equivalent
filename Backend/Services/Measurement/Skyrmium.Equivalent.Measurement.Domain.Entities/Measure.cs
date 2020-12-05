@@ -1,8 +1,7 @@
-﻿using Skyrmium.Domain.Entities.Contracts;
-using Skyrmium.Domain.Entities.Core;
+﻿using Skyrmium.Domain.Contracts;
+using Skyrmium.Domain.Implementations.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
@@ -12,11 +11,11 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
       {
       }
 
-      public string FullName { get; set; }
+      public string FullName { get; set; } = string.Empty;
 
-      public string ShortName { get; set; }
+      public string ShortName { get; set; } = string.Empty;
 
-      public ICollection<MeasureEquivalence> Equivalences { get; set; }
+      public ICollection<MeasureEquivalence> Equivalences { get; set; } = Array.Empty<MeasureEquivalence>();
 
       public override string ToString()
       {

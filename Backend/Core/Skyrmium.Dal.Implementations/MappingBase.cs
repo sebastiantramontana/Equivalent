@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Contracts.Daos;
 
 namespace Skyrmium.Dal.Implementations
 {
