@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Core\Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.csproj" />
   </ItemGroup>

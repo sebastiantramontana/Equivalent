@@ -1,0 +1,18 @@
+jugo de limon ml	->	limon u		->	limon g		->	kg
+			87			120			1000
+jugo limon	ml
+limon		u
+factor: 87
+
+limon	u
+limon	g
+120
+
+g	kg
+1000
+
+limon 1kg = limon 1000g = limon 8,333 u = jugo limon 725ml
+
+
+
+

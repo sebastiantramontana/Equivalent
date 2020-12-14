@@ -1,6 +1,6 @@
-﻿using Skyrmium.Dal.Contracts.Repositories;
-using Skyrmium.Domain.Contracts;
+﻿using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Exceptions.Business;
+using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Implementations;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -19,30 +19,34 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       public double Convert(Measure measureFrom, Measure measureTo)
       {
          var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo);
-         return Convert(measureFrom, measureTo, DistributableId.None, DistributableId.None, businessException);
+         var from = new MeasureIngredient(measureFrom, DistributableId.None);
+         var to = new MeasureIngredient(measureTo, DistributableId.None);
+
+         return Convert(from, to, businessException);
       }
 
       public double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredient)
       {
          var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo, ingredient);
-         return Convert(measureFrom, measureTo, ingredient, ingredient, businessException);
+         var from = new MeasureIngredient(measureFrom, ingredient);
+         var to = new MeasureIngredient(measureTo, ingredient);
+
+         return Convert(from, to, businessException);
       }
 
-      public double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo)
+      public double Convert(MeasureIngredient from, MeasureIngredient to)
       {
-         var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo, ingredientFrom, ingredientTo);
-         return Convert(measureFrom, measureTo, ingredientFrom, ingredientTo, businessException);
+         var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(from.Measure, to.Measure, from.Ingredient, to.Ingredient);
+         return Convert(from, to, businessException);
       }
 
-      private double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo, BusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
+      private double Convert(MeasureIngredient from, MeasureIngredient to, BusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
       {
          var measureEquivalence = this.Repository
             .Query()
             .SingleOrDefault(me =>
-                  me.MeasureFrom == measureFrom
-               && me.MeasureTo == measureTo
-               && me.IngredientFrom == ingredientFrom
-               && me.IngredientTo == ingredientTo);
+                  me.From == from
+               && me.To == to);
 
          return measureEquivalence?.Factor ?? throw businessException;
       }

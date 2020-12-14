@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Skyrmium.Dal.Contracts.Queryables
+namespace Skyrmium.Domain.Contracts.Queryables
 {
    public interface IQueryableEntity<TEntity> where TEntity : IEntity
    {

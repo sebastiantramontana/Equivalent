@@ -1,6 +1,6 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
 
-namespace Skyrmium.Dal.Contracts.Queryables
+namespace Skyrmium.Domain.Contracts.Queryables
 {
    public interface IQueryableOwnedEntity<TEntity> : IQueryableEntity<TEntity> where TEntity : IOwnedEntity
    {

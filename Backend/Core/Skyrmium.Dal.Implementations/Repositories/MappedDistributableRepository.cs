@@ -2,10 +2,10 @@
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Adapters;
 using Skyrmium.Dal.Contracts.Daos;
-using Skyrmium.Dal.Contracts.Queryables;
-using Skyrmium.Dal.Contracts.Repositories;
 using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
+using Skyrmium.Domain.Contracts.Queryables;
+using Skyrmium.Domain.Contracts.Repositories;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {

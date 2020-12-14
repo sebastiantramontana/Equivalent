@@ -1,6 +1,6 @@
-﻿using Skyrmium.Dal.Contracts.Repositories;
-using Skyrmium.Domain.Contracts;
+﻿using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
+using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
 using System.Collections.Generic;
 

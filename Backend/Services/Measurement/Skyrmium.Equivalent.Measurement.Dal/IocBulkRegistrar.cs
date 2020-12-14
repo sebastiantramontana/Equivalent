@@ -2,6 +2,7 @@
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Implementations;
 using Skyrmium.Dal.Implementations.Repositories;
+using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Infrastructure.Contracts;

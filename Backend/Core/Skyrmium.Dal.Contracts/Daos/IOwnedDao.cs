@@ -1,9 +1,9 @@
-﻿using Skyrmium.Domain.Contracts;
+﻿using System;
 
 namespace Skyrmium.Dal.Contracts.Daos
 {
    public interface IOwnedDao : IDao
    {
-      IDistributableId? OwnedBy { get; set; }
+      Guid? OwnedBy { get; set; }
    }
 }

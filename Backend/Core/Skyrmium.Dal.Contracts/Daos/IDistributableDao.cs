@@ -1,9 +1,10 @@
 ﻿using Skyrmium.Domain.Contracts;
+using System;
 
 namespace Skyrmium.Dal.Contracts.Daos
 {
    public interface IDistributableDao : IDao
    {
-      IDistributableId DistributedId { get; set; }
+      Guid DistributedId { get; set; }
    }
 }

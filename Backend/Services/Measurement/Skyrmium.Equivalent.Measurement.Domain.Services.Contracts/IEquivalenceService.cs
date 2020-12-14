@@ -8,6 +8,6 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Contracts
    {
       double Convert(Measure from, Measure to);
       double Convert(Measure from, Measure to, IDistributableId ingredient);
-      double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredientFrom, IDistributableId ingredientTo);
+      double Convert(MeasureIngredient from, MeasureIngredient to);
    }
 }

@@ -1,7 +1,6 @@
-﻿using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts.Entities;
 
-namespace Skyrmium.Dal.Contracts.Repositories
+namespace Skyrmium.Domain.Contracts.Repositories
 {
    public interface IDistributableRepository<TEntity> : IRepository<TEntity>
       where TEntity : IDistributableEntity
