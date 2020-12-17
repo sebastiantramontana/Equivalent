@@ -30,6 +30,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
       {
          modelBuilder.ApplyConfiguration(new MeasureMapping());
          modelBuilder.ApplyConfiguration(new MeasureEquivalenceMapping());
+         modelBuilder.ApplyConfiguration(new ConversionMapping());
 
          base.OnModelCreating(modelBuilder);
       }

@@ -1,4 +1,5 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts;
+using Skyrmium.Domain.Contracts.Entities;
 using System.Collections.Generic;
 
 namespace Skyrmium.Domain.Services.Contracts
@@ -7,6 +8,7 @@ namespace Skyrmium.Domain.Services.Contracts
    {
       IEnumerable<TEntity> Get();
       TEntity GetById(long id);
+      TEntity GetByDistributedId(IDistributableId distributableId);
       void Add(TEntity entity);
       void Update(TEntity entity);
       void Remove(TEntity entity);

@@ -16,31 +16,31 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       {
       }
 
-      public double Convert(Measure measureFrom, Measure measureTo)
+      public double GetFactor(Measure measureFrom, Measure measureTo)
       {
          var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo);
          var from = new MeasureIngredient(measureFrom, DistributableId.None);
          var to = new MeasureIngredient(measureTo, DistributableId.None);
 
-         return Convert(from, to, businessException);
+         return GetFactor(from, to, businessException);
       }
 
-      public double Convert(Measure measureFrom, Measure measureTo, IDistributableId ingredient)
+      public double GetFactor(Measure measureFrom, Measure measureTo, IDistributableId ingredient)
       {
          var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo, ingredient);
          var from = new MeasureIngredient(measureFrom, ingredient);
          var to = new MeasureIngredient(measureTo, ingredient);
 
-         return Convert(from, to, businessException);
+         return GetFactor(from, to, businessException);
       }
 
-      public double Convert(MeasureIngredient from, MeasureIngredient to)
+      public double GetFactor(MeasureIngredient from, MeasureIngredient to)
       {
          var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(from.Measure, to.Measure, from.Ingredient, to.Ingredient);
-         return Convert(from, to, businessException);
+         return GetFactor(from, to, businessException);
       }
 
-      private double Convert(MeasureIngredient from, MeasureIngredient to, BusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
+      private double GetFactor(MeasureIngredient from, MeasureIngredient to, BusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
       {
          var measureEquivalence = this.Repository
             .Query()

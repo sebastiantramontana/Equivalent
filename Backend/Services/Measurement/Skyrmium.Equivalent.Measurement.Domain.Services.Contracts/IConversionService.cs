@@ -3,7 +3,8 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Contracts
 {
-   public interface IMeasureService : IOwnedCrudService<Measure>
+   public interface IConversionService : IOwnedCrudService<Conversion>
    {
+      double Convert(Conversion conversion, double quantity);
    }
 }

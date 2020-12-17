@@ -2,6 +2,7 @@
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Adapters;
 using Skyrmium.Dal.Contracts.Daos;
+using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Queryables;
 using Skyrmium.Domain.Contracts.Repositories;
@@ -33,6 +34,15 @@ namespace Skyrmium.Dal.Implementations.Repositories
          var dao = this.QueryableEntity
             .SingleOrDefault(dao => dao.Id == id)
             ?? throw new ObjectNotFoundException();
+
+         return dao;
+      }
+
+      public TEntity GetByDistributedId(IDistributableId distributedId)
+      {
+         var dao = this.QueryableEntity
+           .SingleOrDefault(dao => dao.DistributedId == distributedId)
+           ?? throw new ObjectNotFoundException();
 
          return dao;
       }

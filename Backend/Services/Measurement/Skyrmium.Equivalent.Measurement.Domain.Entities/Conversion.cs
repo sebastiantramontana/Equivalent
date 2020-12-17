@@ -8,7 +8,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Conversion : OwnedEntityBase, IOwnedEntity
    {
-      public Conversion(long id, IDistributableId ownedBy, IEnumerable<MeasureEquivalence> equivalences) : base(id, ownedBy)
+      public Conversion(long id, IDistributableId distributedId, IDistributableId ownedBy, IEnumerable<MeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
       {
          this.Equivalences = equivalences;
       }
@@ -33,7 +33,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          return true;
       }
 
-      private bool ValidatePreviousToWithNextFrom(MeasureIngredient prevTo, MeasureIngredient nextFrom)
+      private static bool ValidatePreviousToWithNextFrom(MeasureIngredient prevTo, MeasureIngredient nextFrom)
       {
          return prevTo == nextFrom || (prevTo.Measure == nextFrom.Measure && nextFrom.Ingredient.IsNone);
       }

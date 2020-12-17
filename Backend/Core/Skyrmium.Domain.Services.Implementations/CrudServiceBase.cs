@@ -1,4 +1,5 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts;
+using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
 using System.Collections.Generic;
@@ -29,6 +30,11 @@ namespace Skyrmium.Domain.Services.Implementations
       public TEntity GetById(long id)
       {
          return this.Repository.GetById(id);
+      }
+
+      public TEntity GetByDistributedId(IDistributableId distributableId)
+      {
+         return this.Repository.GetByDistributedId(distributableId);
       }
 
       public void Remove(TEntity entity)

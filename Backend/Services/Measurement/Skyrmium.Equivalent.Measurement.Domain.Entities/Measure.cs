@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
-   public class Measure : OwnedDistributableEntityBase
+   public class Measure : OwnedEntityBase
    {
       public Measure(long id, IDistributableId distributedId, IDistributableId ownedBy) : base(id, distributedId, ownedBy)
       {

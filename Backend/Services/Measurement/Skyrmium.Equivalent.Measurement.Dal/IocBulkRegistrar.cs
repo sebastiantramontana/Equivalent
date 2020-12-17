@@ -20,7 +20,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
 
       public void Register(IContaner container)
       {
-         container.Register<IRepository<Measure>, MappedOwnedDistributableRepository<Measure, MeasureDao>>();
+         container.Register<IRepository<Measure>, MappedOwnedRepository<Measure, MeasureDao>>();
          container.Register<IRepository<MeasureEquivalence>, MappedOwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>>();
          container.Register<DbContext, MeasurementDbContext>(() => new MeasurementDbContext(_configuration.StringConnection));
       }

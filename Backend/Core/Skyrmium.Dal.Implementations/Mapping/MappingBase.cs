@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Skyrmium.Dal.Contracts.Daos;
 
-namespace Skyrmium.Dal.Implementations
+namespace Skyrmium.Dal.Implementations.Mapping
 {
    public abstract class MappingBase<T> : IEntityTypeConfiguration<T> where T : class, IDao
    {
@@ -19,14 +19,16 @@ namespace Skyrmium.Dal.Implementations
 
          builder
             .Property(e => e.Id)
-            .HasColumnName("Id")
+            .HasColumnName(nameof(IDao.Id))
             .IsRequired()
             .ValueGeneratedOnAdd()
             .UseHiLo("DBSequenceHiLo")
             .UseIdentityColumn();
 
-         builder.HasKey(e => e.Id)
-            .IsClustered(true);
+         builder
+            .Property(e => e.DistributedId)
+            .HasColumnName(nameof(IDao.DistributedId))
+            .IsRequired();
 
          Continue(builder);
       }

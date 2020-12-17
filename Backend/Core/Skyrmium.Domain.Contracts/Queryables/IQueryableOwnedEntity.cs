@@ -2,7 +2,8 @@
 
 namespace Skyrmium.Domain.Contracts.Queryables
 {
-   public interface IQueryableOwnedEntity<TEntity> : IQueryableEntity<TEntity> where TEntity : IOwnedEntity
-   {
-   }
+   //TODO: Probablemente no sea necesario
+   //public interface IQueryableOwnedEntity<TEntity> : IQueryableEntity<TEntity> where TEntity : IOwnedEntity
+   //{
+   //}
 }

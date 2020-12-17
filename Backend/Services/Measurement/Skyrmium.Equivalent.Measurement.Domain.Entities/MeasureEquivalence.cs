@@ -5,7 +5,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class MeasureEquivalence : OwnedEntityBase
    {
-      public MeasureEquivalence(long id, IDistributableId ownedBy, MeasureIngredient from, MeasureIngredient to) : base(id, ownedBy)
+      public MeasureEquivalence(long id, IDistributableId distributedId, IDistributableId ownedBy, MeasureIngredient from, MeasureIngredient to) : base(id, distributedId, ownedBy)
       {
          this.From = from;
          this.To = to;
