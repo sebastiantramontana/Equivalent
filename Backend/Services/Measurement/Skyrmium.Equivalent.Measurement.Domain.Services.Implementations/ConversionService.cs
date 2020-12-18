@@ -13,8 +13,17 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double Convert(Conversion conversion, double quantity)
       {
-         //TODO
-         throw new System.NotImplementedException();
+         return quantity * Convert(conversion);
+      }
+
+      public double Convert(Conversion conversion)
+      {
+         double factor = 1.0;
+
+         foreach (var equiv in conversion.Equivalences)
+            factor *= equiv.Factor;
+
+         return factor;
       }
    }
 }

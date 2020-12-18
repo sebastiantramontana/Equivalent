@@ -1,5 +1,5 @@
 ﻿using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Contracts.Exceptions.Business;
+using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Implementations;
 using Skyrmium.Domain.Services.Implementations;
@@ -18,7 +18,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double GetFactor(Measure measureFrom, Measure measureTo)
       {
-         var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo);
+         var businessException = InexistentEquivalenceExceptionFactory.Create(measureFrom, measureTo);
          var from = new MeasureIngredient(measureFrom, DistributableId.None);
          var to = new MeasureIngredient(measureTo, DistributableId.None);
 
@@ -27,7 +27,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double GetFactor(Measure measureFrom, Measure measureTo, IDistributableId ingredient)
       {
-         var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(measureFrom, measureTo, ingredient);
+         var businessException = InexistentEquivalenceExceptionFactory.Create(measureFrom, measureTo, ingredient);
          var from = new MeasureIngredient(measureFrom, ingredient);
          var to = new MeasureIngredient(measureTo, ingredient);
 
@@ -36,11 +36,11 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public double GetFactor(MeasureIngredient from, MeasureIngredient to)
       {
-         var businessException = BusinessExceptionFactory.CreateInexistentEquivalenceException(from.Measure, to.Measure, from.Ingredient, to.Ingredient);
+         var businessException = InexistentEquivalenceExceptionFactory.Create(from.Measure, to.Measure, from.Ingredient, to.Ingredient);
          return GetFactor(from, to, businessException);
       }
 
-      private double GetFactor(MeasureIngredient from, MeasureIngredient to, BusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
+      private double GetFactor(MeasureIngredient from, MeasureIngredient to, IBusinessException<MeasurementException, InexistentEquivalenceExceptionValue> businessException)
       {
          var measureEquivalence = this.Repository
             .Query()
@@ -48,7 +48,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
                   me.From == from
                && me.To == to);
 
-         return measureEquivalence?.Factor ?? throw businessException;
+         return measureEquivalence?.Factor ?? throw businessException.ToException();
       }
    }
 }
