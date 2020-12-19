@@ -1,7 +1,12 @@
 ﻿using Skyrmium.Domain.Contracts.Repositories;
+using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
+using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
@@ -9,11 +14,6 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
    {
       public ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
       {
-      }
-
-      public double Convert(Conversion conversion, double quantity)
-      {
-         return quantity * Convert(conversion);
       }
 
       public double Convert(Conversion conversion)
@@ -24,6 +24,33 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
             factor *= equiv.Factor;
 
          return factor;
+      }
+
+      public double Convert(Conversion conversion, double quantity)
+      {
+         return quantity * Convert(conversion);
+      }
+
+      public double Convert(MeasureEquivalence from, MeasureEquivalence to, double quantity)
+      {
+         var conversion = this.Repository
+                        .Query()
+                        .SingleOrDefault(c => c.Equivalences.First() == from && c.Equivalences.Last() == to)
+                        ?? throw CreateConversionNotFoundException(from, to);
+
+         return Convert(conversion, quantity);
+      }
+
+      private Exception CreateConversionNotFoundException(MeasureEquivalence from, MeasureEquivalence to)
+      {
+         return BusinessExceptionFactory
+            .Create(MeasurementServiceExceptions.ConversionNotFound, "Conversion",
+               new Dictionary<ConversionNotFoundExceptionValues, object>()
+               {
+                  { ConversionNotFoundExceptionValues.From, from },
+                  { ConversionNotFoundExceptionValues.To, to }
+               })
+            .ToException();
       }
    }
 }

@@ -2,6 +2,6 @@
 {
    public enum InvalidConversionExceptionValues
    {
-      MeasureEquivalences
+      Name
    }
 }

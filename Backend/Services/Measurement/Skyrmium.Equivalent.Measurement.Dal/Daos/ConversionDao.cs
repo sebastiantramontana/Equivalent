@@ -1,11 +1,12 @@
 ﻿using Skyrmium.Dal.Implementations.Daos;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Daos
 {
    public class ConversionDao : OwnedDaoBase
    {
-      public IEnumerable<OrderedMeasureEquivalenceDao> Equivalences { get; set; } = Array.Empty<OrderedMeasureEquivalenceDao>();
+      public string Name { get; set; } = string.Empty;
+      public IQueryable<OrderedMeasureEquivalenceDao> Equivalences { get; set; } = Array.Empty<OrderedMeasureEquivalenceDao>().AsQueryable();
    }
 }
