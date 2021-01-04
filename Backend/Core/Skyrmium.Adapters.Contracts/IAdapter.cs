@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace Skyrmium.Infrastructure.Contracts
+﻿namespace Skyrmium.Adapters.Contracts
 {
    public interface IAdapter<T1, T2>
    {

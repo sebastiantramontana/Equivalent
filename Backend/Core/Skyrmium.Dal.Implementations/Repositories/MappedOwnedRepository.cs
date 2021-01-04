@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skyrmium.Dal.Contracts.Adapters;
+using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
@@ -12,7 +12,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : IOwnedEntity
       where TDao : class, IOwnedDao
    {
-      public MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IDalAdapter<TEntity, TDao> dalAdapter)
+      public MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IExpressionAdapter<TEntity, TDao> dalAdapter)
          : base(dbContext, queryableEntity, dalAdapter)
       {
       }

@@ -12,6 +12,7 @@
 /Backend/Core/Skyrmium.Domain.Implementations/bin
 /Backend/Core/Skyrmium.Domain.Services.Contracts/bin
 /Backend/Core/Skyrmium.Domain.Services.Implementations/bin
+/Backend/Core/Skyrmium.Adapters.Contracts/bin
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/bin
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api/bin
@@ -27,6 +28,7 @@
 /Backend/Core/Skyrmium.Domain.Implementations/obj
 /Backend/Core/Skyrmium.Domain.Services.Contracts/obj
 /Backend/Core/Skyrmium.Domain.Services.Implementations/obj
+/Backend/Core/Skyrmium.Adapters.Contracts/obj
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/obj
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api/obj

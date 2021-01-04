@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Contracts;
-using Skyrmium.Dal.Contracts.Adapters;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
@@ -15,9 +15,9 @@ namespace Skyrmium.Dal.Implementations.Repositories
    {
       private protected DbContext DbContext { get; }
       private protected IQueryableEntity<TEntity> QueryableEntity { get; }
-      private protected IDalAdapter<TEntity, TDao> DalAdapter { get; }
+      private protected IExpressionAdapter<TEntity, TDao> DalAdapter { get; }
 
-      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IDalAdapter<TEntity, TDao> dalAdapter)
+      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IExpressionAdapter<TEntity, TDao> dalAdapter)
       {
          this.DbContext = dbContext;
          this.QueryableEntity = queryableEntity;
