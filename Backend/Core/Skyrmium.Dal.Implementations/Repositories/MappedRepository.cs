@@ -6,6 +6,9 @@ using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Queryables;
 using Skyrmium.Domain.Contracts.Repositories;
+using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
@@ -31,20 +34,14 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public TEntity GetById(long id)
       {
-         var entity = this.QueryableEntity
-            .SingleOrDefault(e => e.Id == id)
-            ?? throw new ObjectNotFoundException();
-
-         return entity;
+         return GetSingleEntity(d => d.Id == id);
       }
 
       public TEntity GetByDistributedId(IDistributableId distributedId)
       {
-         var entity = this.QueryableEntity
-           .SingleOrDefault(e => e.DistributedId == distributedId)
-           ?? throw new ObjectNotFoundException();
+         var distributedIdValue = distributedId.Value;
 
-         return entity;
+         return GetSingleEntity(d => d.DistributedId == distributedIdValue);
       }
 
       public void Add(TEntity entity)
@@ -63,6 +60,17 @@ namespace Skyrmium.Dal.Implementations.Repositories
       {
          var dao = this.Adapter.Map(entity);
          this.DbContext.Set<TDao>().Remove(dao);
+      }
+
+      private TEntity GetSingleEntity(Expression<Func<TDao, bool>> expressionCondition)
+      {
+         var dao = this.DbContext
+           .Set<TDao>()
+           .SingleOrDefault(expressionCondition)
+           ?? throw new DataObjectNotFoundException();
+
+         var entity = this.Adapter.Map(dao);
+         return entity;
       }
    }
 }

@@ -3,9 +3,9 @@ using Skyrmium.Adapters.Contracts;
 
 namespace Skyrmium.Adapters.Implementations
 {
-   public abstract class AdapterBase<T1, T2> : IAdapter<T1, T2>
+   public class Adapter<T1, T2> : IAdapter<T1, T2>
    {
-      protected AdapterBase(IMapper mapper)
+      public Adapter(IMapper mapper)
       {
          this.Mapper = mapper;
       }

@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 
 namespace Skyrmium.Adapters.Implementations
 {
-   public abstract class ExpressionAdapterBase<T1, T2> : AdapterBase<T1, T2>, IExpressionAdapter<T1, T2>
+   public class ExpressionAdapter<T1, T2> : Adapter<T1, T2>, IExpressionAdapter<T1, T2>
    {
-      protected ExpressionAdapterBase(IMapper mapper) : base(mapper)
+      public ExpressionAdapter(IMapper mapper) : base(mapper)
       {
       }
 

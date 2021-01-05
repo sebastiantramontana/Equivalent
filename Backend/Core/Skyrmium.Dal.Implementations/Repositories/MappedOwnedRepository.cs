@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skyrmium.Adapters.Contracts;
+using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Queryables;
 using Skyrmium.Domain.Contracts.Repositories;
+using System.Linq;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {

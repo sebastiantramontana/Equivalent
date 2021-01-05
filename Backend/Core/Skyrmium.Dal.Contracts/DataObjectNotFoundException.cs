@@ -2,7 +2,7 @@
 
 namespace Skyrmium.Dal.Contracts
 {
-   public class ObjectNotFoundException : Exception
+   public class DataObjectNotFoundException : Exception
    {
    }
 }
