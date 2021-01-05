@@ -12,17 +12,17 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : IOwnedEntity
       where TDao : class, IOwnedDao
    {
-      public MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IExpressionAdapter<TEntity, TDao> dalAdapter)
-         : base(dbContext, queryableEntity, dalAdapter)
+      public MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
+         : base(dbContext, queryableEntity, adapter)
       {
       }
 
       public IQueryableEntity<TEntity> GetByOwned(IDistributableId ownedBy)
       {
-         var daos = this.QueryableEntity
-           .Where(dao => dao.OwnedBy == ownedBy);
+         var entities = this.QueryableEntity
+           .Where(entity => entity.OwnedBy == ownedBy);
 
-         return daos;
+         return entities;
       }
    }
 }

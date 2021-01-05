@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj" />
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

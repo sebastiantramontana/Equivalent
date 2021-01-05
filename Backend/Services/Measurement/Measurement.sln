@@ -29,6 +29,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Implementat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts", "..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj", "{F854658E-3979-4B2B-AF38-16A4D25D001A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Contracts", "..\..\Core\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj", "{700DD382-255E-4919-A21C-EE8E8F1D4BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Adapters.Dal", "Skyrmium.Equivalent.Measurement.Adapters.Dal\Skyrmium.Equivalent.Measurement.Adapters.Dal.csproj", "{F6E8479B-D416-46A3-B93E-FAE0598B2978}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Implementations", "..\..\Core\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj", "{A8DA805A-ABBE-4E06-93F7-181DD78F6654}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +89,18 @@ Global
 		{F854658E-3979-4B2B-AF38-16A4D25D001A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F854658E-3979-4B2B-AF38-16A4D25D001A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F854658E-3979-4B2B-AF38-16A4D25D001A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +113,8 @@ Global
 		{34B17394-D6CA-474D-A1D2-72B6CAF52225} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{BC8DFA40-E953-4674-9AAF-59C695FB6F5B} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{F854658E-3979-4B2B-AF38-16A4D25D001A} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{700DD382-255E-4919-A21C-EE8E8F1D4BD3} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{A8DA805A-ABBE-4E06-93F7-181DD78F6654} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {306BC64B-B739-441E-9FB4-94FC4846064E}

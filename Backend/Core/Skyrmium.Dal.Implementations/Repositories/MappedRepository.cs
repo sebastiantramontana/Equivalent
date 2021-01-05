@@ -15,13 +15,13 @@ namespace Skyrmium.Dal.Implementations.Repositories
    {
       private protected DbContext DbContext { get; }
       private protected IQueryableEntity<TEntity> QueryableEntity { get; }
-      private protected IExpressionAdapter<TEntity, TDao> DalAdapter { get; }
+      private protected IAdapter<TEntity, TDao> Adapter { get; }
 
-      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IExpressionAdapter<TEntity, TDao> dalAdapter)
+      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
       {
          this.DbContext = dbContext;
          this.QueryableEntity = queryableEntity;
-         this.DalAdapter = dalAdapter;
+         this.Adapter = adapter;
       }
 
       public IQueryableEntity<TEntity> Query()
@@ -31,37 +31,37 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public TEntity GetById(long id)
       {
-         var dao = this.QueryableEntity
-            .SingleOrDefault(dao => dao.Id == id)
+         var entity = this.QueryableEntity
+            .SingleOrDefault(e => e.Id == id)
             ?? throw new ObjectNotFoundException();
 
-         return dao;
+         return entity;
       }
 
       public TEntity GetByDistributedId(IDistributableId distributedId)
       {
-         var dao = this.QueryableEntity
-           .SingleOrDefault(dao => dao.DistributedId == distributedId)
+         var entity = this.QueryableEntity
+           .SingleOrDefault(e => e.DistributedId == distributedId)
            ?? throw new ObjectNotFoundException();
 
-         return dao;
+         return entity;
       }
 
       public void Add(TEntity entity)
       {
-         var dao = this.DalAdapter.Map(entity);
+         var dao = this.Adapter.Map(entity);
          this.DbContext.Set<TDao>().Add(dao);
       }
 
       public void Update(TEntity entity)
       {
-         var dao = this.DalAdapter.Map(entity);
+         var dao = this.Adapter.Map(entity);
          this.DbContext.Set<TDao>().Update(dao);
       }
 
       public void Remove(TEntity entity)
       {
-         var dao = this.DalAdapter.Map(entity);
+         var dao = this.Adapter.Map(entity);
          this.DbContext.Set<TDao>().Remove(dao);
       }
    }
