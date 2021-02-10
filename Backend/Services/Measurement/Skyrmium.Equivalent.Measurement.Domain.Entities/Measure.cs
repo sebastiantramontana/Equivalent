@@ -15,7 +15,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 
       public string ShortName { get; set; } = string.Empty;
 
-      public ICollection<MeasureEquivalence> Equivalences { get; set; } = Array.Empty<MeasureEquivalence>();
+      //public ICollection<MeasureEquivalence> Equivalences { get; set; } = Array.Empty<MeasureEquivalence>();
 
       public override string ToString()
       {

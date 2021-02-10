@@ -27,14 +27,14 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          return new Conversion(id, distributedId, ownedBy, name, equivalences);
       }
 
-      private Conversion(long id, IDistributableId distributedId, IDistributableId ownedBy, string name, IEnumerable<MeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
+      private Conversion(long id, IDistributableId distributedId, IDistributableId ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
       {
          this.Name = name;
          this.Equivalences = equivalences;
       }
 
       public string Name { get; }
-      public IEnumerable<MeasureEquivalence> Equivalences { get; }
+      public IEnumerable<OrderedMeasureEquivalence> Equivalences { get; }
 
       private static bool Validate(IEnumerable<MeasureEquivalence> equivalences)
       {

@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Contracts", "..\..\Core\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj", "{700DD382-255E-4919-A21C-EE8E8F1D4BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Adapters.Dal", "Skyrmium.Equivalent.Measurement.Adapters.Dal\Skyrmium.Equivalent.Measurement.Adapters.Dal.csproj", "{F6E8479B-D416-46A3-B93E-FAE0598B2978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Adapters", "Skyrmium.Equivalent.Measurement.Adapters\Skyrmium.Equivalent.Measurement.Adapters.csproj", "{F6E8479B-D416-46A3-B93E-FAE0598B2978}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Implementations", "..\..\Core\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj", "{A8DA805A-ABBE-4E06-93F7-181DD78F6654}"
 EndProject
