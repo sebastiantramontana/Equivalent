@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +17,10 @@
     <ProjectReference Include="..\..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Dal\Skyrmium.Equivalent.Measurement.Dal.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Entities\Skyrmium.Equivalent.Measurement.Domain.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
