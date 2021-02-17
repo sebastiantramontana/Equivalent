@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
-   public class MappedRepository<TEntity, TDao> : IRepository<TEntity>
+   internal class MappedRepository<TEntity, TDao> : IRepository<TEntity>
       where TEntity : IEntity
       where TDao : class, IDao
    {
@@ -19,7 +19,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       private protected IQueryableEntity<TEntity> QueryableEntity { get; }
       private protected IAdapter<TEntity, TDao> Adapter { get; }
 
-      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
+      internal MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
       {
          this.DbContext = dbContext;
          this.QueryableEntity = queryableEntity;

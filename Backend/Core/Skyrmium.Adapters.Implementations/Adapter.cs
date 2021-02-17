@@ -3,9 +3,9 @@ using Skyrmium.Adapters.Contracts;
 
 namespace Skyrmium.Adapters.Implementations
 {
-   public class Adapter<T1, T2> : IAdapter<T1, T2>
+   internal class Adapter<T1, T2> : IAdapter<T1, T2>
    {
-      public Adapter(IMapper mapper)
+      internal Adapter(IMapper mapper)
       {
          this.Mapper = mapper;
       }
