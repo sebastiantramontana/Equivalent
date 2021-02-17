@@ -1,4 +1,4 @@
-﻿using Skyrmium.Domain.Contracts;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Implementations.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities

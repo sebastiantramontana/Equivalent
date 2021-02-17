@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Implementations;
+using Skyrmium.Domain.Contracts.Entities;
+using Skyrmium.Domain.Implementations.Entities;
 using System;
 
 namespace Skyrmium.Adapters.Implementations.EntitiesToDaos

@@ -1,5 +1,4 @@
-﻿using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts.Entities;
 
 namespace Skyrmium.Domain.Implementations.Entities
 {

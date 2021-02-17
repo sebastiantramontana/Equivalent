@@ -1,7 +1,7 @@
-﻿using Skyrmium.Domain.Contracts;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using System;
 
-namespace Skyrmium.Domain.Implementations
+namespace Skyrmium.Domain.Implementations.Entities
 {
    public class DistributableId : IDistributableId
    {

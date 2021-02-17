@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj" />
+    <ProjectReference Include="..\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj" />
+    <ProjectReference Include="..\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

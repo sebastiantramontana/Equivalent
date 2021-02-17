@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Skyrmium.Adapters.Implementations.EntitiesToDaos;
-using Skyrmium.Equivalent.Measurement.Dal.Daos;
+using Skyrmium.Adapters.Implementations.EntitiesToDtos;
+using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
-using Skyrmium.Domain.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureEquivalenceToMeasureEquivalenceDao : OwnedEntityToOwnedDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
+   internal class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToOwnedDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      protected override void ContinueWithOwnedEntity(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDao> mappingExpression)
+      protected override void ContinueWithOwnedEntity(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDto> mappingExpression)
       {
          mappingExpression
             .ForMember(d => d.MeasureFrom, c => c.MapFrom(e => e.From.Measure))
@@ -18,7 +17,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
             .ForMember(d => d.Factor, c => c.MapFrom(e => e.Factor));
       }
 
-      protected override void ContinueWithOwnedDao(IMappingExpression<MeasureEquivalenceDao, MeasureEquivalence> mappingExpression)
+      protected override void ContinueWithOwnedDto(IMappingExpression<MeasureEquivalenceDto, MeasureEquivalence> mappingExpression)
       {
          mappingExpression
             .ForMember(e => e.From.Measure, c => c.MapFrom(d => d.MeasureFrom))

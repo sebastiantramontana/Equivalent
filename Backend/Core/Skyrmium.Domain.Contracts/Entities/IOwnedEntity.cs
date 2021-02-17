@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Skyrmium.Domain.Contracts.Entities
+﻿namespace Skyrmium.Domain.Contracts.Entities
 {
    public interface IOwnedEntity : IEntity
    {

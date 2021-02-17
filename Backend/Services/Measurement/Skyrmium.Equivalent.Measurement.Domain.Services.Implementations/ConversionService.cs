@@ -21,7 +21,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          double factor = 1.0;
 
          foreach (var equiv in conversion.Equivalences)
-            factor *= equiv.Factor;
+            factor *= equiv.MeasureEquivalence.Factor;
 
          return factor;
       }
@@ -35,7 +35,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       {
          var conversion = this.Repository
                         .Query()
-                        .SingleOrDefault(c => c.Equivalences.First() == from && c.Equivalences.Last() == to)
+                        .SingleOrDefault(c => c.Equivalences.First().MeasureEquivalence == from && c.Equivalences.Last().MeasureEquivalence == to)
                         ?? throw CreateConversionNotFoundException(from, to);
 
          return Convert(conversion, quantity);

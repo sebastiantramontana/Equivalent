@@ -1,5 +1,4 @@
-﻿using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using System.Collections.Generic;
 
 namespace Skyrmium.Domain.Services.Contracts

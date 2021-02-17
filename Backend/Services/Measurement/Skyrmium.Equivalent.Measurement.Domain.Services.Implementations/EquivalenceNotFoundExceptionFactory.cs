@@ -1,4 +1,4 @@
-﻿using Skyrmium.Domain.Contracts;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;

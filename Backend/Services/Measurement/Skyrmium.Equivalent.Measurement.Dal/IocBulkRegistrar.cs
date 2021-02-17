@@ -18,7 +18,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
          _configuration = configuration;
       }
 
-      public void Register(IContaner container)
+      public void Register(IContainer container)
       {
          container.Register<IRepository<Measure>, MappedOwnedRepository<Measure, MeasureDao>>();
          container.Register<IRepository<MeasureEquivalence>, MappedOwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>>();

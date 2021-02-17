@@ -9,7 +9,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.Dtos
    public class ConversionDto : OwnedDtoBase
    {
       public string Name { get; set; } = string.Empty;
-      public IEnumerable<OrderedMeasureEquivalenceDto> Equivalences { get; set; } = Array.Empty<OrderedMeasureEquivalenceDao>().AsQueryable();
+      public IEnumerable<OrderedMeasureEquivalenceDto> Equivalences { get; set; } = Array.Empty<OrderedMeasureEquivalenceDto>().AsQueryable();
 
    }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Skyrmium.Domain.Contracts
+namespace Skyrmium.Domain.Contracts.Entities
 {
    public interface IDistributableId : IEquatable<IDistributableId>
    {

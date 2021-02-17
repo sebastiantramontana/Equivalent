@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Contracts", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Implementations", "..\..\Core\Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj", "{E2A92B79-6398-4AD9-A655-DE48B96F86CD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{4D18571C-8B42-4EAD-860B-03239E2F8414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{E2A92B79-6398-4AD9-A655-DE48B96F86CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2A92B79-6398-4AD9-A655-DE48B96F86CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2A92B79-6398-4AD9-A655-DE48B96F86CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D18571C-8B42-4EAD-860B-03239E2F8414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D18571C-8B42-4EAD-860B-03239E2F8414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D18571C-8B42-4EAD-860B-03239E2F8414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D18571C-8B42-4EAD-860B-03239E2F8414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -129,6 +135,7 @@ Global
 		{A8DA805A-ABBE-4E06-93F7-181DD78F6654} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{173A3AEA-4DFB-4CE8-8FE3-CF80E3745511} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 		{E2A92B79-6398-4AD9-A655-DE48B96F86CD} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
+		{4D18571C-8B42-4EAD-860B-03239E2F8414} = {B3F1571B-7952-4768-BF0F-6BE779BF0490}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {306BC64B-B739-441E-9FB4-94FC4846064E}

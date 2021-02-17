@@ -2,7 +2,7 @@
 
 namespace Skyrmium.Infrastructure.Contracts
 {
-   public interface IContaner
+   public interface IContainer
    {
       void Register<TInterface, TService>() where TService : class, TInterface;
       void Register<TInterface, TService>(TService service) where TService : class, TInterface;
