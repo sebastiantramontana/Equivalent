@@ -1,8 +1,6 @@
-﻿using Skyrmium.Domain.Contracts;
-using Skyrmium.Domain.Contracts.Entities;
+﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Contracts.Repositories;
-using Skyrmium.Domain.Implementations;
 using Skyrmium.Domain.Implementations.Entities;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -11,9 +9,9 @@ using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   public class EquivalentService : OwnedCrudServiceBase<MeasureEquivalence>, IEquivalenceService
+   internal class EquivalenceService : OwnedCrudServiceBase<MeasureEquivalence>, IEquivalenceService
    {
-      public EquivalentService(IOwnedRepository<MeasureEquivalence> repository)
+      internal EquivalenceService(IOwnedRepository<MeasureEquivalence> repository)
          : base(repository)
       {
       }

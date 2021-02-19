@@ -10,9 +10,9 @@ using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   public class ConversionService : OwnedCrudServiceBase<Conversion>, IConversionService
+   internal class ConversionService : OwnedCrudServiceBase<Conversion>, IConversionService
    {
-      public ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
+      internal ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
       {
       }
 

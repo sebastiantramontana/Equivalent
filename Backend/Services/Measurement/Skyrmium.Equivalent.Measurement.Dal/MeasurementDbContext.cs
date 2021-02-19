@@ -4,11 +4,11 @@ using Skyrmium.Equivalent.Measurement.Dal.Mappings;
 
 namespace Skyrmium.Equivalent.Measurement.Dal
 {
-   public class MeasurementDbContext : DbContext
+   internal class MeasurementDbContext : DbContext
    {
       private readonly string _stringConnection;
 
-      public MeasurementDbContext(string stringConnection)
+      internal MeasurementDbContext(string stringConnection)
       {
          _stringConnection = stringConnection;
 

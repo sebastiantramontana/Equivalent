@@ -26,6 +26,7 @@
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Adapters/bin
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Ioc/bin
 
 /Backend/Core/Skyrmium.Infrastructure.Contracts/obj
 /Backend/Core/Skyrmium.Dal.Contracts/obj
@@ -48,4 +49,6 @@
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Adapters/obj
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Ioc/obj
+
 /GitExtensions.settings
