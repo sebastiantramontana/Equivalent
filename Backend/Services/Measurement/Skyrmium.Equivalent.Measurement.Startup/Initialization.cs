@@ -7,9 +7,9 @@ namespace Skyrmium.Equivalent.Measurement.Startup
 {
    public static class Initialization
    {
-      public static void Initialize(IContainer container, IConfiguration configuration, Action<Action> adapterInitializationAction)
+      public static void Initialize(IContainer container, IConfiguration configImplementation, Action<Action> adapterInitializationAction)
       {
-         var ioc = new IocBulkRegistrarMeasurement(configuration);
+         var ioc = new IocBulkRegistrarMeasurement(configImplementation);
          ioc.Register(container);
 
          adapterInitializationAction(() => AdapterConfiguration.Configure());

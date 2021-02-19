@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Skyrmium.Equivalent.Measurement.Dal.Mappings;
+using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Dal
 {
@@ -8,9 +9,9 @@ namespace Skyrmium.Equivalent.Measurement.Dal
    {
       private readonly string _stringConnection;
 
-      internal MeasurementDbContext(string stringConnection)
+      internal MeasurementDbContext(IConfiguration configuration)
       {
-         _stringConnection = stringConnection;
+         _stringConnection = configuration.ConnectionString;
 
          this.ChangeTracker.LazyLoadingEnabled = true;
          this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

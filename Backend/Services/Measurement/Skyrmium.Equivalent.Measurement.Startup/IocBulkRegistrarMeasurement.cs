@@ -8,11 +8,11 @@ namespace Skyrmium.Measurement.IoC
 {
    internal class IocBulkRegistrarMeasurement : IIocBulkRegistrar
    {
-      private readonly IConfiguration _configuration;
+      private readonly IConfiguration _configImplementation;
 
-      internal IocBulkRegistrarMeasurement(IConfiguration configuration)
+      internal IocBulkRegistrarMeasurement(IConfiguration configImplementation)
       {
-         _configuration = configuration;
+         _configImplementation = configImplementation;
       }
 
       public void Register(IContainer container)
@@ -23,6 +23,8 @@ namespace Skyrmium.Measurement.IoC
             registrar.Register(container);
 
          RegisterDomain(container);
+
+         container.Register(_configImplementation);
       }
 
       private IEnumerable<IIocBulkRegistrar> GetRegistrars()
@@ -30,15 +32,15 @@ namespace Skyrmium.Measurement.IoC
          return new IIocBulkRegistrar[]
          {
             new IocBulkRegistrarCore(),
-            new IocBulkRegistrarMeasurementDal(_configuration)
+            new IocBulkRegistrarMeasurementDal()
          };
       }
 
       private void RegisterDomain(IContainer container)
       {
          var iocDomain = new IocMeasurementDomainServices();
-         
-         foreach(var pair in iocDomain.TypePairs)
+
+         foreach (var pair in iocDomain.TypePairs)
          {
             container.Register(pair.Interfaz, pair.Implementation);
          }

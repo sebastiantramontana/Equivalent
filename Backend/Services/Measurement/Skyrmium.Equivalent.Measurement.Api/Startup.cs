@@ -28,10 +28,11 @@ namespace Skyrmium.Equivalent.Measurement.Api
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime hostApplicationLifetime)
+      public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime hostApplicationLifetime, IConfiguration configuration)
       {
-         Initialization.Initialize(null, null, (act) => hostApplicationLifetime.ApplicationStarted.Register(act));
+         Initialization.Initialize(null, new Configuration(configuration), (act) => hostApplicationLifetime.ApplicationStarted.Register(act));
 
+         
          if (env.IsDevelopment())
          {
             app.UseDeveloperExceptionPage()
