@@ -18,7 +18,6 @@ namespace Skyrmium.Ioc
       private IEnumerable<IIocBulkRegistrar> GetCoreRegistrars()
       {
          return new IIocBulkRegistrar[] {
-            new IocBulkRegistrarCoreAdapter(),
             new IocBulkRegistrarCoreDal()
          };
       }

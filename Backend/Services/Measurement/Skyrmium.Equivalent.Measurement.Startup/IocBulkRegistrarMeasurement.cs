@@ -1,4 +1,5 @@
-﻿using Skyrmium.Equivalent.Measurement.Dal;
+﻿using Skyrmium.Equivalent.Measurement.Adapters;
+using Skyrmium.Equivalent.Measurement.Dal;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Implementations;
 using Skyrmium.Infrastructure.Contracts;
 using Skyrmium.Ioc;
@@ -32,7 +33,8 @@ namespace Skyrmium.Measurement.IoC
          return new IIocBulkRegistrar[]
          {
             new IocBulkRegistrarCore(),
-            new IocBulkRegistrarMeasurementDal()
+            new IocBulkRegistrarMeasurementDal(),
+            new IocBulkRegistrarMeasurementAdapter()
          };
       }
 

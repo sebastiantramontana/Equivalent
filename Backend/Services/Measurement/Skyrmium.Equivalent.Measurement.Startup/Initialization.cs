@@ -1,18 +1,14 @@
-﻿using Skyrmium.Equivalent.Measurement.Adapters;
-using Skyrmium.Infrastructure.Contracts;
+﻿using Skyrmium.Infrastructure.Contracts;
 using Skyrmium.Measurement.IoC;
-using System;
 
 namespace Skyrmium.Equivalent.Measurement.Startup
 {
    public static class Initialization
    {
-      public static void Initialize(IContainer container, IConfiguration configImplementation, Action<Action> adapterInitializationAction)
+      public static void Register(IContainer container, IConfiguration configImplementation)
       {
          var ioc = new IocBulkRegistrarMeasurement(configImplementation);
          ioc.Register(container);
-
-         adapterInitializationAction(() => AdapterConfiguration.Configure());
       }
    }
 }

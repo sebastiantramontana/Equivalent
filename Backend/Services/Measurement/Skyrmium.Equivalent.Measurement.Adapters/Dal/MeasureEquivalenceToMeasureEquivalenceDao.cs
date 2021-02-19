@@ -21,10 +21,10 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
       protected override void ContinueWithOwnedDao(IMappingExpression<MeasureEquivalenceDao, MeasureEquivalence> mappingExpression)
       {
          mappingExpression
-            .ForMember(e => e.From.Measure, c => c.MapFrom(d => d.MeasureFrom))
-            .ForMember(e => e.From.Ingredient, c => c.MapFrom(d => d.IngredientFrom))
-            .ForMember(e => e.To.Measure, c => c.MapFrom(d => d.MeasureTo))
-            .ForMember(e => e.To.Ingredient, c => c.MapFrom(d => d.IngredientTo))
+            .ForPath(e => e.From.Measure, c => c.MapFrom(d => d.MeasureFrom))
+            .ForPath(e => e.From.Ingredient, c => c.MapFrom(d => d.IngredientFrom))
+            .ForPath(e => e.To.Measure, c => c.MapFrom(d => d.MeasureTo))
+            .ForPath(e => e.To.Ingredient, c => c.MapFrom(d => d.IngredientTo))
             .ForMember(e => e.Factor, c => c.MapFrom(d => d.Factor));
       }
    }

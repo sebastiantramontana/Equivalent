@@ -4,8 +4,10 @@ namespace Skyrmium.Infrastructure.Contracts
 {
    public interface IContainer
    {
-      void Register<TInterface, TService>() where TService : class, TInterface;
-      void Register<TInterface>(TInterface service) where TInterface : class;
-      void Register(Type interfaceType, Type implementation);
+      void Register<TService, TImplementation>() 
+         where TService : class 
+         where TImplementation : class, TService;
+      void Register<TService>(TService service) where TService : class;
+      void Register(Type serviceType, Type implementationType);
    }
 }

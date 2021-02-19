@@ -3,12 +3,12 @@ using Skyrmium.Dal.Contracts;
 
 namespace Skyrmium.Dal.Implementations
 {
-   internal class UnitOfWork : IUnitOfWork
+   public class UnitOfWork : IUnitOfWork
    {
       private readonly DbContext _dbContext;
       private bool _isCanceled = false;
 
-      internal UnitOfWork(DbContext dbContext)
+      public UnitOfWork(DbContext dbContext)
       {
          _dbContext = dbContext;
       }

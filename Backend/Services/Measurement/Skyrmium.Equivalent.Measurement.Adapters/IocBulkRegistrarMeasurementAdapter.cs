@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
+using Skyrmium.Adapters.Implementations;
 using Skyrmium.Equivalent.Measurement.Adapters.Dal;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters
 {
-   public static class AdapterConfiguration
+   public class IocBulkRegistrarMeasurementAdapter : IocBulkRegistrarCoreAdapterBase
    {
-      private static MapperConfiguration _mapperConfiguration;
+      private readonly MapperConfiguration _mapperConfiguration;
 
-      static AdapterConfiguration()
+      public IocBulkRegistrarMeasurementAdapter()
       {
          _mapperConfiguration = new MapperConfiguration(cfg =>
          {
@@ -24,9 +25,11 @@ namespace Skyrmium.Equivalent.Measurement.Adapters
          });
       }
 
-      public static void Configure()
+      protected override MapperConfiguration GetMapperConfiguration()
       {
          _mapperConfiguration.CompileMappings();
+
+         return _mapperConfiguration;
       }
    }
 }
