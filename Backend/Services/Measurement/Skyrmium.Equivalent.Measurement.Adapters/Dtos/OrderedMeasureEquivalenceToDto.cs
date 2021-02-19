@@ -6,7 +6,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
    internal class OrderedMeasureEquivalenceToDto : Profile
    {
-      public OrderedMeasureEquivalenceToDto(string profileName) : base(profileName)
+      public OrderedMeasureEquivalenceToDto() : base()
       {
          CreateMap<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDto>(MemberList.None)
             .ForMember(d => d.Order, cfg => cfg.MapFrom(e => e.Order))

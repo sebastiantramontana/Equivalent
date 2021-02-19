@@ -21,12 +21,13 @@
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/bin
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api/bin
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api.Dtos/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Entities/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Contracts/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/bin
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Adapters/bin
-/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Ioc/bin
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Startup/bin
 
 /Backend/Core/Skyrmium.Infrastructure.Contracts/obj
 /Backend/Core/Skyrmium.Dal.Contracts/obj
@@ -44,11 +45,12 @@
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/obj
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api/obj
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Api.Dtos/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Entities/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Contracts/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Domain.Services.Implementations/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Dal/obj
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Adapters/obj
-/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Ioc/obj
+/Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Startup/obj
 
 /GitExtensions.settings

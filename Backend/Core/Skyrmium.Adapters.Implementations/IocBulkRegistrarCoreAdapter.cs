@@ -1,4 +1,5 @@
-﻿using Skyrmium.Adapters.Contracts;
+﻿using AutoMapper;
+using Skyrmium.Adapters.Contracts;
 using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Adapters.Implementations
@@ -7,9 +8,9 @@ namespace Skyrmium.Adapters.Implementations
    {
       public void Register(IContainer container)
       {
+         container.Register<IMapper, Mapper>();
          container.Register(typeof(IAdapter<,>), typeof(Adapter<,>));
          container.Register(typeof(IExpressionAdapter<,>), typeof(ExpressionAdapter<,>));
-
       }
    }
 }

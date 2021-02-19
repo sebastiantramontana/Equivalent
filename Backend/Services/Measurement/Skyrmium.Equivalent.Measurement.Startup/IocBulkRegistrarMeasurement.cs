@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace Skyrmium.Measurement.IoC
 {
-   public class IocBulkRegistrarMeasurement : IIocBulkRegistrar
+   internal class IocBulkRegistrarMeasurement : IIocBulkRegistrar
    {
       private readonly IConfiguration _configuration;
 
-      public IocBulkRegistrarMeasurement(IConfiguration configuration)
+      internal IocBulkRegistrarMeasurement(IConfiguration configuration)
       {
          _configuration = configuration;
       }

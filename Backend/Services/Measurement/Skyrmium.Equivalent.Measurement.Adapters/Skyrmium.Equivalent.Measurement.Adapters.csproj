@@ -15,7 +15,7 @@
     <ProjectReference Include="..\..\..\Core\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj" />
     <ProjectReference Include="..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Api\Skyrmium.Equivalent.Measurement.Api.csproj" />
+    <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Api.Dtos\Skyrmium.Equivalent.Measurement.Api.Dtos.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Dal\Skyrmium.Equivalent.Measurement.Dal.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Entities\Skyrmium.Equivalent.Measurement.Domain.Entities.csproj" />
   </ItemGroup>
