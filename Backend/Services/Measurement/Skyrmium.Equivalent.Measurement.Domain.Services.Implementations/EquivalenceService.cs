@@ -11,7 +11,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    internal class EquivalenceService : OwnedCrudServiceBase<MeasureEquivalence>, IEquivalenceService
    {
-      internal EquivalenceService(IOwnedRepository<MeasureEquivalence> repository)
+      public EquivalenceService(IOwnedRepository<MeasureEquivalence> repository)
          : base(repository)
       {
       }

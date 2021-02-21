@@ -10,21 +10,21 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
    {
       protected OwnedEntityToOwnedDaoBase() { }
 
-      protected override void ContinueWithEntity(IMappingExpression<TEntity, TDao> mappingExpression)
+      protected override void ContinueEntityToDao(IMappingExpression<TEntity, TDao> mappingExpression)
       {
-         mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy.Value));
+         //mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy.Value));
 
-         ContinueWithOwnedEntity(mappingExpression);
+         ContinueOwnedEntityToOwnedDao(mappingExpression);
       }
 
-      protected override void ContinueWithDao(IMappingExpression<TDao, TEntity> mappingExpression)
+      protected override void ContinueDaoToEntity(IMappingExpression<TDao, TEntity> mappingExpression)
       {
-         mappingExpression.ForMember(e => e.OwnedBy, cfg => cfg.MapFrom(d => d.OwnedBy));
+         //mappingExpression.ForMember(e => e.OwnedBy, cfg => cfg.MapFrom(d => d.OwnedBy));
 
          ContinueWithOwnedDao(mappingExpression);
       }
 
-      protected abstract void ContinueWithOwnedEntity(IMappingExpression<TEntity, TDao> mappingExpression);
+      protected abstract void ContinueOwnedEntityToOwnedDao(IMappingExpression<TEntity, TDao> mappingExpression);
       protected abstract void ContinueWithOwnedDao(IMappingExpression<TDao, TEntity> mappingExpression);
    }
 }

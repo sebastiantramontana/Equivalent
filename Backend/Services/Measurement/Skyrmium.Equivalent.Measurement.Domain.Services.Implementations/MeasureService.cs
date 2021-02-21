@@ -7,7 +7,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    internal class MeasureService : OwnedCrudServiceBase<Measure>, IMeasureService
    {
-      internal MeasureService(IOwnedRepository<Measure> repository)
+      public MeasureService(IOwnedRepository<Measure> repository)
          : base(repository)
       {
       }

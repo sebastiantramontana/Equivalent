@@ -3,7 +3,7 @@ using Skyrmium.Domain.Contracts.Queryables;
 
 namespace Skyrmium.Domain.Contracts.Repositories
 {
-   public interface IRepository<TEntity> where TEntity : IEntity
+   public interface IRepository<TEntity> where TEntity : class, IEntity
    {
       IQueryableEntity<TEntity> Query();
       TEntity GetById(long id);

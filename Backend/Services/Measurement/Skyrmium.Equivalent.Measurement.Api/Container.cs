@@ -4,7 +4,7 @@ using System;
 
 namespace Skyrmium.Equivalent.Measurement.Api
 {
-   public class Container : IContainer
+   internal class Container : IContainer
    {
       private readonly IServiceCollection _serviceCollection;
 

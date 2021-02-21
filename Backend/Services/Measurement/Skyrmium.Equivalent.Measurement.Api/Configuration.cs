@@ -4,7 +4,7 @@ using ISkyrmiumConfig = Skyrmium.Infrastructure.Contracts.IConfiguration;
 
 namespace Skyrmium.Equivalent.Measurement.Api
 {
-   public class Configuration : ISkyrmiumConfig
+   internal class Configuration : ISkyrmiumConfig
    {
       public Configuration(IDotNetConfig dotNetConfig)
       {

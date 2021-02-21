@@ -8,7 +8,7 @@ namespace Skyrmium.Adapters.Implementations
 {
    internal class ExpressionAdapter<T1, T2> : Adapter<T1, T2>, IExpressionAdapter<T1, T2>
    {
-      internal ExpressionAdapter(IMapper mapper) : base(mapper)
+      public ExpressionAdapter(IMapper mapper) : base(mapper)
       {
       }
 

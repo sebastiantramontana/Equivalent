@@ -12,7 +12,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    internal class ConversionService : OwnedCrudServiceBase<Conversion>, IConversionService
    {
-      internal ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
+      public ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
       {
       }
 

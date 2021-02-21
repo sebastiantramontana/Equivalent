@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Skyrmium.Adapters.Contracts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Skyrmium.Adapters.Implementations
 {
    internal class Adapter<T1, T2> : IAdapter<T1, T2>
    {
-      internal Adapter(IMapper mapper)
+      public Adapter(IMapper mapper)
       {
          this.Mapper = mapper;
       }
@@ -20,6 +23,26 @@ namespace Skyrmium.Adapters.Implementations
          return Mapper.Map<T2, T1>(obj);
       }
 
+      public IEnumerable<T2> Map(IEnumerable<T1> values)
+      {
+         return MapEnumerable(values, v => Map(v));
+      }
+
+      public IEnumerable<T1> Map(IEnumerable<T2> values)
+      {
+         return MapEnumerable(values, v => Map(v));
+      }
+
       protected IMapper Mapper { get; }
+
+      private IEnumerable<TDest> MapEnumerable<TSource,TDest>(IEnumerable<TSource> values, Func<TSource,TDest> mapFunc)
+      {
+         var list = new List<TDest>(values.Count());
+
+         foreach (var value in values)
+            list.Add(mapFunc(value));
+
+         return list;
+      }
    }
 }

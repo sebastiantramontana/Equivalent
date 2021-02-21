@@ -10,19 +10,17 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
    {
       protected EntityToDaoBase()
       {
-         var mappingEntity = CreateMap<TEntity, TDao>(MemberList.None)
-            .ForMember(d => d.Id, (x) => x.MapFrom((e) => e.Id))
-            .ForMember(d => d.DistributedId, (x) => x.MapFrom((e) => e.DistributedId.Value));
+         var mappingEntity = CreateMap<TEntity, TDao>(MemberList.None);
+            //.ForMember(d => d.Id, (x) => x.MapFrom((e) => e.Id))
+            //.ForMember(d => d.DistributedId, (x) => x.MapFrom((e) => e.DistributedId.Value));
 
-         var mappingDao = CreateMap<TDao, TEntity>(MemberList.None)
-            .ForMember(e => e.Id, (x) => x.MapFrom((e) => e.Id))
-            .ForMember(e => e.DistributedId, (x) => x.MapFrom((d) => d.DistributedId));
+         var mappingDao = CreateMap<TDao, TEntity>(MemberList.None);
 
-         ContinueWithEntity(mappingEntity);
-         ContinueWithDao(mappingDao);
+         ContinueEntityToDao(mappingEntity);
+         ContinueDaoToEntity(mappingDao);
       }
 
-      protected abstract void ContinueWithEntity(IMappingExpression<TEntity, TDao> mappingExpression);
-      protected abstract void ContinueWithDao(IMappingExpression<TDao, TEntity> mappingExpression);
+      protected abstract void ContinueEntityToDao(IMappingExpression<TEntity, TDao> mappingExpression);
+      protected abstract void ContinueDaoToEntity(IMappingExpression<TDao, TEntity> mappingExpression);
    }
 }

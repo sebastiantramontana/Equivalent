@@ -10,14 +10,14 @@ using System.Linq.Expressions;
 
 namespace Skyrmium.Dal.Implementations.Queryables
 {
-   internal class QueryableEntity<TEntity, TDao> : IQueryableEntity<TEntity>
+   public class QueryableEntity<TEntity, TDao> : IQueryableEntity<TEntity>
       where TEntity : IEntity
       where TDao : class, IDao
    {
       private readonly IExpressionAdapter<TEntity, TDao> _expressionAdapter;
       private IQueryable<TDao> _queryable;
 
-      internal QueryableEntity(IExpressionAdapter<TEntity, TDao> expressionAdapter, DbContext dbContext)
+      public QueryableEntity(IExpressionAdapter<TEntity, TDao> expressionAdapter, DbContext dbContext)
       {
          _expressionAdapter = expressionAdapter;
          _queryable = dbContext.Set<TDao>();

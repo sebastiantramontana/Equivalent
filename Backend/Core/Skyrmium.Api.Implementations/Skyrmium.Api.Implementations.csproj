@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

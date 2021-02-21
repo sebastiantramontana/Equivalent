@@ -7,11 +7,11 @@ namespace Skyrmium.Equivalent.Measurement.Dal
 {
    internal class MeasurementDbContext : DbContext
    {
-      private readonly string _stringConnection;
+      private readonly string _connectionString;
 
-      internal MeasurementDbContext(IConfiguration configuration)
+      public MeasurementDbContext(IConfiguration configuration)
       {
-         _stringConnection = configuration.ConnectionString;
+         _connectionString = configuration.ConnectionString;
 
          this.ChangeTracker.LazyLoadingEnabled = true;
          this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -22,7 +22,9 @@ namespace Skyrmium.Equivalent.Measurement.Dal
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
-         optionsBuilder.UseSqlServer(_stringConnection);
+         optionsBuilder.UseSqlServer(_connectionString);
+
+         
 
          base.OnConfiguring(optionsBuilder);
       }
@@ -32,6 +34,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
          modelBuilder.ApplyConfiguration(new MeasureMapping());
          modelBuilder.ApplyConfiguration(new MeasureEquivalenceMapping());
          modelBuilder.ApplyConfiguration(new ConversionMapping());
+         modelBuilder.ApplyConfiguration(new OrderedMeasureEquivalenceMapping());
 
          base.OnModelCreating(modelBuilder);
       }

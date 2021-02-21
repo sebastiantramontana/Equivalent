@@ -22,8 +22,7 @@ namespace Skyrmium.Dal.Implementations.Mapping
             .HasColumnName(nameof(IDao.Id))
             .IsRequired()
             .ValueGeneratedOnAdd()
-            .UseHiLo("DBSequenceHiLo")
-            .UseIdentityColumn();
+            .UseHiLo("DBSequenceHiLo");
 
          builder
             .Property(e => e.DistributedId)

@@ -7,11 +7,11 @@ using Skyrmium.Domain.Contracts.Repositories;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
-   internal class MappedOwnedRepository<TEntity, TDao> : MappedRepository<TEntity, TDao>, IOwnedRepository<TEntity>
-      where TEntity : IOwnedEntity
+   public class MappedOwnedRepository<TEntity, TDao> : MappedRepository<TEntity, TDao>, IOwnedRepository<TEntity>
+      where TEntity : class, IOwnedEntity
       where TDao : class, IOwnedDao
    {
-      internal MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
+      public MappedOwnedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
          : base(dbContext, queryableEntity, adapter)
       {
       }

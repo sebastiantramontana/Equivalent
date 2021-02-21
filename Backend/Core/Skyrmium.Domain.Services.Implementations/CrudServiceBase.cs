@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Skyrmium.Domain.Services.Implementations
 {
    public abstract class CrudServiceBase<TRepository, TEntity> : ICrudService<TEntity>
-      where TEntity : IEntity
+      where TEntity : class, IEntity
       where TRepository : IRepository<TEntity>
    {
       protected CrudServiceBase(TRepository repository)

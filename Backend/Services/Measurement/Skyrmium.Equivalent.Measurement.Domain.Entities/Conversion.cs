@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
-   public class Conversion : OwnedEntityBase, IOwnedEntity
+   public class Conversion : OwnedEntityBase
    {
       public static Conversion Create(long id, IDistributableId distributedId, IDistributableId ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
       {

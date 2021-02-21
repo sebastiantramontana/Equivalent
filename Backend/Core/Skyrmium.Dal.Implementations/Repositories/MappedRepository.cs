@@ -11,15 +11,15 @@ using System.Linq.Expressions;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
-   internal class MappedRepository<TEntity, TDao> : IRepository<TEntity>
-      where TEntity : IEntity
+   public class MappedRepository<TEntity, TDao> : IRepository<TEntity>
+      where TEntity : class, IEntity
       where TDao : class, IDao
    {
       private protected DbContext DbContext { get; }
       private protected IQueryableEntity<TEntity> QueryableEntity { get; }
       private protected IAdapter<TEntity, TDao> Adapter { get; }
 
-      internal MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
+      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
       {
          this.DbContext = dbContext;
          this.QueryableEntity = queryableEntity;

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Skyrmium.Adapters.Implementations;
+using Skyrmium.Adapters.Implementations.EntitiesToDaos;
 using Skyrmium.Equivalent.Measurement.Adapters.Dal;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters
@@ -12,6 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters
       {
          _mapperConfiguration = new MapperConfiguration(cfg =>
          {
+            cfg.AddProfile<DistributableToGuid>();
             cfg.AddProfile<ConversionToConversionDao>();
             cfg.AddProfile<MeasureEquivalenceToMeasureEquivalenceDao>();
             cfg.AddProfile<MeasureToMeasureDao>();
