@@ -12,8 +12,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
 
       protected override void ContinueOwned(EntityTypeBuilder<MeasureEquivalenceDao> builder)
       {
-         builder.Property(e => e.MeasureFrom).IsRequired();
-         builder.Property(e => e.MeasureTo).IsRequired();
+         builder.Navigation(e => e.MeasureFrom).AutoInclude().IsRequired();
+         builder.Navigation(e => e.MeasureTo).AutoInclude().IsRequired();
          builder.Property(e => e.IngredientFrom);
          builder.Property(e => e.IngredientTo);
          builder.Property(e => e.Factor).IsRequired();

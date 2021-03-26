@@ -5,9 +5,10 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
+   //TODO: REVIEW
    internal class ConversionToConversionDao : OwnedEntityToOwnedDaoBase<Conversion, ConversionDao>
    {
-      protected override void ContinueWithOwnedDao(IMappingExpression<ConversionDao, Conversion> mappingExpression)
+      protected override void ContinueWithOwnedDaoToOwnedEntity(IMappingExpression<ConversionDao, Conversion> mappingExpression)
       {
          //mappingExpression
          //   .ForMember(e => e.Name, c => c.MapFrom(d => d.Name))

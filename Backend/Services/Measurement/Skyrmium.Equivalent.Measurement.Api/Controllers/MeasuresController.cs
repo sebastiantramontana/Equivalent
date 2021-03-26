@@ -1,30 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Skyrmium.Adapters.Contracts;
+using Skyrmium.Api.Implementations;
+using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
+using System;
 using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
    [ApiController]
    [Route("api/v1/[controller]")]
-   public class MeasuresController : ControllerBase
+   public class MeasuresController : CrudApiControllerBase<Measure, MeasureDto>
    {
-      private readonly IMeasureService _measureService;
-      private readonly IAdapter<Measure, MeasureDto> _adapter;
-
-      public MeasuresController(IMeasureService measureService, IAdapter<Measure, MeasureDto> adapter)
+      public MeasuresController(IMeasureService measureService, IAdapter<Measure, MeasureDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
+         : base(measureService, adapter, adapterDistributable)
       {
-         _measureService = measureService;
-         _adapter = adapter;
-      }
-
-      [HttpGet]
-      public IEnumerable<MeasureDto> Get()
-      {
-         var entities = _measureService.Get();
-         return _adapter.Map(entities);
       }
    }
 }

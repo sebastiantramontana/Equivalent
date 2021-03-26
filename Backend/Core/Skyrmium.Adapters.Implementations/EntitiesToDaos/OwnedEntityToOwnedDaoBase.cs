@@ -4,6 +4,7 @@ using Skyrmium.Domain.Contracts.Entities;
 
 namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
 {
+   //TODO: NO ES NECESARIA ESTA CLASE: ELIMINAR!!!
    public abstract class OwnedEntityToOwnedDaoBase<TEntity, TDao> : EntityToDaoBase<TEntity, TDao>
       where TEntity : IOwnedEntity
       where TDao : IOwnedDao
@@ -12,19 +13,15 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
 
       protected override void ContinueEntityToDao(IMappingExpression<TEntity, TDao> mappingExpression)
       {
-         //mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy.Value));
-
          ContinueOwnedEntityToOwnedDao(mappingExpression);
       }
 
       protected override void ContinueDaoToEntity(IMappingExpression<TDao, TEntity> mappingExpression)
       {
-         //mappingExpression.ForMember(e => e.OwnedBy, cfg => cfg.MapFrom(d => d.OwnedBy));
-
-         ContinueWithOwnedDao(mappingExpression);
+         ContinueWithOwnedDaoToOwnedEntity(mappingExpression);
       }
 
       protected abstract void ContinueOwnedEntityToOwnedDao(IMappingExpression<TEntity, TDao> mappingExpression);
-      protected abstract void ContinueWithOwnedDao(IMappingExpression<TDao, TEntity> mappingExpression);
+      protected abstract void ContinueWithOwnedDaoToOwnedEntity(IMappingExpression<TDao, TEntity> mappingExpression);
    }
 }

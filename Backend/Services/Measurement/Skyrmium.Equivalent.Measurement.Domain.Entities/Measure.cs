@@ -5,15 +5,14 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Measure : OwnedEntityBase
    {
-      public Measure(long id, IDistributableId distributedId, IDistributableId ownedBy) : base(id, distributedId, ownedBy)
+      public Measure(long id, IDistributableId distributedId, IDistributableId ownedBy, string fullName, string shortName) : base(id, distributedId, ownedBy)
       {
+         this.FullName = fullName;
+         this.ShortName = shortName;
       }
 
-      public string FullName { get; set; } = string.Empty;
-
-      public string ShortName { get; set; } = string.Empty;
-
-      //public ICollection<MeasureEquivalence> Equivalences { get; set; } = Array.Empty<MeasureEquivalence>();
+      public string FullName { get; } = string.Empty;
+      public string ShortName { get; } = string.Empty;
 
       public override string ToString()
       {

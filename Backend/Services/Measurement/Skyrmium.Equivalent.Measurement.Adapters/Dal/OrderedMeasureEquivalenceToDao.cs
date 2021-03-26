@@ -4,6 +4,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
+   //TODO: REVISAR TODO!!!
    internal class OrderedMeasureEquivalenceToDao : Profile
    {
       public OrderedMeasureEquivalenceToDao() : base()

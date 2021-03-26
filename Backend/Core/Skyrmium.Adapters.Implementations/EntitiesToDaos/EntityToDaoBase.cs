@@ -11,9 +11,6 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
       protected EntityToDaoBase()
       {
          var mappingEntity = CreateMap<TEntity, TDao>(MemberList.None);
-            //.ForMember(d => d.Id, (x) => x.MapFrom((e) => e.Id))
-            //.ForMember(d => d.DistributedId, (x) => x.MapFrom((e) => e.DistributedId.Value));
-
          var mappingDao = CreateMap<TDao, TEntity>(MemberList.None);
 
          ContinueEntityToDao(mappingEntity);

@@ -1,4 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Skyrmium.Adapters.Contracts;
+using Skyrmium.Api.Implementations;
+using Skyrmium.Domain.Contracts.Entities;
+using Skyrmium.Equivalent.Measurement.Api.Dtos;
+using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -11,45 +16,15 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
    [Route("api/v1/[controller]")]
    [ApiController]
-   public class EquivalencesController : ControllerBase
+   public class EquivalencesController : CrudApiControllerBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      private readonly IEquivalenceService _measureEquivalenceService;
-
-      public EquivalencesController(IEquivalenceService measureEquivalenceService)
-      {
-         _measureEquivalenceService = measureEquivalenceService;
-      }
-
-      // GET: api/<MeasureEquivalencesController>
-      [HttpGet]
-      public IEnumerable<string> Get()
-      {
-         return null; // _measureEquivalenceService.Get();
-      }
-
-      // GET api/<MeasureEquivalencesController>/5
-      [HttpGet("{id}")]
-      public string Get(int id)
-      {
-         return "value";
-      }
-
-      // POST api/<MeasureEquivalencesController>
-      [HttpPost]
-      public void Post([FromBody] string value)
+      public EquivalencesController(IEquivalenceService measureEquivalenceService, IAdapter<MeasureEquivalence, MeasureEquivalenceDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
+         : base(measureEquivalenceService, adapter, adapterDistributable)
       {
       }
 
-      // PUT api/<MeasureEquivalencesController>/5
-      [HttpPut("{id}")]
-      public void Put(int id, [FromBody] string value)
-      {
-      }
-
-      // DELETE api/<MeasureEquivalencesController>/5
-      [HttpDelete("{id}")]
-      public void Delete(int id)
-      {
-      }
+      //double GetFactor(Measure from, Measure to);
+      //double GetFactor(Measure from, Measure to, IDistributableId ingredient);
+      //double GetFactor(MeasureIngredient from, MeasureIngredient to);
    }
 }
