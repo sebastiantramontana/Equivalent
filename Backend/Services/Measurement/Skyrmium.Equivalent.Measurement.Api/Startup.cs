@@ -10,8 +10,6 @@ namespace Skyrmium.Equivalent.Measurement.Api
 {
    public class Startup
    {
-      private IServiceCollection _services;
-
       public Startup(IConfiguration configuration)
       {
          Configuration = configuration;
@@ -32,7 +30,7 @@ namespace Skyrmium.Equivalent.Measurement.Api
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-      public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime hostApplicationLifetime)
+      public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
       {
          if (env.IsDevelopment())
          {
