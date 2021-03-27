@@ -32,7 +32,7 @@ namespace Skyrmium.Api.Implementations
       }
 
       // GET api/<MeasureEquivalencesController>/5
-      [HttpGet("{id}")]
+      [HttpGet("{distributedId}")]
       public TDto Get(Guid distributedId)
       {
          var distributedIdEntity = _adapterDistributable.Map(distributedId);

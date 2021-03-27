@@ -13,8 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
       protected override void Continue(EntityTypeBuilder<OrderedMeasureEquivalenceDao> builder)
       {
          builder.Property(o => o.Order).IsRequired();
-         builder.HasOne(o => o.MeasureEquivalence).WithMany(me => me.OrderedMeasureEquivalences);
-         builder.HasOne(o => o.Conversion).WithMany(c => c.Equivalences);
+         builder.Navigation(o => o.MeasureEquivalence).AutoInclude().IsRequired();
       }
    }
 }

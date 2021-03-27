@@ -6,7 +6,6 @@ using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using System;
-using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {

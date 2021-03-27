@@ -1,6 +1,5 @@
 ﻿using Skyrmium.Dal.Implementations.Daos;
 using System;
-using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Daos
 {
@@ -11,7 +10,5 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Daos
       public Guid? IngredientFrom { get; set; }
       public Guid? IngredientTo { get; set; }
       public double Factor { get; set; }
-
-      public IEnumerable<OrderedMeasureEquivalenceDao> OrderedMeasureEquivalences { get; set; } = Array.Empty<OrderedMeasureEquivalenceDao>();
    }
 }
