@@ -15,7 +15,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
       protected override void ContinueOwned(EntityTypeBuilder<ConversionDao> builder)
       {
          builder.Property(e => e.Name).IsRequired();
-         builder.HasMany(e => e.Equivalences).WithOne().HasForeignKey("ConversionId");
+         builder.Navigation(e => e.Equivalences).AutoInclude();
       }
    }
 }

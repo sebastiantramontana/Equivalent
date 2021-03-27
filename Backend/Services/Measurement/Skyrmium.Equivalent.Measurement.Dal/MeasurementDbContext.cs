@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Dal.Mappings;
 using Skyrmium.Infrastructure.Contracts;
 
@@ -23,9 +24,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
          optionsBuilder.UseSqlServer(_connectionString);
-
-         
-
+       
          base.OnConfiguring(optionsBuilder);
       }
 

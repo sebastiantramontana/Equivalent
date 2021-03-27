@@ -6,5 +6,6 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Daos
    {
       public int Order { get; set; }
       public MeasureEquivalenceDao MeasureEquivalence { get; set; } = new MeasureEquivalenceDao();
+      public ConversionDao Conversion { get; set; } = new ConversionDao();
    }
 }
