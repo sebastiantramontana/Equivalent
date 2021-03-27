@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Queryables
 {
@@ -41,11 +42,10 @@ namespace Skyrmium.Dal.Implementations.Queryables
          return this;
       }
 
-      public IEnumerable<TEntity> ToEnumerable()
+      public async Task<IEnumerable<TEntity>> ToEnumerableAsync()
       {
-         return _queryable
-            .ToList()
-            .Select(dao => _expressionAdapter.Map(dao));
+         var daos = await _queryable.ToListAsync();
+         return daos.Select(dao => _expressionAdapter.Map(dao));
       }
    }
 }

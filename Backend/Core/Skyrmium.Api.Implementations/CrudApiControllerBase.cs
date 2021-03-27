@@ -5,6 +5,7 @@ using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Api.Implementations
 {
@@ -25,9 +26,9 @@ namespace Skyrmium.Api.Implementations
       }
 
       [HttpGet]
-      public IEnumerable<TDto> Get()
+      public async Task<IEnumerable<TDto>> GetAsync()
       {
-         var entities = _crudService.Get();
+         var entities = await _crudService.GetAsync();
          return _adapterEntity.Map(entities);
       }
 

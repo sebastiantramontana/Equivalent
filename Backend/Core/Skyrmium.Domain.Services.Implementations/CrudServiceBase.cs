@@ -2,6 +2,7 @@
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Domain.Services.Implementations
 {
@@ -21,9 +22,9 @@ namespace Skyrmium.Domain.Services.Implementations
          this.Repository.Add(entity);
       }
 
-      public IEnumerable<TEntity> Get()
+      public Task<IEnumerable<TEntity>> GetAsync()
       {
-         return this.Repository.Query().ToEnumerable();
+         return this.Repository.Query().ToEnumerableAsync();
       }
 
       public TEntity GetById(long id)
