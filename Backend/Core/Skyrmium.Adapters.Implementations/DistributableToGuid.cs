@@ -14,6 +14,9 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
 
          CreateMap<Guid?, IDistributableId>(MemberList.None)
             .ConstructUsing(g => g.HasValue && g.Value != Guid.Empty ? DistributableId.Instance(g.Value) : DistributableId.None);
+
+         CreateMap<Guid, IDistributableId>(MemberList.None)
+            .ConstructUsing(g => g != Guid.Empty ? DistributableId.Instance(g) : DistributableId.None);
       }
    }
 }

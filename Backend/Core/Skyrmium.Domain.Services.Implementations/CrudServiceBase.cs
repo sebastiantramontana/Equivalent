@@ -27,14 +27,14 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.Query().ToEnumerableAsync();
       }
 
-      public TEntity GetById(long id)
+      public Task<TEntity> GetByIdAsync(long id)
       {
-         return this.Repository.GetById(id);
+         return this.Repository.GetByIdAsync(id);
       }
 
-      public TEntity GetByDistributedId(IDistributableId distributableId)
+      public Task<TEntity> GetByDistributedIdAsync(IDistributableId distributableId)
       {
-         return this.Repository.GetByDistributedId(distributableId);
+         return this.Repository.GetByDistributedIdAsync(distributableId);
       }
 
       public void Remove(TEntity entity)

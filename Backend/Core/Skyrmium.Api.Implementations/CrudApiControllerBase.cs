@@ -34,10 +34,10 @@ namespace Skyrmium.Api.Implementations
 
       // GET api/<MeasureEquivalencesController>/5
       [HttpGet("{distributedId}")]
-      public TDto Get(Guid distributedId)
+      public async Task<TDto> GetByDistributedAsync(Guid distributedId)
       {
          var distributedIdEntity = _adapterDistributable.Map(distributedId);
-         var entity = _crudService.GetByDistributedId(distributedIdEntity);
+         var entity = await _crudService.GetByDistributedIdAsync(distributedIdEntity);
          return _adapterEntity.Map(entity);
       }
 

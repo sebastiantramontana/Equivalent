@@ -8,6 +8,7 @@ using Skyrmium.Domain.Contracts.Repositories;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
@@ -31,16 +32,16 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return this.QueryableEntity;
       }
 
-      public TEntity GetById(long id)
+      public Task<TEntity> GetByIdAsync(long id)
       {
-         return GetSingleEntity(d => d.Id == id);
+         return GetSingleEntityAsync(d => d.Id == id);
       }
 
-      public TEntity GetByDistributedId(IDistributableId distributedId)
+      public Task<TEntity> GetByDistributedIdAsync(IDistributableId distributedId)
       {
          var distributedIdValue = distributedId.Value;
 
-         return GetSingleEntity(d => d.DistributedId == distributedIdValue);
+         return GetSingleEntityAsync(d => d.DistributedId == distributedIdValue);
       }
 
       public void Add(TEntity entity)
@@ -61,11 +62,11 @@ namespace Skyrmium.Dal.Implementations.Repositories
          this.DbContext.Set<TDao>().Remove(dao);
       }
 
-      private TEntity GetSingleEntity(Expression<Func<TDao, bool>> expressionCondition)
+      private async Task<TEntity> GetSingleEntityAsync(Expression<Func<TDao, bool>> expressionCondition)
       {
-         var dao = this.DbContext
+         var dao = await this.DbContext
            .Set<TDao>()
-           .SingleOrDefault(expressionCondition)
+           .SingleOrDefaultAsync(expressionCondition)
            ?? throw new DataObjectNotFoundException();
 
          var entity = this.Adapter.Map(dao);

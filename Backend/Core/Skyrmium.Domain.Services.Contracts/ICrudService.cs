@@ -7,8 +7,8 @@ namespace Skyrmium.Domain.Services.Contracts
    public interface ICrudService<TEntity> where TEntity : IEntity
    {
       Task<IEnumerable<TEntity>> GetAsync();
-      TEntity GetById(long id);
-      TEntity GetByDistributedId(IDistributableId distributableId);
+      Task<TEntity> GetByIdAsync(long id);
+      Task<TEntity> GetByDistributedIdAsync(IDistributableId distributableId);
       void Add(TEntity entity);
       void Update(TEntity entity);
       void Remove(TEntity entity);
