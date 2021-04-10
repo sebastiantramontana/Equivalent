@@ -13,7 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
    [Route("api/v1/[controller]")]
    [ApiController]
-   public class EquivalencesController : CrudApiControllerBase<MeasureEquivalence, MeasureEquivalenceDto>
+   public class EquivalencesController : OwnedCrudApiControllerBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
       public EquivalencesController(IEquivalenceService measureEquivalenceService, IAdapter<MeasureEquivalence, MeasureEquivalenceDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
          : base(measureEquivalenceService, adapter, adapterDistributable)

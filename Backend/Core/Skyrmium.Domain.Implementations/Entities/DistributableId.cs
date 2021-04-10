@@ -37,6 +37,13 @@ namespace Skyrmium.Domain.Implementations.Entities
          return Equals(obj as IDistributableId);
       }
 
+      public bool Equals(Guid? other)
+      {
+         return other.HasValue
+            ? other.Value == this.Value
+            : this.IsNone;
+      }
+
       public bool Equals(IDistributableId? other)
       {
          return other is not null && other.Value == this.Value;
@@ -56,5 +63,39 @@ namespace Skyrmium.Domain.Implementations.Entities
       {
          return !(left == right);
       }
+
+      //public static bool operator ==(DistributableId? left, Guid? right)
+      //{
+      //   return left?.Equals(right) ?? false;
+      //}
+
+      //public static bool operator !=(DistributableId? left, Guid? right)
+      //{
+      //   return !(left == right);
+      //}
+
+      //public static bool operator ==(Guid? left, DistributableId? right)
+      //{
+      //   return left?.Equals(right) ?? false;
+      //}
+
+      //public static bool operator !=(Guid? left, DistributableId? right)
+      //{
+      //   return !(left == right);
+      //}
+
+      //public static implicit operator Guid?(DistributableId? distributableId)
+      //{
+      //   return distributableId is not null && !distributableId.IsNone
+      //      ? distributableId.Value
+      //      : null;
+      //}
+
+      //public static implicit operator DistributableId(Guid? guid)
+      //{
+      //   return guid.HasValue
+      //      ? (DistributableId)Instance(guid.Value)
+      //      : (DistributableId)None;
+      //}
    }
 }

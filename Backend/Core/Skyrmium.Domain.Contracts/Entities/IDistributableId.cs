@@ -2,7 +2,7 @@
 
 namespace Skyrmium.Domain.Contracts.Entities
 {
-   public interface IDistributableId : IEquatable<IDistributableId>
+   public interface IDistributableId : IEquatable<IDistributableId>, IEquatable<Guid?>
    {
       Guid Value { get; }
       bool IsNone { get; }

@@ -25,24 +25,14 @@ namespace Skyrmium.Adapters.Implementations
 
       public IEnumerable<T2> Map(IEnumerable<T1> values)
       {
-         return MapEnumerable(values, v => Map(v));
+         return values.Select(v => Map(v));
       }
 
       public IEnumerable<T1> Map(IEnumerable<T2> values)
       {
-         return MapEnumerable(values, v => Map(v));
+         return values.Select(v => Map(v));
       }
 
       protected IMapper Mapper { get; }
-
-      private IEnumerable<TDest> MapEnumerable<TSource,TDest>(IEnumerable<TSource> values, Func<TSource,TDest> mapFunc)
-      {
-         var list = new List<TDest>(values.Count());
-
-         foreach (var value in values)
-            list.Add(mapFunc(value));
-
-         return list;
-      }
    }
 }

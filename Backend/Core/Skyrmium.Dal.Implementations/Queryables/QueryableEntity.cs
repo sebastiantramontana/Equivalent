@@ -13,7 +13,7 @@ namespace Skyrmium.Dal.Implementations.Queryables
 {
    public class QueryableEntity<TEntity, TDao> : IQueryableEntity<TEntity>
       where TEntity : IEntity
-      where TDao : class, IDao
+      where TDao : class, IOwnedDao
    {
       private readonly IExpressionAdapter<TEntity, TDao> _expressionAdapter;
       private IQueryable<TDao> _queryable;

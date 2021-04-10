@@ -11,7 +11,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
    [ApiController]
    [Route("api/v1/[controller]")]
-   public class MeasuresController : CrudApiControllerBase<Measure, MeasureDto>
+   public class MeasuresController : OwnedCrudApiControllerBase<Measure, MeasureDto>
    {
       public MeasuresController(IMeasureService measureService, IAdapter<Measure, MeasureDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
          : base(measureService, adapter, adapterDistributable)

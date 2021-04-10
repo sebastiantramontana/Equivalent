@@ -13,7 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
    [Route("api/v1/[controller]")]
    [ApiController]
-   public class ConversionController : CrudApiControllerBase<Conversion, ConversionDto>
+   public class ConversionController : OwnedCrudApiControllerBase<Conversion, ConversionDto>
    {
       public ConversionController(IConversionService conversioneService, IAdapter<Conversion, ConversionDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
          : base(conversioneService, adapter, adapterDistributable)

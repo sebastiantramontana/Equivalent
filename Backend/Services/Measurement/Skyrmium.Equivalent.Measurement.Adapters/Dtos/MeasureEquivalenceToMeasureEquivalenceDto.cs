@@ -5,7 +5,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureEquivalenceToMeasureEquivalenceDto : EntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
+   internal class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
       protected override void ContinueWithEntity(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDto> mappingExpression)
       {

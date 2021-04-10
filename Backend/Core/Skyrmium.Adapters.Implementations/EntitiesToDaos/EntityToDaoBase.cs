@@ -5,13 +5,13 @@ using Skyrmium.Domain.Contracts.Entities;
 namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
 {
    public abstract class EntityToDaoBase<TEntity, TDao> : Profile
-      where TEntity : IEntity
-      where TDao : IDao
+      where TEntity : IOwnedEntity
+      where TDao : IOwnedDao
    {
       protected EntityToDaoBase()
       {
-         var mappingEntity = CreateMap<TEntity, TDao>(MemberList.None);
-         var mappingDao = CreateMap<TDao, TEntity>(MemberList.None);
+         var mappingEntity = CreateMap<TEntity, TDao>();
+         var mappingDao = CreateMap<TDao, TEntity>();
 
          ContinueEntityToDao(mappingEntity);
          ContinueDaoToEntity(mappingDao);

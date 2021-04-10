@@ -9,14 +9,20 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
    {
       public DistributableToGuid()
       {
-         CreateMap<IDistributableId, Guid?>(MemberList.None)
-            .ConstructUsing(d => d.IsNone ? null : d.Value);
+         CreateMap<IDistributableId, Guid?>()
+            .ConvertUsing(d => d.IsNone ? null : d.Value);
 
-         CreateMap<Guid?, IDistributableId>(MemberList.None)
-            .ConstructUsing(g => g.HasValue && g.Value != Guid.Empty ? DistributableId.Instance(g.Value) : DistributableId.None);
+         CreateMap<IDistributableId, Guid>()
+            .ConvertUsing(d => d.IsNone ? Guid.Empty : d.Value);
 
-         CreateMap<Guid, IDistributableId>(MemberList.None)
-            .ConstructUsing(g => g != Guid.Empty ? DistributableId.Instance(g) : DistributableId.None);
+         CreateMap<Guid?, IDistributableId>()
+            .ConvertUsing(g => g.HasValue && g.Value != Guid.Empty ? DistributableId.Instance(g.Value) : DistributableId.None);
+
+         CreateMap<Guid, IDistributableId>()
+            .ConvertUsing(g => g != Guid.Empty ? DistributableId.Instance(g) : DistributableId.None);
+
+         CreateMap<Guid, Guid?>();
+         CreateMap<Guid?, Guid>();
       }
    }
 }

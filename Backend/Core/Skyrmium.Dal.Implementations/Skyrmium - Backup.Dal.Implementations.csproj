@@ -7,16 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj" />
-    <ProjectReference Include="..\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
-    <ProjectReference Include="..\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
-    <ProjectReference Include="..\Skyrmium.Domain.Implementations\Skyrmium.Domain.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
   </ItemGroup>
 

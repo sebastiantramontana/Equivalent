@@ -29,6 +29,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters
 
       protected override MapperConfiguration GetMapperConfiguration()
       {
+         _mapperConfiguration.AssertConfigurationIsValid();
          _mapperConfiguration.CompileMappings();
 
          return _mapperConfiguration;
