@@ -2,6 +2,7 @@
 using Skyrmium.Domain.Implementations.Entities;
 using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Conversion : OwnedEntityBase
    {
-      public static Conversion Create(long id, IDistributableId distributedId, IDistributableId ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
+      public static Conversion Create(long id, Guid distributedId, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
       {
          if (!Validate(equivalences))
          {
@@ -26,7 +27,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          return new Conversion(id, distributedId, ownedBy, name, equivalences);
       }
 
-      private Conversion(long id, IDistributableId distributedId, IDistributableId ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
+      private Conversion(long id, Guid distributedId, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
       {
          this.Name = name;
          this.Equivalences = equivalences;
@@ -76,7 +77,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 
       private static bool CheckPreviousToWithNextFrom(MeasureIngredient prevTo, MeasureIngredient nextFrom)
       {
-         return prevTo == nextFrom || (prevTo.Measure == nextFrom.Measure && nextFrom.Ingredient.IsNone);
+         return prevTo == nextFrom || (prevTo.Measure == nextFrom.Measure && nextFrom.Ingredient == Guid.Empty);
       }
 
       private static bool CheckIsNotEmpty(IEnumerable<OrderedMeasureEquivalence> equivalences)

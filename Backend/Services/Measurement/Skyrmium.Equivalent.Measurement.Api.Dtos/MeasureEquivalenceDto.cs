@@ -7,8 +7,8 @@ namespace Skyrmium.Equivalent.Measurement.Api.Dtos
    {
       public MeasureDto MeasureFrom { get; set; } = new MeasureDto();
       public MeasureDto MeasureTo { get; set; } = new MeasureDto();
-      public Guid? IngredientFrom { get; set; }
-      public Guid? IngredientTo { get; set; }
+      public Guid IngredientFrom { get; set; }
+      public Guid IngredientTo { get; set; }
       public double Factor { get; set; }
    }
 }

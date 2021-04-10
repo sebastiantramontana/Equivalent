@@ -24,8 +24,8 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
          mappingExpression.ConstructUsing((dao, context) =>
             Conversion.Create(
                dao.Id,
-               context.Mapper.Map<Guid?, IDistributableId>(dao.DistributedId),
-               context.Mapper.Map<Guid?, IDistributableId>(dao.OwnedBy),
+               dao.DistributedId,
+               dao.OwnedBy,
                dao.Name,
                dao.Equivalences.Select(eq => context.Mapper.Map<OrderedMeasureEquivalenceDao, OrderedMeasureEquivalence>(eq)).ToList()
             ));

@@ -15,13 +15,13 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
    [ApiController]
    public class EquivalencesController : OwnedCrudApiControllerBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      public EquivalencesController(IEquivalenceService measureEquivalenceService, IAdapter<MeasureEquivalence, MeasureEquivalenceDto> adapter, IAdapter<IDistributableId, Guid> adapterDistributable)
-         : base(measureEquivalenceService, adapter, adapterDistributable)
+      public EquivalencesController(IEquivalenceService measureEquivalenceService, IAdapter<MeasureEquivalence, MeasureEquivalenceDto> adapter)
+         : base(measureEquivalenceService, adapter)
       {
       }
 
       //double GetFactor(Measure from, Measure to);
-      //double GetFactor(Measure from, Measure to, IDistributableId ingredient);
+      //double GetFactor(Measure from, Measure to, Guid ingredient);
       //double GetFactor(MeasureIngredient from, MeasureIngredient to);
    }
 }

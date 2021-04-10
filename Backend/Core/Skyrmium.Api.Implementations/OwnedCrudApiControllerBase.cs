@@ -15,14 +15,12 @@ namespace Skyrmium.Api.Implementations
       where TDto : class, IOwnedDto
    {
       private readonly IOwnedCrudService<TEntity> _crudService;
-      private readonly IAdapter<IDistributableId, Guid> _adapterDistributable;
       private readonly IAdapter<TEntity, TDto> _adapterEntity;
 
-      protected OwnedCrudApiControllerBase(IOwnedCrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity, IAdapter<IDistributableId, Guid> adapterDistributable)
-         : base(crudService, adapterEntity, adapterDistributable)
+      protected OwnedCrudApiControllerBase(IOwnedCrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity)
+         : base(crudService, adapterEntity)
       {
          _crudService = crudService;
-         _adapterDistributable = adapterDistributable;
          _adapterEntity = adapterEntity;
       }
 
@@ -30,8 +28,7 @@ namespace Skyrmium.Api.Implementations
       [HttpGet("owned/{ownedById}")]
       public async Task<IEnumerable<TDto>> GetByOwnedAsync(Guid ownedById)
       {
-         var ownedByIdEntity = _adapterDistributable.Map(ownedById);
-         var entity = await _crudService.GetByOwned(ownedByIdEntity);
+         var entity = await _crudService.GetByOwned(ownedById);
          return _adapterEntity.Map(entity);
       }
    }

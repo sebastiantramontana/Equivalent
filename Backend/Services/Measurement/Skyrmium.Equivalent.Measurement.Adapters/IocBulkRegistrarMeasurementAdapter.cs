@@ -13,7 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters
       {
          _mapperConfiguration = new MapperConfiguration(cfg =>
          {
-            cfg.AddProfile<DistributableToGuid>();
+            //cfg.AddProfile<NullableGuidToGuid>();
             cfg.AddProfile<ConversionToConversionDao>();
             cfg.AddProfile<MeasureEquivalenceToMeasureEquivalenceDao>();
             cfg.AddProfile<MeasureToMeasureDao>();

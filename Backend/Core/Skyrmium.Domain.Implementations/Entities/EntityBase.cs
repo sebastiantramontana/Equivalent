@@ -1,17 +1,18 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
+using System;
 
 namespace Skyrmium.Domain.Implementations.Entities
 {
    public abstract class EntityBase : IEntity
    {
-      protected EntityBase(long id, IDistributableId distributedId)
+      protected EntityBase(long id, Guid distributedId)
       {
          this.Id = id;
          this.DistributedId = distributedId;
       }
 
       public long Id { get; }
-      public IDistributableId DistributedId { get; }
+      public Guid DistributedId { get; }
 
       public bool Equals(IEntity? other)
       {

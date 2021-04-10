@@ -1,6 +1,7 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -32,7 +33,7 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.GetByIdAsync(id);
       }
 
-      public Task<TEntity> GetByDistributedIdAsync(IDistributableId distributableId)
+      public Task<TEntity> GetByDistributedIdAsync(Guid distributableId)
       {
          return this.Repository.GetByDistributedIdAsync(distributableId);
       }

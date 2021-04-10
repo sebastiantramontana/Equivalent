@@ -1,11 +1,12 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Implementations.Entities;
+using System;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Measure : OwnedEntityBase
    {
-      public Measure(long id, IDistributableId distributedId, IDistributableId ownedBy, string fullName, string shortName) : base(id, distributedId, ownedBy)
+      public Measure(long id, Guid distributedId, Guid ownedBy, string fullName, string shortName) : base(id, distributedId, ownedBy)
       {
          this.FullName = fullName;
          this.ShortName = shortName;
@@ -24,7 +25,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
       //   return GetEquivalenceFactor(measureTo, DistributableId.None);
       //}
 
-      //public double GetEquivalenceFactor(Measure measureTo, IDistributableId ingredientId)
+      //public double GetEquivalenceFactor(Measure measureTo, Guid ingredientId)
       //{
       //   double factor;
 
@@ -42,17 +43,17 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
       //   return factor;
       //}
 
-      //private double? GetFitestEquivalenceFactorFromThis(Measure measureTo, IDistributableId ingredientId)
+      //private double? GetFitestEquivalenceFactorFromThis(Measure measureTo, Guid ingredientId)
       //{
       //   return GetFitestEquivalenceFactor(e => e.From == this && e.To == measureTo, ingredientId);
       //}
 
-      //private double? GetFitestEquivalenceFactorToThis(Measure measureTo, IDistributableId ingredientId)
+      //private double? GetFitestEquivalenceFactorToThis(Measure measureTo, Guid ingredientId)
       //{
       //   return 1.0 / GetFitestEquivalenceFactor(e => e.From == measureTo && e.To == this, ingredientId);
       //}
 
-      //private double? GetFitestEquivalenceFactor(Func<MeasureEquivalence, bool> measurementConditionFunc, IDistributableId ingredientId)
+      //private double? GetFitestEquivalenceFactor(Func<MeasureEquivalence, bool> measurementConditionFunc, Guid ingredientId)
       //{
       //   var equivs = Equivalences.Where(measurementConditionFunc)
       //      .Where(e => e.IngredientFrom == ingredientId || e.IngredientFrom.IsNone);

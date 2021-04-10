@@ -15,7 +15,7 @@ namespace Skyrmium.Dal.Implementations.Mapping
          builder
             .Property(e => e.OwnedBy)
             .HasColumnName(nameof(IOwnedDao.OwnedBy))
-            .IsRequired(false);
+            .IsRequired();
 
          ContinueOwned(builder);
       }

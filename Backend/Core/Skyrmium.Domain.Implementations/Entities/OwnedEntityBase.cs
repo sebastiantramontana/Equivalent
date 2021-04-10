@@ -1,15 +1,16 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
+using System;
 
 namespace Skyrmium.Domain.Implementations.Entities
 {
    public abstract class OwnedEntityBase : EntityBase, IOwnedEntity
    {
-      protected OwnedEntityBase(long id, IDistributableId distributedId, IDistributableId ownedBy)
+      protected OwnedEntityBase(long id, Guid distributedId, Guid ownedBy)
          : base(id, distributedId)
       {
          OwnedBy = ownedBy;
       }
 
-      public IDistributableId OwnedBy { get; }
+      public Guid OwnedBy { get; }
    }
 }

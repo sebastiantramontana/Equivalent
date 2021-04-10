@@ -5,14 +5,14 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class MeasureIngredient : IEquatable<MeasureIngredient>
    {
-      public MeasureIngredient(Measure measure, IDistributableId ingredient)
+      public MeasureIngredient(Measure measure, Guid ingredient)
       {
          this.Measure = measure;
          this.Ingredient = ingredient;
       }
 
       public Measure Measure { get; }
-      public IDistributableId Ingredient { get; }
+      public Guid Ingredient { get; }
 
       public bool Equals(MeasureIngredient? other)
       {

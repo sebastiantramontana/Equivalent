@@ -15,13 +15,13 @@ namespace Skyrmium.Equivalent.Measurement.Dal
       {
          container.Register<DbContext, MeasurementDbContext>();
 
-         container.Register(typeof(IOwnedRepository<Conversion>), typeof(MappedOwnedRepository<Conversion, ConversionDao>));
-         container.Register(typeof(IOwnedRepository<Measure>), typeof(MappedOwnedRepository<Measure, MeasureDao>));
-         container.Register(typeof(IOwnedRepository<MeasureEquivalence>), typeof(MappedOwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>));
+         container.Register<IOwnedRepository<Conversion>, MappedOwnedRepository<Conversion, ConversionDao>>();
+         container.Register<IOwnedRepository<Measure>, MappedOwnedRepository<Measure, MeasureDao>>();
+         container.Register<IOwnedRepository<MeasureEquivalence>, MappedOwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>>();
 
-         container.Register(typeof(IQueryableEntity<Conversion>), typeof(QueryableEntity<Conversion, ConversionDao>));
-         container.Register(typeof(IQueryableEntity<Measure>), typeof(QueryableEntity<Measure, MeasureDao>));
-         container.Register(typeof(IQueryableEntity<MeasureEquivalence>), typeof(QueryableEntity<MeasureEquivalence, MeasureEquivalenceDao>));
+         container.RegisterTransient<IQueryableEntity<Conversion>, QueryableEntity<Conversion, ConversionDao>>();
+         container.RegisterTransient<IQueryableEntity<Measure>, QueryableEntity<Measure, MeasureDao>>();
+         container.RegisterTransient<IQueryableEntity<MeasureEquivalence>, QueryableEntity<MeasureEquivalence, MeasureEquivalenceDao>>();
       }
    }
 }

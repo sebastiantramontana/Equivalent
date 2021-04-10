@@ -15,13 +15,11 @@ namespace Skyrmium.Api.Implementations
       where TDto : class, IDto
    {
       private readonly ICrudService<TEntity> _crudService;
-      private readonly IAdapter<IDistributableId, Guid> _adapterDistributable;
       private readonly IAdapter<TEntity, TDto> _adapterEntity;
 
-      protected CrudApiControllerBase(ICrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity, IAdapter<IDistributableId, Guid> adapterDistributable)
+      protected CrudApiControllerBase(ICrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity)
       {
          _crudService = crudService;
-         _adapterDistributable = adapterDistributable;
          _adapterEntity = adapterEntity;
       }
 
@@ -36,8 +34,7 @@ namespace Skyrmium.Api.Implementations
       [HttpGet("{distributedId}")]
       public async Task<TDto> GetByDistributedAsync(Guid distributedId)
       {
-         var distributedIdEntity = _adapterDistributable.Map(distributedId);
-         var entity = await _crudService.GetByDistributedIdAsync(distributedIdEntity);
+         var entity = await _crudService.GetByDistributedIdAsync(distributedId);
          return _adapterEntity.Map(entity);
       }
 

@@ -4,6 +4,6 @@ namespace Skyrmium.Api.Contracts
 {
    public interface IOwnedDto : IDto
    {
-      Guid? OwnedBy { get; set; }
+      Guid OwnedBy { get; set; }
    }
 }

@@ -5,6 +5,6 @@ namespace Skyrmium.Api.Implementations
 {
    public abstract class OwnedDtoBase : DtoBase, IOwnedDto
    {
-      public Guid? OwnedBy { get; set; }
+      public Guid OwnedBy { get; set; }
    }
 }

@@ -11,22 +11,12 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
    {
       protected override void ContinueEntityToDao(IMappingExpression<Measure, MeasureDao> mappingExpression)
       {
-         mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy.Value));
+         //mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy));
       }
 
       protected override void ContinueDaoToEntity(IMappingExpression<MeasureDao, Measure> mappingExpression)
       {
-         mappingExpression.ConstructUsing((d, context) => 
-            new Measure(
-               d.Id,
-               context.Mapper.Map<Guid?, IDistributableId>(d.DistributedId),
-               context.Mapper.Map<Guid?, IDistributableId>(d.OwnedBy),
-               d.FullName,
-               d.ShortName
-            ));
-
          mappingExpression.ForMember(e => e.OwnedBy, cfg => cfg.MapFrom(d => d.OwnedBy));
-         mappingExpression.ForPath(e => e.OwnedBy.Value, cfg => cfg.MapFrom(d => d.OwnedBy));
       }
    }
 }

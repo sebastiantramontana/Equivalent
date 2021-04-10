@@ -23,10 +23,10 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
          mappingExpression.ConstructUsing((dao, context) =>
             new MeasureEquivalence(
                dao.Id,
-               context.Mapper.Map<Guid?, IDistributableId>(dao.DistributedId),
-               context.Mapper.Map<Guid?, IDistributableId>(dao.OwnedBy),
-               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureFrom), context.Mapper.Map<Guid?, IDistributableId>(dao.IngredientFrom)),
-               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureTo), context.Mapper.Map<Guid?, IDistributableId>(dao.IngredientTo)),
+               dao.DistributedId,
+               dao.OwnedBy,
+               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureFrom), dao.IngredientFrom),
+               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureTo), dao.IngredientTo),
                dao.Factor
             ));
       }

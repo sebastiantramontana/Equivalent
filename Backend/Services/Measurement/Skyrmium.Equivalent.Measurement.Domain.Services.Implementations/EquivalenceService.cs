@@ -1,11 +1,10 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Contracts.Exceptions;
+﻿using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Contracts.Repositories;
-using Skyrmium.Domain.Implementations.Entities;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
+using System;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
@@ -19,13 +18,13 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       public double GetFactor(Measure measureFrom, Measure measureTo)
       {
          var businessException = EquivalenceNotFoundExceptionFactory.Create(measureFrom, measureTo);
-         var from = new MeasureIngredient(measureFrom, DistributableId.None);
-         var to = new MeasureIngredient(measureTo, DistributableId.None);
+         var from = new MeasureIngredient(measureFrom, Guid.Empty);
+         var to = new MeasureIngredient(measureTo, Guid.Empty);
 
          return GetFactor(from, to, businessException);
       }
 
-      public double GetFactor(Measure measureFrom, Measure measureTo, IDistributableId ingredient)
+      public double GetFactor(Measure measureFrom, Measure measureTo, Guid ingredient)
       {
          var businessException = EquivalenceNotFoundExceptionFactory.Create(measureFrom, measureTo, ingredient);
          var from = new MeasureIngredient(measureFrom, ingredient);

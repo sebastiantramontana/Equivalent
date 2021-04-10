@@ -5,6 +5,7 @@ using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Queryables;
 using Skyrmium.Domain.Contracts.Repositories;
 using System;
+using System.Linq;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
@@ -17,15 +18,10 @@ namespace Skyrmium.Dal.Implementations.Repositories
       {
       }
 
-      public IQueryableEntity<TEntity> GetByOwned(IDistributableId ownedBy)
+      public IQueryableEntity<TEntity> GetByOwned(Guid ownedBy)
       {
-         if (ownedBy == null || ownedBy.IsNone)
-            throw new ArgumentNullException($"{nameof(IDistributableId)} {nameof(ownedBy)} parameter is null or None");
-
-         var ownedById = ownedBy.Value;
-
          var entities = this.QueryableEntity
-           .Where(entity => entity.OwnedBy.Value == ownedById);
+           .Where(entity => entity.OwnedBy == ownedBy);
 
          return entities;
       }

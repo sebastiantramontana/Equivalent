@@ -1,4 +1,5 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace Skyrmium.Domain.Services.Contracts
    {
       Task<IEnumerable<TEntity>> GetAsync();
       Task<TEntity> GetByIdAsync(long id);
-      Task<TEntity> GetByDistributedIdAsync(IDistributableId distributableId);
+      Task<TEntity> GetByDistributedIdAsync(Guid distributableId);
       void Add(TEntity entity);
       void Update(TEntity entity);
       void Remove(TEntity entity);

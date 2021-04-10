@@ -1,8 +1,8 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Contracts.Exceptions;
+﻿using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
+using System;
 using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
@@ -20,19 +20,19 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          return Create(values);
       }
 
-      internal static IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues> Create(Measure from, Measure to, IDistributableId ingredient)
+      internal static IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues> Create(Measure from, Measure to, Guid ingredientId)
       {
          var values = new Dictionary<EquivalenceNotFoundExceptionValues, object>(3)
          {
             { EquivalenceNotFoundExceptionValues.FromMeasure, from },
             { EquivalenceNotFoundExceptionValues.ToMeasure, to },
-            { EquivalenceNotFoundExceptionValues.Ingredient, ingredient }
+            { EquivalenceNotFoundExceptionValues.Ingredient, ingredientId }
          };
 
          return Create(values);
       }
 
-      internal static IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues> Create(Measure from, Measure to, IDistributableId ingredientFrom, IDistributableId ingredientTo)
+      internal static IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues> Create(Measure from, Measure to, Guid ingredientFrom, Guid ingredientTo)
       {
          var values = new Dictionary<EquivalenceNotFoundExceptionValues, object>(4)
          {

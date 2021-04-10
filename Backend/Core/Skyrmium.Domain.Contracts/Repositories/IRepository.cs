@@ -1,5 +1,6 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Queryables;
+using System;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Domain.Contracts.Repositories
@@ -8,7 +9,7 @@ namespace Skyrmium.Domain.Contracts.Repositories
    {
       IQueryableEntity<TEntity> Query();
       Task<TEntity> GetByIdAsync(long id);
-      Task<TEntity> GetByDistributedIdAsync(IDistributableId distributedId);
+      Task<TEntity> GetByDistributedIdAsync(Guid distributedId);
       void Add(TEntity entity);
       void Update(TEntity entity);
       void Remove(TEntity entity);

@@ -6,6 +6,6 @@ namespace Skyrmium.Dal.Implementations.Daos
    public abstract class DaoBase : IDao
    {
       public long Id { get; set; }
-      public Guid? DistributedId { get; set; } = Guid.Empty;
+      public Guid DistributedId { get; set; }
    }
 }

@@ -1,6 +1,7 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Skyrmium.Domain.Services.Implementations
       {
       }
 
-      public Task<IEnumerable<TEntity>> GetByOwned(IDistributableId ownedBy)
+      public Task<IEnumerable<TEntity>> GetByOwned(Guid ownedBy)
       {
          return this.Repository.GetByOwned(ownedBy).ToEnumerableAsync();
       }

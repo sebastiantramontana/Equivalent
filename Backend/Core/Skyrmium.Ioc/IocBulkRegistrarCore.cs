@@ -1,5 +1,4 @@
-﻿using Skyrmium.Adapters.Implementations;
-using Skyrmium.Dal.Implementations;
+﻿using Skyrmium.Dal.Implementations;
 using Skyrmium.Infrastructure.Contracts;
 using System.Collections.Generic;
 

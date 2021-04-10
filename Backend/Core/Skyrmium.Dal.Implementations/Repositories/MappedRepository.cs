@@ -37,11 +37,9 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return GetSingleEntityAsync(d => d.Id == id);
       }
 
-      public Task<TEntity> GetByDistributedIdAsync(IDistributableId distributedId)
+      public Task<TEntity> GetByDistributedIdAsync(Guid distributedId)
       {
-         var distributedIdValue = distributedId.Value;
-
-         return GetSingleEntityAsync(d => d.DistributedId == distributedIdValue);
+         return GetSingleEntityAsync(d => d.DistributedId == distributedId);
       }
 
       public void Add(TEntity entity)
