@@ -13,11 +13,11 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
          var mappingEntity = CreateMap<TEntity, TDto>(MemberList.None);
          var mappingDao = CreateMap<TDto, TEntity>(MemberList.None);
 
-         ContinueWithEntity(mappingEntity);
-         ContinueWithDto(mappingDao);
+         ContinueEntityToDto(mappingEntity);
+         ContinueDtoToEntity(mappingDao);
       }
 
-      protected abstract void ContinueWithEntity(IMappingExpression<TEntity, TDto> mappingExpression);
-      protected abstract void ContinueWithDto(IMappingExpression<TDto, TEntity> mappingExpression);
+      protected abstract void ContinueEntityToDto(IMappingExpression<TEntity, TDto> mappingExpression);
+      protected abstract void ContinueDtoToEntity(IMappingExpression<TDto, TEntity> mappingExpression);
    }
 }

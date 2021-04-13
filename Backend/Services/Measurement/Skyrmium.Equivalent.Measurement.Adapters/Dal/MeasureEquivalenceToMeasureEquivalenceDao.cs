@@ -7,9 +7,9 @@ using System;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureEquivalenceToMeasureEquivalenceDao : EntityToDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
+   internal class MeasureEquivalenceToMeasureEquivalenceDao : OwnedEntityToDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
    {
-      protected override void ContinueEntityToDao(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDao> mappingExpression)
+      protected override void ContinueOwnedEntityToDao(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDao> mappingExpression)
       {
          mappingExpression
             .ForMember(d => d.MeasureFrom, c => c.MapFrom(e => e.From.Measure))
@@ -18,7 +18,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
             .ForMember(d => d.IngredientTo, c => c.MapFrom(e => e.To.Ingredient));
       }
 
-      protected override void ContinueDaoToEntity(IMappingExpression<MeasureEquivalenceDao, MeasureEquivalence> mappingExpression)
+      protected override void ContinueOwnedDaoToEntity(IMappingExpression<MeasureEquivalenceDao, MeasureEquivalence> mappingExpression)
       {
          mappingExpression.ConstructUsing((dao, context) =>
             new MeasureEquivalence(

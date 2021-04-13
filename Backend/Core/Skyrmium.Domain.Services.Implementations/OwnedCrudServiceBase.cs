@@ -16,7 +16,9 @@ namespace Skyrmium.Domain.Services.Implementations
 
       public Task<IEnumerable<TEntity>> GetByOwned(Guid ownedBy)
       {
-         return this.Repository.GetByOwned(ownedBy).ToEnumerableAsync();
+         return this.Repository
+            .GetByOwned(ownedBy)
+            .ToEnumerableAsync();
       }
    }
 }

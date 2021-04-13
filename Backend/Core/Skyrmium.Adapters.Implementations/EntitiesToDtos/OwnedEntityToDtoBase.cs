@@ -8,11 +8,7 @@ namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
       where TEntity : IOwnedEntity
       where TDto : IOwnedDto
    {
-      protected OwnedEntityToDtoBase()
-      {
-      }
-
-      protected override abstract void ContinueWithEntity(IMappingExpression<TEntity, TDto> mappingExpression);
-      protected override abstract void ContinueWithDto(IMappingExpression<TDto, TEntity> mappingExpression);
+      protected override abstract void ContinueEntityToDto(IMappingExpression<TEntity, TDto> mappingExpression);
+      protected override abstract void ContinueDtoToEntity(IMappingExpression<TDto, TEntity> mappingExpression);
    }
 }

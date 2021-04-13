@@ -7,7 +7,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
    internal class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      protected override void ContinueWithEntity(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDto> mappingExpression)
+      protected override void ContinueEntityToDto(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDto> mappingExpression)
       {
          mappingExpression
             .ForMember(d => d.MeasureFrom, c => c.MapFrom(e => e.From.Measure))
@@ -17,7 +17,7 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
             .ForMember(d => d.Factor, c => c.MapFrom(e => e.Factor));
       }
 
-      protected override void ContinueWithDto(IMappingExpression<MeasureEquivalenceDto, MeasureEquivalence> mappingExpression)
+      protected override void ContinueDtoToEntity(IMappingExpression<MeasureEquivalenceDto, MeasureEquivalence> mappingExpression)
       {
          mappingExpression
             .ForPath(e => e.From.Measure, c => c.MapFrom(d => d.MeasureFrom))
