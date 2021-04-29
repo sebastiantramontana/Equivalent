@@ -1,23 +1,19 @@
-﻿using AutoMapper;
-using Skyrmium.Api.Contracts;
+﻿using Skyrmium.Api.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 
 namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
 {
-   public abstract class EntityToDtoBase<TEntity, TDto> : Profile
-      where TEntity : IEntity
-      where TDto : IDto
+   public abstract class EntityToDtoBase<TEntity, TDto> : AdapterBase<TEntity, TDto>
+      where TEntity : class, IEntity
+      where TDto : class, IDto, new()
    {
-      protected EntityToDtoBase()
+      public sealed override TDto Map(TEntity entity)
       {
-         var mappingEntity = CreateMap<TEntity, TDto>(MemberList.None);
-         var mappingDao = CreateMap<TDto, TEntity>(MemberList.None);
+         var dto = new TDto { DistributedId = entity.DistributedId };
 
-         ContinueEntityToDto(mappingEntity);
-         ContinueDtoToEntity(mappingDao);
+         return ContinueEntityToDto(entity, dto);
       }
 
-      protected abstract void ContinueEntityToDto(IMappingExpression<TEntity, TDto> mappingExpression);
-      protected abstract void ContinueDtoToEntity(IMappingExpression<TDto, TEntity> mappingExpression);
+      protected abstract TDto ContinueEntityToDto(TEntity entity, TDto dto);
    }
 }

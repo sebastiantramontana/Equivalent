@@ -1,18 +1,22 @@
-﻿using AutoMapper;
-using Skyrmium.Adapters.Implementations.EntitiesToDtos;
+﻿using Skyrmium.Adapters.Implementations.EntitiesToDtos;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureToMeasureDto : OwnedEntityToDtoBase<Measure, MeasureDto>
+   public class MeasureToMeasureDto : OwnedEntityToDtoBase<Measure, MeasureDto>
    {
-      protected override void ContinueEntityToDto(IMappingExpression<Measure, MeasureDto> mappingExpression)
+      public override Measure Map(MeasureDto dto)
       {
+         return new Measure(default, dto.DistributedId, dto.OwnedBy, dto.ShortName, dto.FullName);
       }
 
-      protected override void ContinueDtoToEntity(IMappingExpression<MeasureDto, Measure> mappingExpression)
+      protected override MeasureDto ContinueOwnedEntityToDto(Measure entity, MeasureDto dto)
       {
+         dto.ShortName = entity.ShortName;
+         dto.FullName = entity.FullName;
+
+         return dto;
       }
    }
 }

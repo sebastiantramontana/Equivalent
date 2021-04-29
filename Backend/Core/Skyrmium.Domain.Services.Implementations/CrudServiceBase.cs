@@ -23,9 +23,9 @@ namespace Skyrmium.Domain.Services.Implementations
          this.Repository.Add(entity);
       }
 
-      public Task<IEnumerable<TEntity>> GetAsync()
+      public Task<IEnumerable<TEntity>> GetAllAsync()
       {
-         return this.Repository.Query().ToEnumerableAsync();
+         return this.Repository.GetAllAsync();
       }
 
       public Task<TEntity> GetByIdAsync(long id)

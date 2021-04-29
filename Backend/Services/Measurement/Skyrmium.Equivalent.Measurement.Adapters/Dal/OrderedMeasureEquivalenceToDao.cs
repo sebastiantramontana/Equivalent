@@ -1,19 +1,30 @@
-﻿using AutoMapper;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Adapters.Implementations.EntitiesToDaos;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class OrderedMeasureEquivalenceToDao : EntityToDaoBase<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao>
+   public class OrderedMeasureEquivalenceToDao : EntityToDaoBase<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao>
    {
-      protected override void ContinueDaoToEntity(IMappingExpression<OrderedMeasureEquivalenceDao, OrderedMeasureEquivalence> mappingExpression)
+      private readonly IAdapter<MeasureEquivalence, MeasureEquivalenceDao> _measureEquivalenceAdapter;
+
+      public OrderedMeasureEquivalenceToDao(IAdapter<MeasureEquivalence, MeasureEquivalenceDao> measureEquivalenceAdapter)
       {
+         _measureEquivalenceAdapter = measureEquivalenceAdapter;
       }
 
-      protected override void ContinueEntityToDao(IMappingExpression<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao> mappingExpression)
+      public override OrderedMeasureEquivalence Map(OrderedMeasureEquivalenceDao dao)
       {
-         mappingExpression.ForMember(d => d.Conversion, cfg => cfg.Ignore());
+         return new OrderedMeasureEquivalence(dao.Id, dao.DistributedId, dao.Order, _measureEquivalenceAdapter.Map(dao.MeasureEquivalence));
+      }
+
+      protected override OrderedMeasureEquivalenceDao ContinueEntityToDao(OrderedMeasureEquivalence entity, OrderedMeasureEquivalenceDao dao)
+      {
+         dao.Order = entity.Order;
+         dao.MeasureEquivalence = _measureEquivalenceAdapter.Map(entity.MeasureEquivalence);
+
+         return dao;
       }
    }
 }

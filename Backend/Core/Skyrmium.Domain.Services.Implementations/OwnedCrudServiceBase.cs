@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 
 namespace Skyrmium.Domain.Services.Implementations
 {
-   public abstract class OwnedCrudServiceBase<TEntity> : CrudServiceBase<IOwnedRepository<TEntity>, TEntity>, IOwnedCrudService<TEntity>
+   public abstract class OwnedCrudServiceBase<TRepository, TEntity> : CrudServiceBase<TRepository, TEntity>, IOwnedCrudService<TEntity>
+      where TRepository : IOwnedRepository<TEntity>
       where TEntity : class, IOwnedEntity
    {
-      protected OwnedCrudServiceBase(IOwnedRepository<TEntity> repository) : base(repository)
+      protected OwnedCrudServiceBase(TRepository repository) : base(repository)
       {
       }
 
       public Task<IEnumerable<TEntity>> GetByOwned(Guid ownedBy)
       {
-         return this.Repository
-            .GetByOwned(ownedBy)
-            .ToEnumerableAsync();
+         return this.Repository.GetByOwned(ownedBy);
       }
    }
 }

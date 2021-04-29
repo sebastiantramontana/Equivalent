@@ -5,7 +5,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class OrderedMeasureEquivalence : EntityBase
    {
-      public OrderedMeasureEquivalence(int id, Guid distributedId, int order, MeasureEquivalence measureEquivalence)
+      public OrderedMeasureEquivalence(long id, Guid distributedId, int order, MeasureEquivalence measureEquivalence)
          : base(id, distributedId)
       {
          this.Order = order;

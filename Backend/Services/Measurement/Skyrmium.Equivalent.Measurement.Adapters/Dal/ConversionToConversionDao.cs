@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Adapters.Implementations.EntitiesToDaos;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -6,22 +6,33 @@ using System.Linq;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class ConversionToConversionDao : OwnedEntityToDaoBase<Conversion, ConversionDao>
+   public class ConversionToConversionDao : OwnedEntityToDaoBase<Conversion, ConversionDao>
    {
-      protected override void ContinueOwnedEntityToDao(IMappingExpression<Conversion, ConversionDao> mappingExpression)
+      private readonly IAdapter<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao> _orderedMeasureEquivalenceAdapter;
+
+      public ConversionToConversionDao(IAdapter<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao> orderedMeasureEquivalenceAdapter)
       {
+         _orderedMeasureEquivalenceAdapter = orderedMeasureEquivalenceAdapter;
       }
 
-      protected override void ContinueOwnedDaoToEntity(IMappingExpression<ConversionDao, Conversion> mappingExpression)
+      public override Conversion Map(ConversionDao dao)
       {
-         mappingExpression.ConstructUsing((dao, context) =>
-            Conversion.Create(
-               dao.Id,
-               dao.DistributedId,
-               dao.OwnedBy,
-               dao.Name,
-               dao.Equivalences.Select(eq => context.Mapper.Map<OrderedMeasureEquivalenceDao, OrderedMeasureEquivalence>(eq)).ToList()
-            ));
+         var conversion = Conversion.Create(
+                           dao.Id,
+                           dao.DistributedId,
+                           dao.OwnedBy,
+                           dao.Name,
+                           _orderedMeasureEquivalenceAdapter.Map(dao.Equivalences).ToList());
+
+         return conversion;
+      }
+
+      protected override ConversionDao ContinueOwnedEntityToDao(Conversion entity, ConversionDao dao)
+      {
+         dao.Name = entity.Name;
+         dao.Equivalences = _orderedMeasureEquivalenceAdapter.Map(entity.Equivalences);
+
+         return dao;
       }
    }
 }

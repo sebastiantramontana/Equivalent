@@ -10,32 +10,33 @@ using System.Threading.Tasks;
 namespace Skyrmium.Api.Implementations
 {
    [ApiController]
-   public abstract class CrudApiControllerBase<TEntity, TDto> : ControllerBase
+   public abstract class CrudApiControllerBase<TService, TEntity, TDto> : ControllerBase
+      where TService : ICrudService<TEntity>
       where TEntity : class, IEntity
       where TDto : class, IDto
    {
-      private readonly ICrudService<TEntity> _crudService;
-      private readonly IAdapter<TEntity, TDto> _adapterEntity;
-
-      protected CrudApiControllerBase(ICrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity)
+      protected CrudApiControllerBase(TService service, IAdapter<TEntity, TDto> adapterEntity)
       {
-         _crudService = crudService;
-         _adapterEntity = adapterEntity;
+         Service = service;
+         Adapter = adapterEntity;
       }
+
+      protected TService Service { get; }
+      protected IAdapter<TEntity, TDto> Adapter { get; }
 
       [HttpGet]
       public async Task<IEnumerable<TDto>> GetAsync()
       {
-         var entities = await _crudService.GetAsync();
-         return _adapterEntity.Map(entities);
+         var entities = await this.Service.GetAllAsync();
+         return this.Adapter.Map(entities);
       }
 
       // GET api/<MeasureEquivalencesController>/5
       [HttpGet("{distributedId}")]
       public async Task<TDto> GetByDistributedAsync(Guid distributedId)
       {
-         var entity = await _crudService.GetByDistributedIdAsync(distributedId);
-         return _adapterEntity.Map(entity);
+         var entity = await Service.GetByDistributedIdAsync(distributedId);
+         return this.Adapter.Map(entity);
       }
 
       // POST api/<MeasureEquivalencesController>

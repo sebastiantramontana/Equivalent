@@ -7,6 +7,5 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Contracts
    {
       double Convert(Conversion conversion);
       double Convert(Conversion conversion, double quantity);
-      double Convert(MeasureEquivalence from, MeasureEquivalence to, double quantity);
    }
 }

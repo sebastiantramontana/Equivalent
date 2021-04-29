@@ -1,53 +1,94 @@
 ﻿using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Implementations;
+using Skyrmium.Equivalent.Measurement.Dal.Repositories;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
 using System;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   internal class EquivalenceService : OwnedCrudServiceBase<MeasureEquivalence>, IEquivalenceService
+   internal class EquivalenceService : OwnedCrudServiceBase<IMeasureEquivalenceRepository, MeasureEquivalence>, IEquivalenceService
    {
-      public EquivalenceService(IOwnedRepository<MeasureEquivalence> repository)
+      private readonly IRepository<Measure> _measureRepository;
+
+      public EquivalenceService(IMeasureEquivalenceRepository repository, IRepository<Measure> measureRepository)
          : base(repository)
       {
+         _measureRepository = measureRepository;
       }
 
-      public double GetFactor(Measure measureFrom, Measure measureTo)
+      public async Task<double> GetFactor(Guid measureFrom, Guid measureTo)
       {
-         var businessException = EquivalenceNotFoundExceptionFactory.Create(measureFrom, measureTo);
-         var from = new MeasureIngredient(measureFrom, Guid.Empty);
-         var to = new MeasureIngredient(measureTo, Guid.Empty);
+         var measureEquivalence = await this.Repository.GetByMeasures(measureFrom, measureFrom)
+            ?? throw await GetException(measureFrom, measureTo);
 
-         return GetFactor(from, to, businessException);
+         return GetEquivalenceFactor(measureEquivalence, measureFrom, measureTo);
       }
 
-      public double GetFactor(Measure measureFrom, Measure measureTo, Guid ingredient)
+      public async Task<double> GetFactor(Guid measureFrom, Guid measureTo, Guid ingredient)
       {
-         var businessException = EquivalenceNotFoundExceptionFactory.Create(measureFrom, measureTo, ingredient);
-         var from = new MeasureIngredient(measureFrom, ingredient);
-         var to = new MeasureIngredient(measureTo, ingredient);
+         var measureEquivalence = await this.Repository.GetForIngredient(measureFrom, measureTo, ingredient)
+            ?? throw await GetException(measureFrom, measureTo, ingredient);
 
-         return GetFactor(from, to, businessException);
+         return GetEquivalenceFactor(measureEquivalence, measureFrom, measureTo);
       }
 
-      public double GetFactor(MeasureIngredient from, MeasureIngredient to)
+      public async Task<double> GetFactor(Guid measureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo)
       {
-         var businessException = EquivalenceNotFoundExceptionFactory.Create(from.Measure, to.Measure, from.Ingredient, to.Ingredient);
-         return GetFactor(from, to, businessException);
+         var measureEquivalence = await this.Repository.GetByMeasureIngredients(measureFrom, ingredientFrom, measureTo, ingredientTo)
+            ?? throw await GetException(measureFrom, ingredientFrom, measureTo, ingredientTo);
+
+         return GetEquivalenceFactor(measureEquivalence, measureFrom, measureTo);
       }
 
-      private double GetFactor(MeasureIngredient from, MeasureIngredient to, IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues> businessException)
+      private static double GetEquivalenceFactor(MeasureEquivalence measureEquivalence, Guid originalMeasureFrom, Guid originalMeasureTo)
       {
-         var measureEquivalence = this.Repository
-            .Query()
-            .SingleOrDefault(me =>
-                  me.From == from
-               && me.To == to);
+         var factor = measureEquivalence.Factor;
 
-         return measureEquivalence?.Factor ?? throw businessException.ToException();
+         if (CheckMeasuresAreCrossed(measureEquivalence, originalMeasureFrom, originalMeasureTo))
+            factor = 1 / factor;
+
+         return factor;
+      }
+
+      private static bool CheckMeasuresAreCrossed(MeasureEquivalence measureEquivalence, Guid originalMeasureFrom, Guid originalMeasureTo)
+      {
+         return
+            measureEquivalence.From.Measure.DistributedId == originalMeasureTo &&
+            measureEquivalence.To.Measure.DistributedId == originalMeasureFrom;
+      }
+
+      private Task<Exception> GetException(Guid measureFrom, Guid measureTo)
+      {
+         return GetException(measureFrom, measureTo, (from, to) => EquivalenceNotFoundExceptionFactory.Create(from, to));
+      }
+
+      private Task<Exception> GetException(Guid measureFrom, Guid measureTo, Guid ingredient)
+      {
+         return GetException(measureFrom, measureTo, (from, to) => EquivalenceNotFoundExceptionFactory.Create(from, to, ingredient));
+      }
+
+      private Task<Exception> GetException(Guid measureFromId, Guid ingredientFrom, Guid measureToId, Guid ingredientTo)
+      {
+         return GetException(measureFromId, measureToId, (measureFrom, measureTo) => EquivalenceNotFoundExceptionFactory.Create(measureFrom, measureTo, ingredientFrom, ingredientTo));
+      }
+
+      private async Task<Exception> GetException(Guid measureFrom, Guid measureTo, Func<Measure, Measure, IBusinessException<MeasurementServiceExceptions, EquivalenceNotFoundExceptionValues>> bussinesExceptionFunc)
+      {
+         var from = GetMeasure(measureFrom);
+         var to = GetMeasure(measureTo);
+
+         var bussinessException = bussinesExceptionFunc(await from, await to);
+
+         return bussinessException.ToException();
+      }
+
+      private Task<Measure> GetMeasure(Guid measureDistributedId)
+      {
+         return _measureRepository.GetByDistributedIdAsync(measureDistributedId);
       }
    }
 }

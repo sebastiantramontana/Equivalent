@@ -5,7 +5,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   internal class MeasureService : OwnedCrudServiceBase<Measure>, IMeasureService
+   internal class MeasureService : OwnedCrudServiceBase<IOwnedRepository<Measure>, Measure>, IMeasureService
    {
       public MeasureService(IOwnedRepository<Measure> repository)
          : base(repository)

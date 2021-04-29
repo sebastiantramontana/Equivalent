@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />

@@ -1,30 +1,39 @@
-﻿using AutoMapper;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Adapters.Implementations.EntitiesToDtos;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
+   public class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      protected override void ContinueEntityToDto(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDto> mappingExpression)
+      private readonly IAdapter<Measure, MeasureDto> _measureAdapter;
+
+      public MeasureEquivalenceToMeasureEquivalenceDto(IAdapter<Measure, MeasureDto> measureAdapter)
       {
-         mappingExpression
-            .ForMember(d => d.MeasureFrom, c => c.MapFrom(e => e.From.Measure))
-            .ForMember(d => d.IngredientFrom, c => c.MapFrom(e => e.From.Ingredient))
-            .ForMember(d => d.MeasureTo, c => c.MapFrom(e => e.To.Measure))
-            .ForMember(d => d.IngredientTo, c => c.MapFrom(e => e.To.Ingredient))
-            .ForMember(d => d.Factor, c => c.MapFrom(e => e.Factor));
+         _measureAdapter = measureAdapter;
       }
 
-      protected override void ContinueDtoToEntity(IMappingExpression<MeasureEquivalenceDto, MeasureEquivalence> mappingExpression)
+      public override MeasureEquivalence Map(MeasureEquivalenceDto dto)
       {
-         mappingExpression
-            .ForPath(e => e.From.Measure, c => c.MapFrom(d => d.MeasureFrom))
-            .ForPath(e => e.From.Ingredient, c => c.MapFrom(d => d.IngredientFrom))
-            .ForPath(e => e.To.Measure, c => c.MapFrom(d => d.MeasureTo))
-            .ForPath(e => e.To.Ingredient, c => c.MapFrom(d => d.IngredientTo))
-            .ForMember(e => e.Factor, c => c.MapFrom(d => d.Factor));
+         return new MeasureEquivalence(
+            default,
+            dto.DistributedId,
+            dto.OwnedBy,
+            new MeasureIngredient(_measureAdapter.Map(dto.MeasureFrom), dto.IngredientFrom),
+            new MeasureIngredient(_measureAdapter.Map(dto.MeasureTo), dto.IngredientTo),
+            dto.Factor);
+      }
+
+      protected override MeasureEquivalenceDto ContinueOwnedEntityToDto(MeasureEquivalence entity, MeasureEquivalenceDto dto)
+      {
+         return new MeasureEquivalenceDto
+         {
+            MeasureFrom = _measureAdapter.Map(entity.From.Measure),
+            IngredientFrom = entity.From.Ingredient,
+            MeasureTo = _measureAdapter.Map(entity.To.Measure),
+            IngredientTo = entity.To.Ingredient
+         };
       }
    }
 }

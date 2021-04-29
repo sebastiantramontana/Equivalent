@@ -1,18 +1,34 @@
-﻿using AutoMapper;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Adapters.Implementations.EntitiesToDtos;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class OrderedMeasureEquivalenceToDto : EntityToDtoBase<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDto>
+   public class OrderedMeasureEquivalenceToDto : EntityToDtoBase<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDto>
    {
-      protected override void ContinueDtoToEntity(IMappingExpression<OrderedMeasureEquivalenceDto, OrderedMeasureEquivalence> mappingExpression)
+      private readonly IAdapter<MeasureEquivalence, MeasureEquivalenceDto> _measureEquivalenceAdapter;
+
+      public OrderedMeasureEquivalenceToDto(IAdapter<MeasureEquivalence, MeasureEquivalenceDto> measureEquivalenceAdapter)
       {
+         _measureEquivalenceAdapter = measureEquivalenceAdapter;
       }
 
-      protected override void ContinueEntityToDto(IMappingExpression<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDto> mappingExpression)
+      public override OrderedMeasureEquivalence Map(OrderedMeasureEquivalenceDto dto)
       {
+         return new OrderedMeasureEquivalence(
+            default,
+            dto.DistributedId,
+            dto.Order,
+            _measureEquivalenceAdapter.Map(dto.MeasureEquivalence));
+      }
+
+      protected override OrderedMeasureEquivalenceDto ContinueEntityToDto(OrderedMeasureEquivalence entity, OrderedMeasureEquivalenceDto dto)
+      {
+         dto.Order = entity.Order;
+         dto.MeasureEquivalence = _measureEquivalenceAdapter.Map(entity.MeasureEquivalence);
+
+         return dto;
       }
    }
 }

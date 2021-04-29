@@ -1,28 +1,19 @@
-﻿using AutoMapper;
-using Skyrmium.Dal.Contracts.Daos;
+﻿using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
 
 namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
 {
    public abstract class OwnedEntityToDaoBase<TEntity, TDao> : EntityToDaoBase<TEntity, TDao>
       where TEntity : class, IOwnedEntity
-      where TDao : class, IOwnedDao
+      where TDao : class, IOwnedDao, new()
    {
-      protected sealed override void ContinueDaoToEntity(IMappingExpression<TDao, TEntity> mappingExpression)
+      protected sealed override TDao ContinueEntityToDao(TEntity entity, TDao dao)
       {
-         mappingExpression.ForMember(e => e.OwnedBy, cfg => cfg.MapFrom(d => d.OwnedBy));
+         dao.OwnedBy = entity.OwnedBy;
 
-         ContinueOwnedDaoToEntity(mappingExpression);
+         return ContinueOwnedEntityToDao(entity, dao);
       }
 
-      protected sealed override void ContinueEntityToDao(IMappingExpression<TEntity, TDao> mappingExpression)
-      {
-         mappingExpression.ForMember(d => d.OwnedBy, cfg => cfg.MapFrom(e => e.OwnedBy));
-
-         ContinueOwnedEntityToDao(mappingExpression);
-      }
-
-      protected abstract void ContinueOwnedEntityToDao(IMappingExpression<TEntity, TDao> mappingExpression);
-      protected abstract void ContinueOwnedDaoToEntity(IMappingExpression<TDao, TEntity> mappingExpression);
+      protected abstract TDao ContinueOwnedEntityToDao(TEntity entity, TDao dao);
    }
 }

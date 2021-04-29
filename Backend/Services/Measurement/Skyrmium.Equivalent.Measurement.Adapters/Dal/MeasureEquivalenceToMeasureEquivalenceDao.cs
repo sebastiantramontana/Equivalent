@@ -1,34 +1,39 @@
-﻿using AutoMapper;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Adapters.Implementations.EntitiesToDaos;
-using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
-using System;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureEquivalenceToMeasureEquivalenceDao : OwnedEntityToDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
+   public class MeasureEquivalenceToMeasureEquivalenceDao : OwnedEntityToDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
    {
-      protected override void ContinueOwnedEntityToDao(IMappingExpression<MeasureEquivalence, MeasureEquivalenceDao> mappingExpression)
+      private readonly IAdapter<Measure, MeasureDao> _measureAdapter;
+
+      public MeasureEquivalenceToMeasureEquivalenceDao(IAdapter<Measure, MeasureDao> measureAdapter)
       {
-         mappingExpression
-            .ForMember(d => d.MeasureFrom, c => c.MapFrom(e => e.From.Measure))
-            .ForMember(d => d.IngredientFrom, c => c.MapFrom(e => e.From.Ingredient))
-            .ForMember(d => d.MeasureTo, c => c.MapFrom(e => e.To.Measure))
-            .ForMember(d => d.IngredientTo, c => c.MapFrom(e => e.To.Ingredient));
+         _measureAdapter = measureAdapter;
       }
 
-      protected override void ContinueOwnedDaoToEntity(IMappingExpression<MeasureEquivalenceDao, MeasureEquivalence> mappingExpression)
+      protected override MeasureEquivalenceDao ContinueOwnedEntityToDao(MeasureEquivalence entity, MeasureEquivalenceDao dao)
       {
-         mappingExpression.ConstructUsing((dao, context) =>
-            new MeasureEquivalence(
-               dao.Id,
-               dao.DistributedId,
-               dao.OwnedBy,
-               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureFrom), dao.IngredientFrom),
-               new MeasureIngredient(context.Mapper.Map<MeasureDao, Measure>(dao.MeasureTo), dao.IngredientTo),
-               dao.Factor
-            ));
+         dao.MeasureFrom = _measureAdapter.Map(entity.From.Measure);
+         dao.IngredientFrom = entity.From.Ingredient;
+         dao.MeasureTo = _measureAdapter.Map(entity.To.Measure);
+         dao.IngredientTo = entity.To.Ingredient;
+         dao.Factor = entity.Factor;
+
+         return dao;
+      }
+
+      public override MeasureEquivalence Map(MeasureEquivalenceDao dao)
+      {
+         return new MeasureEquivalence(
+            dao.Id,
+            dao.DistributedId,
+            dao.OwnedBy,
+            new MeasureIngredient(_measureAdapter.Map(dao.MeasureFrom), dao.IngredientFrom),
+            new MeasureIngredient(_measureAdapter.Map(dao.MeasureTo), dao.IngredientTo),
+            dao.Factor);
       }
    }
 }

@@ -1,14 +1,18 @@
-﻿using AutoMapper;
-using Skyrmium.Api.Contracts;
+﻿using Skyrmium.Api.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 
 namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
 {
    public abstract class OwnedEntityToDtoBase<TEntity, TDto> : EntityToDtoBase<TEntity, TDto>
-      where TEntity : IOwnedEntity
-      where TDto : IOwnedDto
+      where TEntity : class, IOwnedEntity
+      where TDto : class, IOwnedDto, new()
    {
-      protected override abstract void ContinueEntityToDto(IMappingExpression<TEntity, TDto> mappingExpression);
-      protected override abstract void ContinueDtoToEntity(IMappingExpression<TDto, TEntity> mappingExpression);
+      protected sealed override TDto ContinueEntityToDto(TEntity entity, TDto dto)
+      {
+         dto.OwnedBy = entity.OwnedBy;
+
+         return ContinueOwnedEntityToDto(entity, dto);
+      }
+      protected abstract TDto ContinueOwnedEntityToDto(TEntity entity, TDto dto);
    }
 }

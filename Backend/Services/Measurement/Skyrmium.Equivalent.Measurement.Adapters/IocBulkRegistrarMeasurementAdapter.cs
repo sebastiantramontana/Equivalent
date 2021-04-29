@@ -1,38 +1,25 @@
-﻿using AutoMapper;
-using Skyrmium.Adapters.Implementations;
-using Skyrmium.Adapters.Implementations.EntitiesToDaos;
+﻿using Skyrmium.Adapters.Contracts;
 using Skyrmium.Equivalent.Measurement.Adapters.Dal;
-using System;
+using Skyrmium.Equivalent.Measurement.Api.Dtos;
+using Skyrmium.Equivalent.Measurement.Dal.Daos;
+using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters
 {
-   public class IocBulkRegistrarMeasurementAdapter : IocBulkRegistrarCoreAdapterBase
+   public class IocBulkRegistrarMeasurementAdapter : IIocBulkRegistrar
    {
-      private readonly MapperConfiguration _mapperConfiguration;
-
-      public IocBulkRegistrarMeasurementAdapter()
+      public void Register(IContainer container)
       {
-         _mapperConfiguration = new MapperConfiguration(cfg =>
-         {
-            cfg.AddProfile<ConversionToConversionDao>();
-            cfg.AddProfile<MeasureEquivalenceToMeasureEquivalenceDao>();
-            cfg.AddProfile<MeasureToMeasureDao>();
-            cfg.AddProfile<OrderedMeasureEquivalenceToDao>();
+         container.Register<IAdapter<Conversion, ConversionDao>, ConversionToConversionDao>();
+         container.Register<IAdapter<MeasureEquivalence, MeasureEquivalenceDao>, MeasureEquivalenceToMeasureEquivalenceDao>();
+         container.Register<IAdapter<Measure, MeasureDao>, MeasureToMeasureDao>();
+         container.Register<IAdapter<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDao>, OrderedMeasureEquivalenceToDao>();
 
-            cfg.AddProfile<ConversionToConversionDto>();
-            cfg.AddProfile<MeasureEquivalenceToMeasureEquivalenceDto>();
-            cfg.AddProfile<MeasureToMeasureDto>();
-            cfg.AddProfile<OrderedMeasureEquivalenceToDto>();
-
-         });
-      }
-
-      protected override MapperConfiguration GetMapperConfiguration()
-      {
-         _mapperConfiguration.AssertConfigurationIsValid();
-         _mapperConfiguration.CompileMappings();
-
-         return _mapperConfiguration;
+         container.Register<IAdapter<Conversion, ConversionDto>, ConversionToConversionDto>();
+         container.Register<IAdapter<MeasureEquivalence, MeasureEquivalenceDto>, MeasureEquivalenceToMeasureEquivalenceDto>();
+         container.Register<IAdapter<Measure, MeasureDto>, MeasureToMeasureDto>();
+         container.Register<IAdapter<OrderedMeasureEquivalence, OrderedMeasureEquivalenceDto>, OrderedMeasureEquivalenceToDto>();
       }
    }
 }

@@ -1,19 +1,22 @@
-﻿using AutoMapper;
-using Skyrmium.Adapters.Implementations.EntitiesToDaos;
+﻿using Skyrmium.Adapters.Implementations.EntitiesToDaos;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
-using System;
 
 namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 {
-   internal class MeasureToMeasureDao : OwnedEntityToDaoBase<Measure, MeasureDao>
+   public class MeasureToMeasureDao : OwnedEntityToDaoBase<Measure, MeasureDao>
    {
-      protected override void ContinueOwnedEntityToDao(IMappingExpression<Measure, MeasureDao> mappingExpression)
+      protected override MeasureDao ContinueOwnedEntityToDao(Measure entity, MeasureDao dao)
       {
+         dao.FullName = entity.FullName;
+         dao.ShortName = entity.ShortName;
+
+         return dao;
       }
 
-      protected override void ContinueOwnedDaoToEntity(IMappingExpression<MeasureDao, Measure> mappingExpression)
+      public override Measure Map(MeasureDao obj)
       {
+         return new Measure(obj.Id, obj.DistributedId, obj.OwnedBy, obj.FullName, obj.ShortName);
       }
    }
 }

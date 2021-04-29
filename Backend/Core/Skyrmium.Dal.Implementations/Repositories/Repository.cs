@@ -3,33 +3,31 @@ using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Contracts.Queryables;
 using Skyrmium.Domain.Contracts.Repositories;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
-   public class MappedRepository<TEntity, TDao> : IRepository<TEntity>
+   public class Repository<TEntity, TDao> : IRepository<TEntity>
       where TEntity : class, IEntity
       where TDao : class, IDao
    {
-      private protected DbContext DbContext { get; }
-      private protected IQueryableEntity<TEntity> QueryableEntity { get; }
-      private protected IAdapter<TEntity, TDao> Adapter { get; }
+      protected DbContext DbContext { get; }
+      protected IAdapter<TEntity, TDao> Adapter { get; }
 
-      public MappedRepository(DbContext dbContext, IQueryableEntity<TEntity> queryableEntity, IAdapter<TEntity, TDao> adapter)
+      public Repository(DbContext dbContext, IAdapter<TEntity, TDao> adapter)
       {
          this.DbContext = dbContext;
-         this.QueryableEntity = queryableEntity;
          this.Adapter = adapter;
       }
 
-      public IQueryableEntity<TEntity> Query()
+      public async Task<IEnumerable<TEntity>> GetAllAsync()
       {
-         return this.QueryableEntity;
+         var daos = await this.DbContext.Set<TDao>().ToListAsync();
+         return this.Adapter.Map(daos);
       }
 
       public Task<TEntity> GetByIdAsync(long id)

@@ -10,26 +10,22 @@ using System.Threading.Tasks;
 namespace Skyrmium.Api.Implementations
 {
    [ApiController]
-   public abstract class OwnedCrudApiControllerBase<TEntity, TDto> : CrudApiControllerBase<TEntity, TDto>
+   public abstract class OwnedCrudApiControllerBase<TService, TEntity, TDto> : CrudApiControllerBase<TService, TEntity, TDto>
+      where TService : IOwnedCrudService<TEntity>
       where TEntity : class, IOwnedEntity
       where TDto : class, IOwnedDto
    {
-      private readonly IOwnedCrudService<TEntity> _crudService;
-      private readonly IAdapter<TEntity, TDto> _adapterEntity;
-
-      protected OwnedCrudApiControllerBase(IOwnedCrudService<TEntity> crudService, IAdapter<TEntity, TDto> adapterEntity)
-         : base(crudService, adapterEntity)
+      protected OwnedCrudApiControllerBase(TService service, IAdapter<TEntity, TDto> adapterEntity)
+         : base(service, adapterEntity)
       {
-         _crudService = crudService;
-         _adapterEntity = adapterEntity;
       }
 
       // GET api/<MeasureEquivalencesController>/5
       [HttpGet("owned/{ownedById}")]
       public async Task<IEnumerable<TDto>> GetByOwnedAsync(Guid ownedById)
       {
-         var entity = await _crudService.GetByOwned(ownedById);
-         return _adapterEntity.Map(entity);
+         var entity = await this.Service.GetByOwned(ownedById);
+         return this.Adapter.Map(entity);
       }
    }
 }

@@ -1,18 +1,18 @@
-﻿using Skyrmium.Domain.Contracts.Repositories;
-using Skyrmium.Domain.Implementations.Exceptions;
+﻿using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
+using Skyrmium.Equivalent.Measurement.Dal.Repositories;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   internal class ConversionService : OwnedCrudServiceBase<Conversion>, IConversionService
+   internal class ConversionService : OwnedCrudServiceBase<IConversionRepository, Conversion>, IConversionService
    {
-      public ConversionService(IOwnedRepository<Conversion> repository) : base(repository)
+      public ConversionService(IConversionRepository repository) : base(repository)
       {
       }
 
@@ -31,12 +31,10 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          return quantity * Convert(conversion);
       }
 
-      public double Convert(MeasureEquivalence from, MeasureEquivalence to, double quantity)
+      public async Task<double> Convert(MeasureEquivalence from, MeasureEquivalence to, double quantity)
       {
-         var conversion = this.Repository
-                        .Query()
-                        .SingleOrDefault(c => c.Equivalences.First().MeasureEquivalence == from && c.Equivalences.Last().MeasureEquivalence == to)
-                        ?? throw CreateConversionNotFoundException(from, to);
+         var conversion = await this.Repository.Search(from.DistributedId, to.DistributedId)
+            ?? throw CreateConversionNotFoundException(from, to);
 
          return Convert(conversion, quantity);
       }
