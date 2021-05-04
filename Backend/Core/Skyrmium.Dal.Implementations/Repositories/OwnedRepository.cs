@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Repositories;
+using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +14,8 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IOwnedEntity
       where TDao : class, IOwnedDao
    {
-      public OwnedRepository(DbContext dbContext, IAdapter<TEntity, TDao> adapter)
-         : base(dbContext, adapter)
+      public OwnedRepository(DbContext dbContext, IMapper<TEntity, TDao> mapper)
+         : base(dbContext, mapper)
       {
       }
 
@@ -26,7 +26,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
             .Where(dao => dao.OwnedBy == ownedBy)
             .ToListAsync();
 
-         return this.Adapter.Map(daos);
+         return this.Mapper.Map(daos);
       }
    }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Skyrmium.Adapters.Contracts;
 using Skyrmium.Api.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts;
+using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,20 +15,20 @@ namespace Skyrmium.Api.Implementations
       where TEntity : class, IEntity
       where TDto : class, IDto
    {
-      protected CrudApiControllerBase(TService service, IAdapter<TEntity, TDto> adapterEntity)
+      protected CrudApiControllerBase(TService service, IMapper<TEntity, TDto> mapperEntity)
       {
          Service = service;
-         Adapter = adapterEntity;
+         Mapper = mapperEntity;
       }
 
       protected TService Service { get; }
-      protected IAdapter<TEntity, TDto> Adapter { get; }
+      protected IMapper<TEntity, TDto> Mapper { get; }
 
       [HttpGet]
       public async Task<IEnumerable<TDto>> GetAsync()
       {
          var entities = await this.Service.GetAllAsync();
-         return this.Adapter.Map(entities);
+         return this.Mapper.Map(entities);
       }
 
       // GET api/<MeasureEquivalencesController>/5
@@ -36,7 +36,7 @@ namespace Skyrmium.Api.Implementations
       public async Task<TDto> GetByDistributedAsync(Guid distributedId)
       {
          var entity = await Service.GetByDistributedIdAsync(distributedId);
-         return this.Adapter.Map(entity);
+         return this.Mapper.Map(entity);
       }
 
       // POST api/<MeasureEquivalencesController>

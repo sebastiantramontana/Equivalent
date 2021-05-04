@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Skyrmium.Dal.Contracts.Daos;
 
-namespace Skyrmium.Dal.Implementations.Mapping
+namespace Skyrmium.Dal.Implementations.OrmMapping
 {
    public abstract class OwnedMappingBase<T> : MappingBase<T> where T : class, IOwnedDao
    {

@@ -1,9 +1,10 @@
 ﻿using Skyrmium.Api.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
+using Skyrmium.Infrastructure.Contracts;
 
-namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
+namespace Skyrmium.Api.Implementations.EntityMapping
 {
-   public abstract class EntityToDtoBase<TEntity, TDto> : AdapterBase<TEntity, TDto>
+   public abstract class EntityToDtoBase<TEntity, TDto> : MapperBase<TEntity, TDto>
       where TEntity : class, IEntity
       where TDto : class, IDto, new()
    {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Skyrmium.Adapters.Contracts
+namespace Skyrmium.Infrastructure.Contracts
 {
-   public interface IAdapter<T1, T2>
+   public interface IMapper<T1, T2>
       where T1 : class
       where T2 : class
    {

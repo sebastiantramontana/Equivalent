@@ -17,15 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{8F813101-D43A-44FE-9CA8-450E88B10F06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Contracts", "Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj", "{40A00F6E-89CC-4943-87F7-0AB4EBAD2D02}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Implementations", "Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj", "{31AA59F0-A7DC-4363-AF60-31CC57054F2C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Contracts", "Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj", "{D296F0A3-7784-4CE8-8384-00DA037EDC0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Implementations", "Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj", "{8F1F8C94-65EC-4C4D-9422-6BA54ADC64B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Ioc", "Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{23E33A3D-52DC-4DDF-9172-DFD4720094E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{23E33A3D-52DC-4DDF-9172-DFD4720094E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,14 +57,6 @@ Global
 		{8F813101-D43A-44FE-9CA8-450E88B10F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F813101-D43A-44FE-9CA8-450E88B10F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F813101-D43A-44FE-9CA8-450E88B10F06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40A00F6E-89CC-4943-87F7-0AB4EBAD2D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40A00F6E-89CC-4943-87F7-0AB4EBAD2D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40A00F6E-89CC-4943-87F7-0AB4EBAD2D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40A00F6E-89CC-4943-87F7-0AB4EBAD2D02}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31AA59F0-A7DC-4363-AF60-31CC57054F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31AA59F0-A7DC-4363-AF60-31CC57054F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31AA59F0-A7DC-4363-AF60-31CC57054F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31AA59F0-A7DC-4363-AF60-31CC57054F2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D296F0A3-7784-4CE8-8384-00DA037EDC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D296F0A3-7784-4CE8-8384-00DA037EDC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D296F0A3-7784-4CE8-8384-00DA037EDC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU

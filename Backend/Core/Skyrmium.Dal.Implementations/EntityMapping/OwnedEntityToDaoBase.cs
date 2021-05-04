@@ -1,7 +1,7 @@
 ﻿using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
 
-namespace Skyrmium.Adapters.Implementations.EntitiesToDaos
+namespace Skyrmium.Dal.Implementations.EntityMapping
 {
    public abstract class OwnedEntityToDaoBase<TEntity, TDao> : EntityToDaoBase<TEntity, TDao>
       where TEntity : class, IOwnedEntity

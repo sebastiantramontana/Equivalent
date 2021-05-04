@@ -1,7 +1,7 @@
 ﻿using Skyrmium.Api.Contracts;
 using Skyrmium.Domain.Contracts.Entities;
 
-namespace Skyrmium.Adapters.Implementations.EntitiesToDtos
+namespace Skyrmium.Api.Implementations.EntityMapping
 {
    public abstract class OwnedEntityToDtoBase<TEntity, TDto> : EntityToDtoBase<TEntity, TDto>
       where TEntity : class, IOwnedEntity

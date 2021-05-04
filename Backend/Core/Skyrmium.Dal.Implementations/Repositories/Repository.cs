@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Contracts.Repositories;
+using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -15,19 +15,19 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IEntity
       where TDao : class, IDao
    {
-      protected DbContext DbContext { get; }
-      protected IAdapter<TEntity, TDao> Adapter { get; }
-
-      public Repository(DbContext dbContext, IAdapter<TEntity, TDao> adapter)
+      public Repository(DbContext dbContext, IMapper<TEntity, TDao> mapper)
       {
          this.DbContext = dbContext;
-         this.Adapter = adapter;
+         this.Mapper = mapper;
       }
+
+      protected DbContext DbContext { get; }
+      protected IMapper<TEntity, TDao> Mapper { get; }
 
       public async Task<IEnumerable<TEntity>> GetAllAsync()
       {
          var daos = await this.DbContext.Set<TDao>().ToListAsync();
-         return this.Adapter.Map(daos);
+         return this.Mapper.Map(daos);
       }
 
       public Task<TEntity> GetByIdAsync(long id)
@@ -42,19 +42,19 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public void Add(TEntity entity)
       {
-         var dao = this.Adapter.Map(entity);
+         var dao = this.Mapper.Map(entity);
          this.DbContext.Set<TDao>().Add(dao);
       }
 
       public void Update(TEntity entity)
       {
-         var dao = this.Adapter.Map(entity);
+         var dao = this.Mapper.Map(entity);
          this.DbContext.Set<TDao>().Update(dao);
       }
 
       public void Remove(TEntity entity)
       {
-         var dao = this.Adapter.Map(entity);
+         var dao = this.Mapper.Map(entity);
          this.DbContext.Set<TDao>().Remove(dao);
       }
 
@@ -65,7 +65,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
            .SingleOrDefaultAsync(expressionCondition)
            ?? throw new DataObjectNotFoundException();
 
-         var entity = this.Adapter.Map(dao);
+         var entity = this.Mapper.Map(dao);
          return entity;
       }
    }

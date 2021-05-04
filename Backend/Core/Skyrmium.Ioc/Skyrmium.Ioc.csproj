@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
   </ItemGroup>

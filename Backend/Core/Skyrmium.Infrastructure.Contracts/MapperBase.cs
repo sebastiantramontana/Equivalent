@@ -1,10 +1,9 @@
-﻿using Skyrmium.Adapters.Contracts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Skyrmium.Adapters.Implementations
+namespace Skyrmium.Infrastructure.Contracts
 {
-   public abstract class AdapterBase<T1, T2> : IAdapter<T1, T2>
+   public abstract class MapperBase<T1, T2> : IMapper<T1, T2>
       where T1 : class
       where T2 : class
    {
