@@ -27,13 +27,13 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
 
       protected override MeasureEquivalenceDto ContinueOwnedEntityToDto(MeasureEquivalence entity, MeasureEquivalenceDto dto)
       {
-         return new MeasureEquivalenceDto
-         {
-            MeasureFrom = _measureAdapter.Map(entity.From.Measure),
-            IngredientFrom = entity.From.Ingredient,
-            MeasureTo = _measureAdapter.Map(entity.To.Measure),
-            IngredientTo = entity.To.Ingredient
-         };
+         dto.MeasureFrom = _measureAdapter.Map(entity.From.Measure);
+         dto.IngredientFrom = entity.From.Ingredient;
+         dto.MeasureTo = _measureAdapter.Map(entity.To.Measure);
+         dto.IngredientTo = entity.To.Ingredient;
+         dto.Factor = entity.Factor;
+
+         return dto;
       }
    }
 }

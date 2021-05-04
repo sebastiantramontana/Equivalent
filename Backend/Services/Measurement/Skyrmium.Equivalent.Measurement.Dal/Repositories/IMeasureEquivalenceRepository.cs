@@ -7,8 +7,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    public interface IMeasureEquivalenceRepository : IOwnedRepository<MeasureEquivalence>
    {
-      Task<MeasureEquivalence?> GetByMeasures(Guid meaureFrom, Guid measureTo);
-      Task<MeasureEquivalence?> GetForIngredient(Guid meaureFrom, Guid measureTo, Guid ingredient);
-      Task<MeasureEquivalence?> GetByMeasureIngredients(Guid meaureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo);
+      Task<MeasureEquivalence> GetByMeasures(Guid meaureFrom, Guid measureTo);
+      Task<MeasureEquivalence> GetForIngredient(Guid meaureFrom, Guid measureTo, Guid ingredient);
+      Task<MeasureEquivalence> GetByMeasureIngredients(Guid meaureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo);
    }
 }

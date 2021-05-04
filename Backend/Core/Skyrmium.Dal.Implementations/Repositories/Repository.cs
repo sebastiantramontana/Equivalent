@@ -58,7 +58,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
          this.DbContext.Set<TDao>().Remove(dao);
       }
 
-      private async Task<TEntity> GetSingleEntityAsync(Expression<Func<TDao, bool>> expressionCondition)
+      protected async Task<TEntity> GetSingleEntityAsync(Expression<Func<TDao, bool>> expressionCondition)
       {
          var dao = await this.DbContext
            .Set<TDao>()
