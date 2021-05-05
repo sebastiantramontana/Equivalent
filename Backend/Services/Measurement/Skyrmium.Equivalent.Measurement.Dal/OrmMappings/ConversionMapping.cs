@@ -1,10 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Skyrmium.Dal.Implementations.Mapping;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Skyrmium.Dal.Implementations.OrmMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 
-namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
+namespace Skyrmium.Equivalent.Measurement.Dal.OrmMappings
 {
    internal class ConversionMapping : OwnedMappingBase<ConversionDao>
    {

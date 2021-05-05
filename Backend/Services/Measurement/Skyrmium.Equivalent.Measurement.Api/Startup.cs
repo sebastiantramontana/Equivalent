@@ -26,7 +26,7 @@ namespace Skyrmium.Equivalent.Measurement.Api
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Skyrmium.Equivalent.Measurement.Api", Version = "v1" });
          });
 
-         Initialization.Register(new Container(services), new Configuration(this.Configuration));
+         Initialization.RegisterAll(new Container(services), new Configuration(this.Configuration), new IocBulkRegistrarMeasurementApi());
       }
 
       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

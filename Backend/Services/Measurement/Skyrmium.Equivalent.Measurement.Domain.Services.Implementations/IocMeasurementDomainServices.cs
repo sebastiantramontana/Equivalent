@@ -6,7 +6,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    public class IocMeasurementDomainServices
    {
-      public IEnumerable<(Type Interfaz, Type Implementation)> TypePairs =>
+      public static IEnumerable<(Type Interfaz, Type Implementation)> TypePairs =>
          new (Type Interfaz, Type Implementation)[]
          {
             (typeof(IConversionService),typeof(ConversionService)),

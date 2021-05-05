@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Skyrmium.Dal.Implementations.Mapping;
+using Skyrmium.Dal.Implementations.OrmMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 
-namespace Skyrmium.Equivalent.Measurement.Dal.Mappings
+namespace Skyrmium.Equivalent.Measurement.Dal.OrmMappings
 {
    internal class MeasureEquivalenceMapping : OwnedMappingBase<MeasureEquivalenceDao>
    {

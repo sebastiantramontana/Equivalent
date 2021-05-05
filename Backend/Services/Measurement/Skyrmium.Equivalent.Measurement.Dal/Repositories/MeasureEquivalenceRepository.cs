@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skyrmium.Adapters.Contracts;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
+using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Threading.Tasks;
 
@@ -10,8 +11,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureEquivalenceRepository : OwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
-      public MeasureEquivalenceRepository(DbContext dbContext, IAdapter<MeasureEquivalence, MeasureEquivalenceDao> adapter)
-         : base(dbContext, adapter)
+      public MeasureEquivalenceRepository(DbContext dbContext, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper)
+         : base(dbContext, mapper)
       {
       }
 

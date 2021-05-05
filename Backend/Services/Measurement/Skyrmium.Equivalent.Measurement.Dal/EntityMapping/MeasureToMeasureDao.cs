@@ -1,8 +1,8 @@
-﻿using Skyrmium.Adapters.Implementations.EntitiesToDaos;
+﻿using Skyrmium.Dal.Implementations.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
-namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
+namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
 {
    public class MeasureToMeasureDao : OwnedEntityToDaoBase<Measure, MeasureDao>
    {

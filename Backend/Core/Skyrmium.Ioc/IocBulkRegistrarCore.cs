@@ -14,7 +14,7 @@ namespace Skyrmium.Ioc
             reg.Register(container);
       }
 
-      private IEnumerable<IIocBulkRegistrar> GetCoreRegistrars()
+      private static IEnumerable<IIocBulkRegistrar> GetCoreRegistrars()
       {
          return new IIocBulkRegistrar[] {
             new IocBulkRegistrarCoreDal()

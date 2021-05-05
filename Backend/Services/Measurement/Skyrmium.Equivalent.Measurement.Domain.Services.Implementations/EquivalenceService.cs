@@ -1,7 +1,7 @@
 ﻿using Skyrmium.Domain.Services.Implementations;
-using Skyrmium.Equivalent.Measurement.Dal.Repositories;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
+using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using System;
 using System.Threading.Tasks;
 

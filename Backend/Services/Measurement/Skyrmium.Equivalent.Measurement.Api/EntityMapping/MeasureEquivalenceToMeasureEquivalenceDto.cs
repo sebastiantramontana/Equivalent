@@ -1,17 +1,17 @@
-﻿using Skyrmium.Adapters.Contracts;
-using Skyrmium.Adapters.Implementations.EntitiesToDtos;
+﻿using Skyrmium.Api.Implementations.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Infrastructure.Contracts;
 
-namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
+namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
 {
    public class MeasureEquivalenceToMeasureEquivalenceDto : OwnedEntityToDtoBase<MeasureEquivalence, MeasureEquivalenceDto>
    {
-      private readonly IAdapter<Measure, MeasureDto> _measureAdapter;
+      private readonly IMapper<Measure, MeasureDto> _measureMapper;
 
-      public MeasureEquivalenceToMeasureEquivalenceDto(IAdapter<Measure, MeasureDto> measureAdapter)
+      public MeasureEquivalenceToMeasureEquivalenceDto(IMapper<Measure, MeasureDto> measureMapper)
       {
-         _measureAdapter = measureAdapter;
+         _measureMapper = measureMapper;
       }
 
       public override MeasureEquivalence Map(MeasureEquivalenceDto dto)
@@ -20,16 +20,16 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
             default,
             dto.DistributedId,
             dto.OwnedBy,
-            new MeasureIngredient(_measureAdapter.Map(dto.MeasureFrom), dto.IngredientFrom),
-            new MeasureIngredient(_measureAdapter.Map(dto.MeasureTo), dto.IngredientTo),
+            new MeasureIngredient(_measureMapper.Map(dto.MeasureFrom), dto.IngredientFrom),
+            new MeasureIngredient(_measureMapper.Map(dto.MeasureTo), dto.IngredientTo),
             dto.Factor);
       }
 
       protected override MeasureEquivalenceDto ContinueOwnedEntityToDto(MeasureEquivalence entity, MeasureEquivalenceDto dto)
       {
-         dto.MeasureFrom = _measureAdapter.Map(entity.From.Measure);
+         dto.MeasureFrom = _measureMapper.Map(entity.From.Measure);
          dto.IngredientFrom = entity.From.Ingredient;
-         dto.MeasureTo = _measureAdapter.Map(entity.To.Measure);
+         dto.MeasureTo = _measureMapper.Map(entity.To.Measure);
          dto.IngredientTo = entity.To.Ingredient;
          dto.Factor = entity.Factor;
 

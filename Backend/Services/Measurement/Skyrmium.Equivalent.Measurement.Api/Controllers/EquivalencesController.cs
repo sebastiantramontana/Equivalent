@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Skyrmium.Adapters.Contracts;
 using Skyrmium.Api.Implementations;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
+using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Threading.Tasks;
 
@@ -13,8 +13,8 @@ namespace Skyrmium.Equivalent.Measurement.Api.Controllers
    [ApiController]
    public class EquivalencesController : OwnedCrudApiControllerBase<IEquivalenceService, MeasureEquivalence, MeasureEquivalenceDto>
    {
-      public EquivalencesController(IEquivalenceService measureEquivalenceService, IAdapter<MeasureEquivalence, MeasureEquivalenceDto> adapter)
-         : base(measureEquivalenceService, adapter)
+      public EquivalencesController(IEquivalenceService measureEquivalenceService, IMapper<MeasureEquivalence, MeasureEquivalenceDto> mapper)
+         : base(measureEquivalenceService, mapper)
       {
       }
 

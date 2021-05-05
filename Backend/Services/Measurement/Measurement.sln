@@ -31,8 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Contracts", "..\..\Core\Skyrmium.Adapters.Contracts\Skyrmium.Adapters.Contracts.csproj", "{700DD382-255E-4919-A21C-EE8E8F1D4BD3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Adapters", "Skyrmium.Equivalent.Measurement.Adapters\Skyrmium.Equivalent.Measurement.Adapters.csproj", "{F6E8479B-D416-46A3-B93E-FAE0598B2978}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Adapters.Implementations", "..\..\Core\Skyrmium.Adapters.Implementations\Skyrmium.Adapters.Implementations.csproj", "{A8DA805A-ABBE-4E06-93F7-181DD78F6654}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Contracts", "..\..\Core\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj", "{173A3AEA-4DFB-4CE8-8FE3-CF80E3745511}"
@@ -42,8 +40,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{4D18571C-8B42-4EAD-860B-03239E2F8414}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Startup", "Skyrmium.Equivalent.Measurement.Startup\Skyrmium.Equivalent.Measurement.Startup.csproj", "{FFD77CCC-91EC-46A2-B246-874F690C1B0C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Equivalent.Measurement.Api.Dtos", "Skyrmium.Equivalent.Measurement.Api.Dtos\Skyrmium.Equivalent.Measurement.Api.Dtos.csproj", "{31910EC7-945F-4B53-BE64-365EA9D97CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,10 +99,6 @@ Global
 		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{700DD382-255E-4919-A21C-EE8E8F1D4BD3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6E8479B-D416-46A3-B93E-FAE0598B2978}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8DA805A-ABBE-4E06-93F7-181DD78F6654}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -127,10 +119,6 @@ Global
 		{FFD77CCC-91EC-46A2-B246-874F690C1B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFD77CCC-91EC-46A2-B246-874F690C1B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFD77CCC-91EC-46A2-B246-874F690C1B0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31910EC7-945F-4B53-BE64-365EA9D97CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31910EC7-945F-4B53-BE64-365EA9D97CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31910EC7-945F-4B53-BE64-365EA9D97CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31910EC7-945F-4B53-BE64-365EA9D97CA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using System;
 using System.Threading.Tasks;
 
-namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
+namespace Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories
 {
    public interface IMeasureEquivalenceRepository : IOwnedRepository<MeasureEquivalence>
    {

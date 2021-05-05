@@ -1,24 +1,24 @@
-﻿using Skyrmium.Adapters.Contracts;
-using Skyrmium.Adapters.Implementations.EntitiesToDaos;
+﻿using Skyrmium.Dal.Implementations.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Infrastructure.Contracts;
 
-namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
+namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
 {
    public class MeasureEquivalenceToMeasureEquivalenceDao : OwnedEntityToDaoBase<MeasureEquivalence, MeasureEquivalenceDao>
    {
-      private readonly IAdapter<Measure, MeasureDao> _measureAdapter;
+      private readonly IMapper<Measure, MeasureDao> _measureMapper;
 
-      public MeasureEquivalenceToMeasureEquivalenceDao(IAdapter<Measure, MeasureDao> measureAdapter)
+      public MeasureEquivalenceToMeasureEquivalenceDao(IMapper<Measure, MeasureDao> measureMapper)
       {
-         _measureAdapter = measureAdapter;
+         _measureMapper = measureMapper;
       }
 
       protected override MeasureEquivalenceDao ContinueOwnedEntityToDao(MeasureEquivalence entity, MeasureEquivalenceDao dao)
       {
-         dao.MeasureFrom = _measureAdapter.Map(entity.From.Measure);
+         dao.MeasureFrom = _measureMapper.Map(entity.From.Measure);
          dao.IngredientFrom = entity.From.Ingredient;
-         dao.MeasureTo = _measureAdapter.Map(entity.To.Measure);
+         dao.MeasureTo = _measureMapper.Map(entity.To.Measure);
          dao.IngredientTo = entity.To.Ingredient;
          dao.Factor = entity.Factor;
 
@@ -31,8 +31,8 @@ namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
             dao.Id,
             dao.DistributedId,
             dao.OwnedBy,
-            new MeasureIngredient(_measureAdapter.Map(dao.MeasureFrom), dao.IngredientFrom),
-            new MeasureIngredient(_measureAdapter.Map(dao.MeasureTo), dao.IngredientTo),
+            new MeasureIngredient(_measureMapper.Map(dao.MeasureFrom), dao.IngredientFrom),
+            new MeasureIngredient(_measureMapper.Map(dao.MeasureTo), dao.IngredientTo),
             dao.Factor);
       }
    }

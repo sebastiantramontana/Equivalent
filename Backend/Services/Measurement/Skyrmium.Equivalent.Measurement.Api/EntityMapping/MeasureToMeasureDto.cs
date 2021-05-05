@@ -1,8 +1,8 @@
-﻿using Skyrmium.Adapters.Implementations.EntitiesToDtos;
+﻿using Skyrmium.Api.Implementations.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Api.Dtos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 
-namespace Skyrmium.Equivalent.Measurement.Adapters.Dal
+namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
 {
    public class MeasureToMeasureDto : OwnedEntityToDtoBase<Measure, MeasureDto>
    {
