@@ -16,17 +16,17 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
       {
       }
 
-      public Task<MeasureEquivalence> GetByMeasures(Guid meaureFrom, Guid measureTo)
+      public Task<MeasureEquivalence> GetByMeasuresCrossed(Guid meaureFrom, Guid measureTo)
       {
-         return GetByMeasureIngredients(meaureFrom, Guid.Empty, measureTo, Guid.Empty);
+         return GetByMeasureIngredientsCrossed(meaureFrom, Guid.Empty, measureTo, Guid.Empty);
       }
 
-      public Task<MeasureEquivalence> GetForIngredient(Guid meaureFrom, Guid measureTo, Guid ingredient)
+      public Task<MeasureEquivalence> GetByIngredientCrossed(Guid meaureFrom, Guid measureTo, Guid ingredient)
       {
-         return GetByMeasureIngredients(meaureFrom, ingredient, measureTo, ingredient);
+         return GetByMeasureIngredientsCrossed(meaureFrom, ingredient, measureTo, ingredient);
       }
 
-      public Task<MeasureEquivalence> GetByMeasureIngredients(Guid measureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo)
+      public Task<MeasureEquivalence> GetByMeasureIngredientsCrossed(Guid measureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo)
       {
          return GetSingleEntityAsync(d =>
                   (d.MeasureFrom.DistributedId == measureFrom

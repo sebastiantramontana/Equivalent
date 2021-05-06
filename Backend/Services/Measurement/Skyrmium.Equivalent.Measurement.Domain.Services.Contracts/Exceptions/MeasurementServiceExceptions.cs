@@ -3,6 +3,7 @@
    public enum MeasurementServiceExceptions
    {
       EquivalenceNotFound,
-      ConversionNotFound
+      ConversionNotFound,
+      InvalidNullMeasure
    }
 }
