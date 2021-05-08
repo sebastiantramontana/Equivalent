@@ -40,10 +40,16 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return GetSingleEntityAsync(d => d.DistributedId == distributedId);
       }
 
-      public void Add(TEntity entity)
+      public async Task<TEntity> Add(TEntity entity)
       {
          var dao = this.Mapper.Map(entity);
-         this.DbContext.Set<TDao>().Add(dao);
+
+         TODO
+         await this.DbContext.Set<TDao>().AddAsync(dao);
+         await this.DbContext.SaveChangesAsync();
+
+         entity = this.Mapper.Map(dao);
+         return entity;
       }
 
       public void Update(TEntity entity)

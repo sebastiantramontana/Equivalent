@@ -1,4 +1,4 @@
-﻿using Skyrmium.Domain.Contracts.Repositories;
+﻿using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using System;
 using System.Threading.Tasks;

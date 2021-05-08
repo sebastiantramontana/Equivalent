@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Implementations.Repositories;
-using Skyrmium.Domain.Contracts.Repositories;
+using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Dal.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Repositories;

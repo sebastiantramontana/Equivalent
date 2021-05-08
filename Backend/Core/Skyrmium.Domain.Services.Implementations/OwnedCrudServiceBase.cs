@@ -1,6 +1,6 @@
 ﻿using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Contracts.Repositories;
 using Skyrmium.Domain.Services.Contracts;
+using Skyrmium.Domain.Services.Contracts.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
