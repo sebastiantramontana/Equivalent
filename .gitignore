@@ -54,3 +54,4 @@
 /Backend/Services/Measurement/Skyrmium.Equivalent.Measurement.Startup/obj
 
 /GitExtensions.settings
+*.user

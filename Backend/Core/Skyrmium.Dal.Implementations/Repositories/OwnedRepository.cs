@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Contracts.Repositories;
+using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
 {
    public class OwnedRepository<TEntity, TDao> : Repository<TEntity, TDao>, IOwnedRepository<TEntity>
       where TEntity : class, IOwnedEntity
-      where TDao : class, IOwnedDao
+      where TDao : class, IOwnedDao, new()
    {
       public OwnedRepository(DbContext dbContext, IMapper<TEntity, TDao> mapper)
          : base(dbContext, mapper)

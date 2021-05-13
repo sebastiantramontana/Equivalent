@@ -18,9 +18,14 @@ namespace Skyrmium.Domain.Services.Implementations
 
       protected TRepository Repository { get; }
 
-      public void Add(TEntity entity)
+      public Task<TEntity> Add(TEntity entity)
       {
-         this.Repository.Add(entity);
+         return this.Repository.Add(entity);
+      }
+
+      public Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities)
+      {
+         return this.Repository.Add(entities);
       }
 
       public Task<IEnumerable<TEntity>> GetAllAsync()
@@ -38,9 +43,9 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.GetByDistributedIdAsync(distributableId);
       }
 
-      public void Remove(TEntity entity)
+      public Task Remove(Guid distributedId)
       {
-         this.Repository.Remove(entity);
+         return this.Repository.Remove(distributedId);
       }
 
       public void Update(TEntity entity)

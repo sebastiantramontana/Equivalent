@@ -31,30 +31,35 @@ namespace Skyrmium.Api.Implementations
          return this.Mapper.Map(entities);
       }
 
-      // GET api/<MeasureEquivalencesController>/5
+      // GET api/<Controller>/5
       [HttpGet("{distributedId}")]
-      public async Task<TDto> GetByDistributedAsync(Guid distributedId)
+      public async Task<TDto> GetByDistributedIdAsync(Guid distributedId)
       {
-         var entity = await Service.GetByDistributedIdAsync(distributedId);
+         var entity = await this.Service.GetByDistributedIdAsync(distributedId);
          return this.Mapper.Map(entity);
       }
 
-      // POST api/<MeasureEquivalencesController>
+      // POST api/<Controller>
       [HttpPost]
-      public void Post([FromBody] string value)
+      public async Task<TDto> Post([FromBody] TDto dto)
       {
+         var entity = this.Mapper.Map(dto);
+         entity = await this.Service.Add(entity);
+         return this.Mapper.Map(entity);
       }
 
-      // PUT api/<MeasureEquivalencesController>/5
+      // PUT api/<Controller>/5
       [HttpPut("{id}")]
-      public void Put(int id, [FromBody] string value)
+      public void Put(int id, [FromBody] TDto dto)
       {
+
       }
 
-      // DELETE api/<MeasureEquivalencesController>/5
-      [HttpDelete("{id}")]
-      public void Delete(int id)
+      // DELETE api/<Controller>/5
+      [HttpDelete("{distributedId}")]
+      public Task Delete(Guid distributedId)
       {
+         return this.Service.Remove(distributedId);
       }
    }
 }

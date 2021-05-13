@@ -5,6 +5,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
@@ -38,6 +39,14 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
                   && d.IngredientTo == ingredientFrom
                   && d.MeasureFrom.DistributedId == measureTo
                   && d.IngredientFrom == ingredientTo));
+      }
+
+      protected override async Task<MeasureEquivalenceDao> FillChildrenIds(MeasureEquivalenceDao dao)
+      {
+         dao.MeasureFrom = await GetIdFromDistributedId(dao.MeasureFrom);
+         dao.MeasureTo = await GetIdFromDistributedId(dao.MeasureTo);
+
+         return dao;
       }
    }
 }

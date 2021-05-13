@@ -10,8 +10,9 @@ namespace Skyrmium.Domain.Services.Contracts
       Task<IEnumerable<TEntity>> GetAllAsync();
       Task<TEntity> GetByIdAsync(long id);
       Task<TEntity> GetByDistributedIdAsync(Guid distributableId);
-      void Add(TEntity entity);
+      Task<TEntity> Add(TEntity entity);
+      Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities);
       void Update(TEntity entity);
-      void Remove(TEntity entity);
+      Task Remove(Guid distributedId);
    }
 }
