@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
-   public class OwnedRepository<TEntity, TDao> : Repository<TEntity, TDao>, IOwnedRepository<TEntity>
+   public abstract class OwnedRepositoryBase<TEntity, TDao> : RepositoryBase<TEntity, TDao>, IOwnedRepository<TEntity>
       where TEntity : class, IOwnedEntity
       where TDao : class, IOwnedDao, new()
    {
-      public OwnedRepository(DbContext dbContext, IMapper<TEntity, TDao> mapper)
+      public OwnedRepositoryBase(DbContext dbContext, IMapper<TEntity, TDao> mapper)
          : base(dbContext, mapper)
       {
       }

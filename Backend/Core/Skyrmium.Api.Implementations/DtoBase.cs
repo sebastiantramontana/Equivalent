@@ -5,6 +5,6 @@ namespace Skyrmium.Api.Implementations
 {
    public abstract class DtoBase : IDto
    {
-      public Guid DistributedId { get; set; }
+      public Guid Id { get; set; }
    }
 }

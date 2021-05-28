@@ -1,12 +1,11 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Implementations.Entities;
+﻿using Skyrmium.Domain.Implementations.Entities;
 using System;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Measure : OwnedEntityBase
    {
-      public Measure(long id, Guid distributedId, Guid ownedBy, string fullName, string shortName) : base(id, distributedId, ownedBy)
+      public Measure(Guid id, Guid ownedBy, string fullName, string shortName) : base(id, ownedBy)
       {
          this.FullName = fullName;
          this.ShortName = shortName;

@@ -5,12 +5,13 @@ using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
-   internal class MeasureEquivalenceRepository : OwnedRepository<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
+   internal class MeasureEquivalenceRepository : OwnedRepositoryBase<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
       public MeasureEquivalenceRepository(DbContext dbContext, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper)
          : base(dbContext, mapper)
@@ -27,26 +28,75 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
          return GetByMeasureIngredientsCrossed(meaureFrom, ingredient, measureTo, ingredient);
       }
 
-      public Task<MeasureEquivalence> GetByMeasureIngredientsCrossed(Guid measureFrom, Guid ingredientFrom, Guid measureTo, Guid ingredientTo)
+      public Task<MeasureEquivalence> GetByMeasureIngredientsCrossed(Guid measureFromId, Guid ingredientFrom, Guid measureToId, Guid ingredientTo)
       {
-         return GetSingleEntityAsync(d =>
-                  (d.MeasureFrom.DistributedId == measureFrom
+         return GetEntity(d =>
+                  (d.MeasureFrom.Id == measureFromId
                   && d.IngredientFrom == ingredientFrom
-                  && d.MeasureTo.DistributedId == measureTo
+                  && d.MeasureTo.Id == measureToId
                   && d.IngredientTo == ingredientTo)
                   ||
-                  (d.MeasureTo.DistributedId == measureFrom
+                  (d.MeasureTo.Id == measureFromId
                   && d.IngredientTo == ingredientFrom
-                  && d.MeasureFrom.DistributedId == measureTo
+                  && d.MeasureFrom.Id == measureToId
                   && d.IngredientFrom == ingredientTo));
       }
 
-      protected override async Task<MeasureEquivalenceDao> FillChildrenIds(MeasureEquivalenceDao dao)
+      protected override Task<MeasureEquivalenceDao> ContinueAdd(MeasureEquivalenceDao dao)
       {
-         dao.MeasureFrom = await GetIdFromDistributedId(dao.MeasureFrom);
-         dao.MeasureTo = await GetIdFromDistributedId(dao.MeasureTo);
+         this.DbContext.Add(dao);
+         RemoveTrackingRelatedMeasures(dao);
 
-         return dao;
+         return Task.FromResult(dao);
+      }
+
+      protected override Task<IEnumerable<MeasureEquivalenceDao>> ContinueAdd(IEnumerable<MeasureEquivalenceDao> daos)
+      {
+         this.DbContext.Set<MeasureEquivalenceDao>().AddRange(daos);
+
+         foreach (var dao in daos)
+            RemoveTrackingRelatedMeasures(dao);
+
+         return Task.FromResult(daos);
+      }
+
+      protected override Task ContinueUpdate(MeasureEquivalenceDao dao)
+      {
+         this.DbContext.Update(dao);
+         RemoveTrackingRelatedMeasures(dao);
+
+         return Task.CompletedTask;
+      }
+
+      protected override Task ContinueUpdate(IEnumerable<MeasureEquivalenceDao> daos)
+      {
+         this.DbContext.UpdateRange(daos);
+
+         foreach (var dao in daos)
+            RemoveTrackingRelatedMeasures(dao);
+
+         return Task.CompletedTask;
+      }
+
+      protected override Task ContinueRemove(Guid id)
+      {
+         this.DbContext.Remove(new MeasureEquivalenceDao { Id = id });
+         return Task.CompletedTask;
+      }
+
+      protected override Task ContinueRemove(IEnumerable<Guid> ids)
+      {
+         this.DbContext
+            .Set<MeasureEquivalenceDao>()
+            .RemoveRange(ids.Select(id => new MeasureEquivalenceDao { Id = id }));
+
+         return Task.CompletedTask;
+      }
+
+      private void RemoveTrackingRelatedMeasures(MeasureEquivalenceDao dao)
+      {
+         this.DbContext.Entry(dao.MeasureFrom).State = EntityState.Unchanged;
+         this.DbContext.Entry(dao.MeasureTo).State = EntityState.Unchanged;
       }
    }
 }

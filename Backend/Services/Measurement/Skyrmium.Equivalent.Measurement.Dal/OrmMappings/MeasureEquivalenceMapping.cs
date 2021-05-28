@@ -14,8 +14,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.OrmMappings
       {
          builder.Navigation(e => e.MeasureFrom).AutoInclude().IsRequired();
          builder.Navigation(e => e.MeasureTo).AutoInclude().IsRequired();
-         builder.Property(e => e.IngredientFrom);
-         builder.Property(e => e.IngredientTo);
+         builder.Property(e => e.IngredientFrom).IsRequired();
+         builder.Property(e => e.IngredientTo).IsRequired();
          builder.Property(e => e.Factor).IsRequired();
       }
    }

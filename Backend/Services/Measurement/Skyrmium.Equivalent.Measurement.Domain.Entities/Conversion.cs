@@ -1,5 +1,4 @@
-﻿using Skyrmium.Domain.Contracts.Entities;
-using Skyrmium.Domain.Implementations.Entities;
+﻿using Skyrmium.Domain.Implementations.Entities;
 using Skyrmium.Domain.Implementations.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Exceptions;
 using System;
@@ -10,7 +9,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Conversion : OwnedEntityBase
    {
-      public static Conversion Create(long id, Guid distributedId, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
+      public static Conversion Create(Guid id, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
       {
          if (!Validate(equivalences))
          {
@@ -24,10 +23,10 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
                .ToException();
          }
 
-         return new Conversion(id, distributedId, ownedBy, name, equivalences);
+         return new Conversion(id, ownedBy, name, equivalences);
       }
 
-      private Conversion(long id, Guid distributedId, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences) : base(id, distributedId, ownedBy)
+      private Conversion(Guid id, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences) : base(id, ownedBy)
       {
          this.Name = name;
          this.Equivalences = equivalences;
@@ -47,24 +46,24 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          var orderedEquivalences = equivalences.OrderBy(e => e.Order);
 
          var prevTo = GetFirstEquivalenceTo(orderedEquivalences);
-         var fromSecondOrderedEquivalences = StartFromSecondEquivalence(orderedEquivalences);
+         var fromSecondOrderedEquivalences = StartFromSecondOrderedEquivalence(orderedEquivalences);
 
-         foreach (var equivalence in fromSecondOrderedEquivalences)
+         foreach (var orderedEquivalence in fromSecondOrderedEquivalences)
          {
-            if (!CheckPreviousToWithNextFrom(prevTo, equivalence.From))
+            if (!CheckPreviousToWithNextFrom(prevTo, orderedEquivalence))
                return false;
 
-            prevTo = equivalence.To;
+            prevTo = (orderedEquivalence.InvertEquivalence)
+               ? orderedEquivalence.MeasureEquivalence.From
+               : orderedEquivalence.MeasureEquivalence.To;
          }
 
          return true;
       }
 
-      private static IEnumerable<MeasureEquivalence> StartFromSecondEquivalence(IEnumerable<OrderedMeasureEquivalence> orderedEquivalences)
+      private static IEnumerable<OrderedMeasureEquivalence> StartFromSecondOrderedEquivalence(IEnumerable<OrderedMeasureEquivalence> orderedEquivalences)
       {
-         return orderedEquivalences
-                  .Skip(1)
-                  .Select(oe => oe.MeasureEquivalence);
+         return orderedEquivalences.Skip(1);
       }
 
       private static MeasureIngredient GetFirstEquivalenceTo(IEnumerable<OrderedMeasureEquivalence> orderedEquivalences)
@@ -75,8 +74,12 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
                   .To;
       }
 
-      private static bool CheckPreviousToWithNextFrom(MeasureIngredient prevTo, MeasureIngredient nextFrom)
+      private static bool CheckPreviousToWithNextFrom(MeasureIngredient prevTo, OrderedMeasureEquivalence nextOrderedFrom)
       {
+         MeasureIngredient nextFrom = (nextOrderedFrom.InvertEquivalence)
+            ? nextOrderedFrom.MeasureEquivalence.To
+            : nextOrderedFrom.MeasureEquivalence.From;
+
          return prevTo == nextFrom || (prevTo.Measure == nextFrom.Measure && nextFrom.Ingredient == Guid.Empty);
       }
 

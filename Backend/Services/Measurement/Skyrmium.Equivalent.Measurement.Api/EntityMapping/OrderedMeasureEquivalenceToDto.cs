@@ -17,16 +17,17 @@ namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
       public override OrderedMeasureEquivalence Map(OrderedMeasureEquivalenceDto dto)
       {
          return new OrderedMeasureEquivalence(
-            default,
-            dto.DistributedId,
+            dto.Id,
             dto.Order,
-            _measureEquivalenceMapper.Map(dto.MeasureEquivalence));
+            _measureEquivalenceMapper.Map(dto.MeasureEquivalence),
+            dto.InvertEquivalence);
       }
 
       protected override OrderedMeasureEquivalenceDto ContinueEntityToDto(OrderedMeasureEquivalence entity, OrderedMeasureEquivalenceDto dto)
       {
          dto.Order = entity.Order;
          dto.MeasureEquivalence = _measureEquivalenceMapper.Map(entity.MeasureEquivalence);
+         dto.InvertEquivalence = entity.InvertEquivalence;
 
          return dto;
       }

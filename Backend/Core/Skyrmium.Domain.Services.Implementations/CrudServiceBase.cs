@@ -33,24 +33,28 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.GetAllAsync();
       }
 
-      public Task<TEntity> GetByIdAsync(long id)
+      public Task<TEntity> GetByIdAsync(Guid id)
       {
          return this.Repository.GetByIdAsync(id);
       }
 
-      public Task<TEntity> GetByDistributedIdAsync(Guid distributableId)
+      public Task Update(TEntity entity)
       {
-         return this.Repository.GetByDistributedIdAsync(distributableId);
+         return this.Repository.Update(entity);
+      }
+      public Task Update(IEnumerable<TEntity> entities)
+      {
+         return this.Repository.Update(entities);
       }
 
-      public Task Remove(Guid distributedId)
+      public Task Remove(Guid id)
       {
-         return this.Repository.Remove(distributedId);
+         return this.Repository.Remove(id);
       }
 
-      public void Update(TEntity entity)
+      public Task Remove(IEnumerable<Guid> ids)
       {
-         this.Repository.Update(entity);
+         return this.Repository.Remove(ids);
       }
    }
 }

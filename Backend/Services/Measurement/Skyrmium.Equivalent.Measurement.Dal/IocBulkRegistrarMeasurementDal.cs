@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Skyrmium.Dal.Implementations.Repositories;
-using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Dal.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Repositories;
@@ -16,9 +14,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
       {
          container.Register<DbContext, MeasurementDbContext>();
 
-         container.Register<IOwnedRepository<Conversion>, OwnedRepository<Conversion, ConversionDao>>();
-         container.Register<IOwnedRepository<Measure>, OwnedRepository<Measure, MeasureDao>>();
-         container.Register<IRepository<Measure>, OwnedRepository<Measure, MeasureDao>>();
+         container.Register<IMeasureRepository, MeasureRepository>();
          container.Register<IMeasureEquivalenceRepository, MeasureEquivalenceRepository>();
          container.Register<IConversionRepository, ConversionRepository>();
 

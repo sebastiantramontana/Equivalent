@@ -10,7 +10,7 @@ namespace Skyrmium.Api.Implementations.EntityMapping
    {
       public sealed override TDto Map(TEntity entity)
       {
-         var dto = new TDto { DistributedId = entity.DistributedId };
+         var dto = new TDto { Id = entity.Id };
 
          return ContinueEntityToDto(entity, dto);
       }

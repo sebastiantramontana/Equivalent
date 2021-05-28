@@ -5,18 +5,16 @@ namespace Skyrmium.Domain.Implementations.Entities
 {
    public abstract class EntityBase : IEntity
    {
-      protected EntityBase(long id, Guid distributedId)
+      protected EntityBase(Guid id)
       {
          this.Id = id;
-         this.DistributedId = distributedId;
       }
 
-      public long Id { get; }
-      public Guid DistributedId { get; }
+      public Guid Id { get; }
 
       public bool Equals(IEntity? other)
       {
-         return other is not null && this.DistributedId.Equals(other.DistributedId);
+         return other is not null && this.Id.Equals(other.Id);
       }
 
       public override bool Equals(object? obj)
@@ -26,7 +24,7 @@ namespace Skyrmium.Domain.Implementations.Entities
 
       public override int GetHashCode()
       {
-         return this.DistributedId.GetHashCode();
+         return this.Id.GetHashCode();
       }
 
       public static bool operator ==(EntityBase? e1, EntityBase? e2)

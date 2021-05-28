@@ -12,8 +12,7 @@ namespace Skyrmium.Dal.Implementations.EntityMapping
       {
          var dao = new TDao
          {
-            Id = entity.Id,
-            DistributedId = entity.DistributedId
+            Id = entity.Id
          };
 
          return ContinueEntityToDao(entity, dao);

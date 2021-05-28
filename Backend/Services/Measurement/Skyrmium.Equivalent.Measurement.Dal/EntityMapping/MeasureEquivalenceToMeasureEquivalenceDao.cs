@@ -29,7 +29,6 @@ namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
       {
          return new MeasureEquivalence(
             dao.Id,
-            dao.DistributedId,
             dao.OwnedBy,
             new MeasureIngredient(_measureMapper.Map(dao.MeasureFrom), dao.IngredientFrom),
             new MeasureIngredient(_measureMapper.Map(dao.MeasureTo), dao.IngredientTo),

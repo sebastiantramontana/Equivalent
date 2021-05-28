@@ -5,8 +5,8 @@ namespace Skyrmium.Domain.Implementations.Entities
 {
    public abstract class OwnedEntityBase : EntityBase, IOwnedEntity
    {
-      protected OwnedEntityBase(long id, Guid distributedId, Guid ownedBy)
-         : base(id, distributedId)
+      protected OwnedEntityBase(Guid id, Guid ownedBy)
+         : base(id)
       {
          OwnedBy = ownedBy;
       }

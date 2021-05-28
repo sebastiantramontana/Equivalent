@@ -32,10 +32,10 @@ namespace Skyrmium.Api.Implementations
       }
 
       // GET api/<Controller>/5
-      [HttpGet("{distributedId}")]
-      public async Task<TDto> GetByDistributedIdAsync(Guid distributedId)
+      [HttpGet("{id}")]
+      public async Task<TDto> GetByIdAsync(Guid id)
       {
-         var entity = await this.Service.GetByDistributedIdAsync(distributedId);
+         var entity = await this.Service.GetByIdAsync(id);
          return this.Mapper.Map(entity);
       }
 
@@ -48,18 +48,19 @@ namespace Skyrmium.Api.Implementations
          return this.Mapper.Map(entity);
       }
 
-      // PUT api/<Controller>/5
-      [HttpPut("{id}")]
-      public void Put(int id, [FromBody] TDto dto)
+      // PUT api/<Controller>
+      [HttpPut]
+      public async Task Put([FromBody] TDto dto)
       {
-
+         var entity = this.Mapper.Map(dto);
+         await this.Service.Update(entity);
       }
 
       // DELETE api/<Controller>/5
-      [HttpDelete("{distributedId}")]
-      public Task Delete(Guid distributedId)
+      [HttpDelete("{id}")]
+      public Task Delete(Guid id)
       {
-         return this.Service.Remove(distributedId);
+         return this.Service.Remove(id);
       }
    }
 }

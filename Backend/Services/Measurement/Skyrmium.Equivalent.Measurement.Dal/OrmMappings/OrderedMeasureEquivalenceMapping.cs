@@ -4,9 +4,9 @@ using Skyrmium.Equivalent.Measurement.Dal.Daos;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.OrmMappings
 {
-   class OrderedMeasureEquivalenceMapping : MappingBase<OrderedMeasureEquivalenceDao>
+   internal class OrderedMeasureEquivalenceMapping : MappingBase<OrderedMeasureEquivalenceDao>
    {
-      public OrderedMeasureEquivalenceMapping() : base("OrderedMeasureEquivalences")
+      internal OrderedMeasureEquivalenceMapping() : base("OrderedMeasureEquivalences")
       {
       }
 
@@ -14,6 +14,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.OrmMappings
       {
          builder.Property(o => o.Order).IsRequired();
          builder.Navigation(o => o.MeasureEquivalence).AutoInclude().IsRequired();
+         builder.Property(o => o.InvertEquivalence).IsRequired();
       }
    }
 }

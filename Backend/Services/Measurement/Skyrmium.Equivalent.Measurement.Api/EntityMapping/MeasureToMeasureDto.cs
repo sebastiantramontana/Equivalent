@@ -8,7 +8,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
    {
       public override Measure Map(MeasureDto dto)
       {
-         return new Measure(default, dto.DistributedId, dto.OwnedBy, dto.FullName, dto.ShortName);
+         return new Measure(dto.Id, dto.OwnedBy, dto.FullName, dto.ShortName);
       }
 
       protected override MeasureDto ContinueOwnedEntityToDto(Measure entity, MeasureDto dto)

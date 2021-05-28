@@ -17,8 +17,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
       public override Conversion Map(ConversionDto dto)
       {
          return Conversion.Create(
-            default,
-            dto.DistributedId,
+            dto.Id,
             dto.OwnedBy,
             dto.Name,
             _orderedMeasureEquivalenceMapper.Map(dto.Equivalences));

@@ -17,8 +17,7 @@ namespace Skyrmium.Equivalent.Measurement.Api.EntityMapping
       public override MeasureEquivalence Map(MeasureEquivalenceDto dto)
       {
          return new MeasureEquivalence(
-            default,
-            dto.DistributedId,
+            dto.Id,
             dto.OwnedBy,
             new MeasureIngredient(_measureMapper.Map(dto.MeasureFrom), dto.IngredientFrom),
             new MeasureIngredient(_measureMapper.Map(dto.MeasureTo), dto.IngredientTo),

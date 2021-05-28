@@ -16,13 +16,14 @@ namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
 
       public override OrderedMeasureEquivalence Map(OrderedMeasureEquivalenceDao dao)
       {
-         return new OrderedMeasureEquivalence(dao.Id, dao.DistributedId, dao.Order, _measureEquivalenceMapper.Map(dao.MeasureEquivalence));
+         return new OrderedMeasureEquivalence(dao.Id, dao.Order, _measureEquivalenceMapper.Map(dao.MeasureEquivalence), dao.InvertEquivalence);
       }
 
       protected override OrderedMeasureEquivalenceDao ContinueEntityToDao(OrderedMeasureEquivalence entity, OrderedMeasureEquivalenceDao dao)
       {
          dao.Order = entity.Order;
          dao.MeasureEquivalence = _measureEquivalenceMapper.Map(entity.MeasureEquivalence);
+         dao.InvertEquivalence = entity.InvertEquivalence;
 
          return dao;
       }

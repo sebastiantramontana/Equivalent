@@ -33,7 +33,8 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       public async Task<double> Convert(MeasureEquivalence from, MeasureEquivalence to, double quantity)
       {
-         var conversion = await this.Repository.Search(from.DistributedId, to.DistributedId)
+         //TODO: REVIEW
+         var conversion = await this.Repository.Search(from.Id, to.Id)
             ?? throw CreateConversionNotFoundException(from, to);
 
          return Convert(conversion, quantity);

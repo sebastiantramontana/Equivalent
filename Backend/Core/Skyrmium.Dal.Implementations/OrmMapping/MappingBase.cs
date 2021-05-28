@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Skyrmium.Dal.Contracts.Daos;
-using System.Runtime.InteropServices;
 
 namespace Skyrmium.Dal.Implementations.OrmMapping
 {
@@ -22,25 +20,13 @@ namespace Skyrmium.Dal.Implementations.OrmMapping
          builder
             .Property(d => d.Id)
             .HasColumnName(nameof(IDao.Id))
-            .ValueGeneratedOnAdd()
-            .IsRequired(true)
-            .UseHiLo($"{_tableName}_SequenceHiLo");
+            .ValueGeneratedNever()
+            .IsRequired(true);
 
          builder
             .HasKey(d => d.Id)
             .HasName(nameof(IDao.Id))
-            .IsClustered(true);
-
-         builder
-            .HasAlternateKey(d => d.DistributedId)
-            .HasName(nameof(IDao.DistributedId))
             .IsClustered(false);
-
-         builder
-            .Property(d => d.DistributedId)
-            .HasColumnName(nameof(IDao.DistributedId))
-            .IsRequired(true)
-            .ValueGeneratedNever();
 
          Continue(builder);
       }

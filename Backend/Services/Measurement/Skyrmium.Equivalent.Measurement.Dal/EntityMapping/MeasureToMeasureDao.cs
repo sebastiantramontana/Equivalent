@@ -16,7 +16,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
 
       public override Measure Map(MeasureDao obj)
       {
-         return new Measure(obj.Id, obj.DistributedId, obj.OwnedBy, obj.FullName, obj.ShortName);
+         return new Measure(obj.Id, obj.OwnedBy, obj.FullName, obj.ShortName);
       }
    }
 }

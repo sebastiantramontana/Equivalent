@@ -73,8 +73,8 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       private static bool CheckMeasuresAreCrossed(MeasureEquivalence measureEquivalence, Guid originalMeasureFrom, Guid originalMeasureTo)
       {
          return
-            measureEquivalence.From.Measure.DistributedId == originalMeasureTo &&
-            measureEquivalence.To.Measure.DistributedId == originalMeasureFrom;
+            measureEquivalence.From.Measure.Id == originalMeasureTo &&
+            measureEquivalence.To.Measure.Id == originalMeasureFrom;
       }
    }
 }

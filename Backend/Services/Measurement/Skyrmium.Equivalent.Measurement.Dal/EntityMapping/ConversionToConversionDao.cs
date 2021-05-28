@@ -19,7 +19,6 @@ namespace Skyrmium.Equivalent.Measurement.Dal.EntityMapping
       {
          var conversion = Conversion.Create(
                            dao.Id,
-                           dao.DistributedId,
                            dao.OwnedBy,
                            dao.Name,
                            _orderedMeasureEquivalenceMapper.Map(dao.Equivalences).ToList());

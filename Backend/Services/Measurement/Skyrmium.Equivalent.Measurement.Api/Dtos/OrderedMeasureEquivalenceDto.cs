@@ -6,5 +6,6 @@ namespace Skyrmium.Equivalent.Measurement.Api.Dtos
    {
       public int Order { get; set; }
       public MeasureEquivalenceDto MeasureEquivalence { get; set; } = new MeasureEquivalenceDto();
+      public bool InvertEquivalence { get; set; }
    }
 }
