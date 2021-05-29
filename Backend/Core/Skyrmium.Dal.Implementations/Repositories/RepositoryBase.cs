@@ -25,7 +25,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       protected DbContext DbContext { get; }
       protected IMapper<TEntity, TDao> Mapper { get; }
 
-      public async Task<IEnumerable<TEntity>> GetAllAsync()
+      public async Task<IEnumerable<TEntity>> GetAll()
       {
          var daos = await this.DbContext
             .Set<TDao>()
@@ -34,7 +34,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return this.Mapper.Map(daos);
       }
 
-      public Task<TEntity> GetByIdAsync(Guid id)
+      public Task<TEntity> GetById(Guid id)
       {
          return GetEntity(d => d.Id == id);
       }

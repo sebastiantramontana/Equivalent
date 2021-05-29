@@ -7,8 +7,8 @@ namespace Skyrmium.Domain.Services.Contracts.Repositories
 {
    public interface IRepository<TEntity> where TEntity : class, IEntity
    {
-      Task<IEnumerable<TEntity>> GetAllAsync();
-      Task<TEntity> GetByIdAsync(Guid id);
+      Task<IEnumerable<TEntity>> GetAll();
+      Task<TEntity> GetById(Guid id);
       Task<TEntity> Add(TEntity entity);
       Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities);
       Task Update(TEntity entity);

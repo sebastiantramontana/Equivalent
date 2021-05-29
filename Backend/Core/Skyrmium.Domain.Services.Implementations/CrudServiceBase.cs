@@ -18,6 +18,16 @@ namespace Skyrmium.Domain.Services.Implementations
 
       protected TRepository Repository { get; }
 
+      public Task<IEnumerable<TEntity>> GetAll()
+      {
+         return this.Repository.GetAll();
+      }
+
+      public Task<TEntity> GetById(Guid id)
+      {
+         return this.Repository.GetById(id);
+      }
+
       public Task<TEntity> Add(TEntity entity)
       {
          return this.Repository.Add(entity);
@@ -26,16 +36,6 @@ namespace Skyrmium.Domain.Services.Implementations
       public Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities)
       {
          return this.Repository.Add(entities);
-      }
-
-      public Task<IEnumerable<TEntity>> GetAllAsync()
-      {
-         return this.Repository.GetAllAsync();
-      }
-
-      public Task<TEntity> GetByIdAsync(Guid id)
-      {
-         return this.Repository.GetByIdAsync(id);
       }
 
       public Task Update(TEntity entity)

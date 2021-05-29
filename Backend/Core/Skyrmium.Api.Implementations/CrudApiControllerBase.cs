@@ -25,17 +25,17 @@ namespace Skyrmium.Api.Implementations
       protected IMapper<TEntity, TDto> Mapper { get; }
 
       [HttpGet]
-      public async Task<IEnumerable<TDto>> GetAsync()
+      public async Task<IEnumerable<TDto>> Get()
       {
-         var entities = await this.Service.GetAllAsync();
+         var entities = await this.Service.GetAll();
          return this.Mapper.Map(entities);
       }
 
       // GET api/<Controller>/5
       [HttpGet("{id}")]
-      public async Task<TDto> GetByIdAsync(Guid id)
+      public async Task<TDto> GetById(Guid id)
       {
-         var entity = await this.Service.GetByIdAsync(id);
+         var entity = await this.Service.GetById(id);
          return this.Mapper.Map(entity);
       }
 
