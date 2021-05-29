@@ -49,15 +49,19 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 
       protected override Task ContinueRemove(Guid id)
       {
-         this.DbContext.Remove(new ConversionDao { Id = id });
+         var dao = new ConversionDao { Id = id };
+         this.DbContext.Remove(dao);
+
          return Task.CompletedTask;
       }
 
       protected override Task ContinueRemove(IEnumerable<Guid> ids)
       {
+         var daos = ids.Select(id => new ConversionDao { Id = id });
+
          this.DbContext
             .Set<ConversionDao>()
-            .RemoveRange(ids.Select(id => new ConversionDao { Id = id }));
+            .RemoveRange(daos);
 
          return Task.CompletedTask;
       }
