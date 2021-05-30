@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Skyrmium.Api.Implementations
 {
-   [ApiController]
    public abstract class OwnedCrudApiControllerBase<TService, TEntity, TDto> : CrudApiControllerBase<TService, TEntity, TDto>
-      where TService : IOwnedCrudService<TEntity>
-      where TEntity : class, IOwnedEntity
-      where TDto : class, IOwnedDto
+       where TService : IOwnedCrudService<TEntity>
+       where TEntity : class, IOwnedEntity
+       where TDto : class, IOwnedDto
    {
       protected OwnedCrudApiControllerBase(TService service, IMapper<TEntity, TDto> mapperEntity)
          : base(service, mapperEntity)

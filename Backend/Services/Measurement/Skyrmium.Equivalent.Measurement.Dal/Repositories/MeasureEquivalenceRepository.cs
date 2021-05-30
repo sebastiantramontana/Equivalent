@@ -42,61 +42,43 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
                   && d.IngredientFrom == ingredientTo));
       }
 
-      protected override Task<MeasureEquivalenceDao> ContinueAdd(MeasureEquivalenceDao dao)
+      protected override Task<MeasureEquivalenceDao> ContinueCreate(MeasureEquivalenceDao dao)
       {
          this.DbContext.Add(dao);
-         RemoveTrackingRelatedMeasures(dao);
-
          return Task.FromResult(dao);
       }
 
-      protected override Task<IEnumerable<MeasureEquivalenceDao>> ContinueAdd(IEnumerable<MeasureEquivalenceDao> daos)
+      protected override Task<IEnumerable<MeasureEquivalenceDao>> ContinueCreate(IEnumerable<MeasureEquivalenceDao> daos)
       {
          this.DbContext.Set<MeasureEquivalenceDao>().AddRange(daos);
-
-         foreach (var dao in daos)
-            RemoveTrackingRelatedMeasures(dao);
-
          return Task.FromResult(daos);
       }
 
       protected override Task ContinueUpdate(MeasureEquivalenceDao dao)
       {
          this.DbContext.Update(dao);
-         RemoveTrackingRelatedMeasures(dao);
-
          return Task.CompletedTask;
       }
 
       protected override Task ContinueUpdate(IEnumerable<MeasureEquivalenceDao> daos)
       {
          this.DbContext.UpdateRange(daos);
-
-         foreach (var dao in daos)
-            RemoveTrackingRelatedMeasures(dao);
-
          return Task.CompletedTask;
       }
 
-      protected override Task ContinueRemove(Guid id)
+      protected override Task ContinueDelete(Guid id)
       {
          this.DbContext.Remove(new MeasureEquivalenceDao { Id = id });
          return Task.CompletedTask;
       }
 
-      protected override Task ContinueRemove(IEnumerable<Guid> ids)
+      protected override Task ContinueDelete(IEnumerable<Guid> ids)
       {
          this.DbContext
             .Set<MeasureEquivalenceDao>()
             .RemoveRange(ids.Select(id => new MeasureEquivalenceDao { Id = id }));
 
          return Task.CompletedTask;
-      }
-
-      private void RemoveTrackingRelatedMeasures(MeasureEquivalenceDao dao)
-      {
-         this.DbContext.Entry(dao.MeasureFrom).State = EntityState.Unchanged;
-         this.DbContext.Entry(dao.MeasureTo).State = EntityState.Unchanged;
       }
    }
 }

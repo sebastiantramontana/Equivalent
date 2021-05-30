@@ -23,13 +23,13 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
          throw new NotImplementedException();
       }
 
-      protected override Task<ConversionDao> ContinueAdd(ConversionDao dao)
+      protected override Task<ConversionDao> ContinueCreate(ConversionDao dao)
       {
          this.DbContext.Add(dao);
          return Task.FromResult(dao);
       }
 
-      protected override Task<IEnumerable<ConversionDao>> ContinueAdd(IEnumerable<ConversionDao> daos)
+      protected override Task<IEnumerable<ConversionDao>> ContinueCreate(IEnumerable<ConversionDao> daos)
       {
          this.DbContext.AddRange(daos);
          return Task.FromResult(daos);
@@ -47,7 +47,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
          return Task.CompletedTask;
       }
 
-      protected override Task ContinueRemove(Guid id)
+      protected override Task ContinueDelete(Guid id)
       {
          var dao = new ConversionDao { Id = id };
          this.DbContext.Remove(dao);
@@ -55,7 +55,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
          return Task.CompletedTask;
       }
 
-      protected override Task ContinueRemove(IEnumerable<Guid> ids)
+      protected override Task ContinueDelete(IEnumerable<Guid> ids)
       {
          var daos = ids.Select(id => new ConversionDao { Id = id });
 

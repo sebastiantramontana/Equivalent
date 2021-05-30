@@ -9,11 +9,11 @@ namespace Skyrmium.Domain.Services.Contracts.Repositories
    {
       Task<IEnumerable<TEntity>> GetAll();
       Task<TEntity> GetById(Guid id);
-      Task<TEntity> Add(TEntity entity);
-      Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities);
+      Task<TEntity> Create(TEntity entity);
+      Task<IEnumerable<TEntity>> Create(IEnumerable<TEntity> entities);
       Task Update(TEntity entity);
       Task Update(IEnumerable<TEntity> entities);
-      Task Remove(Guid id);
-      Task Remove(IEnumerable<Guid> ids);
+      Task Delete(Guid id);
+      Task Delete(IEnumerable<Guid> ids);
    }
 }

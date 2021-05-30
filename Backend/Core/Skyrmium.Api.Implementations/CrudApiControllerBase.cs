@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Skyrmium.Api.Implementations
 {
+   [Route("api/v1/[controller]")]
    [ApiController]
    public abstract class CrudApiControllerBase<TService, TEntity, TDto> : ControllerBase
       where TService : ICrudService<TEntity>
@@ -31,7 +32,6 @@ namespace Skyrmium.Api.Implementations
          return this.Mapper.Map(entities);
       }
 
-      // GET api/<Controller>/5
       [HttpGet("{id}")]
       public async Task<TDto> GetById(Guid id)
       {
@@ -39,28 +39,48 @@ namespace Skyrmium.Api.Implementations
          return this.Mapper.Map(entity);
       }
 
-      // POST api/<Controller>
       [HttpPost]
-      public async Task<TDto> Post([FromBody] TDto dto)
+      public async Task<TDto> Create([FromBody] TDto dto)
       {
          var entity = this.Mapper.Map(dto);
-         entity = await this.Service.Add(entity);
+         entity = await this.Service.Create(entity);
          return this.Mapper.Map(entity);
+      }
+
+      [HttpPost("batch")]
+      public async Task<IEnumerable<TDto>> Create([FromBody] IEnumerable<TDto> dtos)
+      {
+         var entities = this.Mapper.Map(dtos);
+         entities = await this.Service.Create(entities);
+         return this.Mapper.Map(entities);
       }
 
       // PUT api/<Controller>
       [HttpPut]
-      public async Task Put([FromBody] TDto dto)
+      public Task Update([FromBody] TDto dto)
       {
          var entity = this.Mapper.Map(dto);
-         await this.Service.Update(entity);
+         return this.Service.Update(entity);
+      }
+
+      [HttpPut("batch")]
+      public Task Update([FromBody] IEnumerable<TDto> dtos)
+      {
+         var entities = this.Mapper.Map(dtos);
+         return this.Service.Update(entities);
       }
 
       // DELETE api/<Controller>/5
       [HttpDelete("{id}")]
       public Task Delete(Guid id)
       {
-         return this.Service.Remove(id);
+         return this.Service.Delete(id);
+      }
+
+      [HttpDelete("batch")]
+      public Task Delete([FromBody] IEnumerable<Guid> ids)
+      {
+         return this.Service.Delete(ids);
       }
    }
 }

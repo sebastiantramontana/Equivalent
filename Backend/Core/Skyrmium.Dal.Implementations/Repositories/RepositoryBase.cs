@@ -39,18 +39,18 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return GetEntity(d => d.Id == id);
       }
 
-      public async Task<TEntity> Add(TEntity entity)
+      public async Task<TEntity> Create(TEntity entity)
       {
          ValidateIdIsEmpty(entity);
 
          var dao = this.Mapper.Map(entity);
          dao.Id = Guid.NewGuid();
 
-         dao = await ContinueAdd(dao);
+         dao = await ContinueCreate(dao);
          return this.Mapper.Map(dao);
       }
 
-      public async Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities)
+      public async Task<IEnumerable<TEntity>> Create(IEnumerable<TEntity> entities)
       {
          foreach (var entity in entities)
             ValidateIdIsEmpty(entity);
@@ -58,7 +58,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
          var daos = this.Mapper.Map(entities)
             .Select(d => { d.Id = Guid.NewGuid(); return d; });
 
-         daos = await ContinueAdd(daos);
+         daos = await ContinueCreate(daos);
          return this.Mapper.Map(daos);
       }
 
@@ -79,19 +79,19 @@ namespace Skyrmium.Dal.Implementations.Repositories
          return ContinueUpdate(daos);
       }
 
-      public Task Remove(Guid id)
+      public Task Delete(Guid id)
       {
          ValidateIdIsNotEmpty(id);
 
-         return ContinueRemove(id);
+         return ContinueDelete(id);
       }
 
-      public Task Remove(IEnumerable<Guid> ids)
+      public Task Delete(IEnumerable<Guid> ids)
       {
          foreach (var id in ids)
             ValidateIdIsNotEmpty(id);
 
-         return ContinueRemove(ids);
+         return ContinueDelete(ids);
       }
 
       protected async Task<TEntity> GetEntity(Expression<Func<TDao, bool>> expressionCondition)
@@ -123,11 +123,11 @@ namespace Skyrmium.Dal.Implementations.Repositories
             throw new EntityAlreadyHasIdException(entity);
       }
 
-      protected abstract Task<TDao> ContinueAdd(TDao dao);
-      protected abstract Task<IEnumerable<TDao>> ContinueAdd(IEnumerable<TDao> daos);
+      protected abstract Task<TDao> ContinueCreate(TDao dao);
+      protected abstract Task<IEnumerable<TDao>> ContinueCreate(IEnumerable<TDao> daos);
       protected abstract Task ContinueUpdate(TDao dao);
       protected abstract Task ContinueUpdate(IEnumerable<TDao> daos);
-      protected abstract Task ContinueRemove(Guid id);
-      protected abstract Task ContinueRemove(IEnumerable<Guid> ids);
+      protected abstract Task ContinueDelete(Guid id);
+      protected abstract Task ContinueDelete(IEnumerable<Guid> ids);
    }
 }

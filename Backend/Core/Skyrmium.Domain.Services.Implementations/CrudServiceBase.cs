@@ -28,14 +28,14 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.GetById(id);
       }
 
-      public Task<TEntity> Add(TEntity entity)
+      public Task<TEntity> Create(TEntity entity)
       {
-         return this.Repository.Add(entity);
+         return this.Repository.Create(entity);
       }
 
-      public Task<IEnumerable<TEntity>> Add(IEnumerable<TEntity> entities)
+      public Task<IEnumerable<TEntity>> Create(IEnumerable<TEntity> entities)
       {
-         return this.Repository.Add(entities);
+         return this.Repository.Create(entities);
       }
 
       public Task Update(TEntity entity)
@@ -47,14 +47,14 @@ namespace Skyrmium.Domain.Services.Implementations
          return this.Repository.Update(entities);
       }
 
-      public Task Remove(Guid id)
+      public Task Delete(Guid id)
       {
-         return this.Repository.Remove(id);
+         return this.Repository.Delete(id);
       }
 
-      public Task Remove(IEnumerable<Guid> ids)
+      public Task Delete(IEnumerable<Guid> ids)
       {
-         return this.Repository.Remove(ids);
+         return this.Repository.Delete(ids);
       }
    }
 }
