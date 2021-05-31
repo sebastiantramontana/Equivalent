@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Dal.Contracts.Exceptions;
 using Skyrmium.Domain.Contracts.Entities;
@@ -16,19 +17,22 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IEntity
       where TDao : class, IDao
    {
-      public RepositoryBase(DbContext dbContext, IMapper<TEntity, TDao> mapper)
+      private readonly IUnitOfWork _unitOfWorkSACAR;
+
+      public RepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper, IUnitOfWork unitOfWorkSACAR)
       {
-         this.DbContext = dbContext;
+         this.DataAccess = dataAccess;
          this.Mapper = mapper;
+         this._unitOfWorkSACAR = unitOfWorkSACAR;
       }
 
-      protected DbContext DbContext { get; }
+      protected IDataAccess DataAccess { get; }
       protected IMapper<TEntity, TDao> Mapper { get; }
 
       public async Task<IEnumerable<TEntity>> GetAll()
       {
-         var daos = await this.DbContext
-            .Set<TDao>()
+         var daos = await this.DataAccess
+            .Query<TDao>()
             .ToListAsync();
 
          return this.Mapper.Map(daos);
@@ -83,7 +87,20 @@ namespace Skyrmium.Dal.Implementations.Repositories
       {
          ValidateIdIsNotEmpty(id);
 
-         return ContinueDelete(id);
+         try
+         {
+            return ContinueDelete(id);
+         }
+         catch
+         {
+            _unitOfWorkSACAR.Cancel();
+         }
+         finally
+         {
+            _unitOfWorkSACAR.Finish();
+         }
+
+         return Task.CompletedTask; //SACAR
       }
 
       public Task Delete(IEnumerable<Guid> ids)
@@ -96,8 +113,8 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       protected async Task<TEntity> GetEntity(Expression<Func<TDao, bool>> expressionCondition)
       {
-         var dao = await this.DbContext
-           .Set<TDao>()
+         var dao = await this.DataAccess
+           .Query<TDao>()
            .SingleOrDefaultAsync(expressionCondition)
            ?? throw new DataObjectNotFoundException();
 

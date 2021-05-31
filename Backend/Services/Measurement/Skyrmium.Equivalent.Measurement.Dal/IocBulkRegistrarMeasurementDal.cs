@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Skyrmium.Dal.Contracts;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Dal.EntityMapping;
 using Skyrmium.Equivalent.Measurement.Dal.Repositories;
@@ -12,6 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
    {
       public void Register(IContainer container)
       {
+         container.Register<IDataAccess, MeasurementDbContext>();
          container.Register<DbContext, MeasurementDbContext>();
 
          container.Register<IMeasureRepository, MeasureRepository>();

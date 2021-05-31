@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -13,8 +13,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureEquivalenceRepository : OwnedRepositoryBase<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
-      public MeasureEquivalenceRepository(DbContext dbContext, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper)
-         : base(dbContext, mapper)
+      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper, IUnitOfWork unitOfWorkSACAR)
+         : base(dataAccess, mapper,  unitOfWorkSACAR)
       {
       }
 
@@ -44,41 +44,32 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 
       protected override Task<MeasureEquivalenceDao> ContinueCreate(MeasureEquivalenceDao dao)
       {
-         this.DbContext.Add(dao);
-         return Task.FromResult(dao);
+         return this.DataAccess.Create(dao);
       }
 
       protected override Task<IEnumerable<MeasureEquivalenceDao>> ContinueCreate(IEnumerable<MeasureEquivalenceDao> daos)
       {
-         this.DbContext.Set<MeasureEquivalenceDao>().AddRange(daos);
-         return Task.FromResult(daos);
+         return this.DataAccess.Create(daos);
       }
 
       protected override Task ContinueUpdate(MeasureEquivalenceDao dao)
       {
-         this.DbContext.Update(dao);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(dao);
       }
 
       protected override Task ContinueUpdate(IEnumerable<MeasureEquivalenceDao> daos)
       {
-         this.DbContext.UpdateRange(daos);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(daos);
       }
 
       protected override Task ContinueDelete(Guid id)
       {
-         this.DbContext.Remove(new MeasureEquivalenceDao { Id = id });
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(new MeasureEquivalenceDao { Id = id });
       }
 
       protected override Task ContinueDelete(IEnumerable<Guid> ids)
       {
-         this.DbContext
-            .Set<MeasureEquivalenceDao>()
-            .RemoveRange(ids.Select(id => new MeasureEquivalenceDao { Id = id }));
-
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(ids.Select(id => new MeasureEquivalenceDao { Id = id }));
       }
    }
 }

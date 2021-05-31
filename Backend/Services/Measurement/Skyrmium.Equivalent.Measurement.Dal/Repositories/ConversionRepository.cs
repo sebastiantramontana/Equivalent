@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -13,7 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class ConversionRepository : OwnedRepositoryBase<Conversion, ConversionDao>, IConversionRepository
    {
-      public ConversionRepository(DbContext dbContext, IMapper<Conversion, ConversionDao> mapper) : base(dbContext, mapper)
+      public ConversionRepository(IDataAccess dataAccess, IMapper<Conversion, ConversionDao> mapper, IUnitOfWork unitOfWorkSACAR) : base(dataAccess, mapper, unitOfWorkSACAR)
       {
       }
 
@@ -25,45 +25,34 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 
       protected override Task<ConversionDao> ContinueCreate(ConversionDao dao)
       {
-         this.DbContext.Add(dao);
-         return Task.FromResult(dao);
+         return this.DataAccess.Create(dao);
       }
 
       protected override Task<IEnumerable<ConversionDao>> ContinueCreate(IEnumerable<ConversionDao> daos)
       {
-         this.DbContext.AddRange(daos);
-         return Task.FromResult(daos);
+         return this.DataAccess.Create(daos);
       }
 
       protected override Task ContinueUpdate(ConversionDao dao)
       {
-         this.DbContext.Update(dao);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(dao);
       }
 
       protected override Task ContinueUpdate(IEnumerable<ConversionDao> daos)
       {
-         this.DbContext.Set<ConversionDao>().UpdateRange(daos);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(daos);
       }
 
       protected override Task ContinueDelete(Guid id)
       {
          var dao = new ConversionDao { Id = id };
-         this.DbContext.Remove(dao);
-
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(dao);
       }
 
       protected override Task ContinueDelete(IEnumerable<Guid> ids)
       {
          var daos = ids.Select(id => new ConversionDao { Id = id });
-
-         this.DbContext
-            .Set<ConversionDao>()
-            .RemoveRange(daos);
-
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(daos);
       }
    }
 }

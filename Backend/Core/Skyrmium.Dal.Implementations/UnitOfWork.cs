@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Contracts;
+using System;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations
 {
@@ -18,12 +20,13 @@ namespace Skyrmium.Dal.Implementations
          _isCanceled = true;
       }
 
-      public void Finish()
+      public Task Finish()
       {
          if (!_isCanceled)
             _dbContext.SaveChanges();
 
-         _isCanceled = false;
+         _isCanceled = true;
+         return _dbContext.DisposeAsync().AsTask();
       }
    }
 }

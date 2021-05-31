@@ -1,8 +1,10 @@
-﻿namespace Skyrmium.Dal.Contracts
+﻿using System.Threading.Tasks;
+
+namespace Skyrmium.Dal.Contracts
 {
    public interface IUnitOfWork
    {
-      void Finish();
+      Task Finish();
       void Cancel();
    }
 }

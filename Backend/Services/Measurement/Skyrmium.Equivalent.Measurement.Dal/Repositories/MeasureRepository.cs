@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -13,48 +13,39 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureRepository : OwnedRepositoryBase<Measure, MeasureDao>, IMeasureRepository
    {
-      public MeasureRepository(DbContext dbContext, IMapper<Measure, MeasureDao> mapper)
-         : base(dbContext, mapper)
+      public MeasureRepository(IDataAccess dataAccess, IMapper<Measure, MeasureDao> mapper, IUnitOfWork unitOfWorkSACAR)
+         : base(dataAccess, mapper,  unitOfWorkSACAR)
       {
       }
 
       protected override Task<MeasureDao> ContinueCreate(MeasureDao dao)
       {
-         this.DbContext.Add(dao);
-         return Task.FromResult(dao);
+         return this.DataAccess.Create(dao);
       }
 
       protected override Task<IEnumerable<MeasureDao>> ContinueCreate(IEnumerable<MeasureDao> daos)
       {
-         this.DbContext.AddRange(daos);
-         return Task.FromResult(daos);
+         return this.DataAccess.Create(daos);
       }
 
       protected override Task ContinueUpdate(MeasureDao dao)
       {
-         this.DbContext.Update(dao);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(dao);
       }
 
       protected override Task ContinueUpdate(IEnumerable<MeasureDao> daos)
       {
-         this.DbContext.UpdateRange(daos);
-         return Task.CompletedTask;
+         return this.DataAccess.Update(daos);
       }
 
       protected override Task ContinueDelete(Guid id)
       {
-         this.DbContext.Remove(new MeasureDao { Id = id });
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(new MeasureDao { Id = id });
       }
 
       protected override Task ContinueDelete(IEnumerable<Guid> ids)
       {
-         this.DbContext
-            .Set<MeasureDao>()
-            .RemoveRange(ids.Select(id => new MeasureDao { Id = id }));
-
-         return Task.CompletedTask;
+         return this.DataAccess.Delete(ids.Select(id => new MeasureDao { Id = id }));
       }
    }
 }
