@@ -13,8 +13,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureEquivalenceRepository : OwnedRepositoryBase<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
-      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper, IUnitOfWork unitOfWorkSACAR)
-         : base(dataAccess, mapper,  unitOfWorkSACAR)
+      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper)
+         : base(dataAccess, mapper)
       {
       }
 

@@ -13,7 +13,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class ConversionRepository : OwnedRepositoryBase<Conversion, ConversionDao>, IConversionRepository
    {
-      public ConversionRepository(IDataAccess dataAccess, IMapper<Conversion, ConversionDao> mapper, IUnitOfWork unitOfWorkSACAR) : base(dataAccess, mapper, unitOfWorkSACAR)
+      public ConversionRepository(IDataAccess dataAccess, IMapper<Conversion, ConversionDao> mapper) : base(dataAccess, mapper)
       {
       }
 

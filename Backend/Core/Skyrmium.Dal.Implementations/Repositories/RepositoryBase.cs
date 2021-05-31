@@ -17,13 +17,10 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IEntity
       where TDao : class, IDao
    {
-      private readonly IUnitOfWork _unitOfWorkSACAR;
-
-      public RepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper, IUnitOfWork unitOfWorkSACAR)
+      public RepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper)
       {
          this.DataAccess = dataAccess;
          this.Mapper = mapper;
-         this._unitOfWorkSACAR = unitOfWorkSACAR;
       }
 
       protected IDataAccess DataAccess { get; }
@@ -86,21 +83,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       public Task Delete(Guid id)
       {
          ValidateIdIsNotEmpty(id);
-
-         try
-         {
-            return ContinueDelete(id);
-         }
-         catch
-         {
-            _unitOfWorkSACAR.Cancel();
-         }
-         finally
-         {
-            _unitOfWorkSACAR.Finish();
-         }
-
-         return Task.CompletedTask; //SACAR
+         return ContinueDelete(id);
       }
 
       public Task Delete(IEnumerable<Guid> ids)

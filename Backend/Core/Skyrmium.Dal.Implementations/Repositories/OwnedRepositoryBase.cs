@@ -15,8 +15,8 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IOwnedEntity
       where TDao : class, IOwnedDao, new()
    {
-      public OwnedRepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper, IUnitOfWork unitOfWorkSACAR)
-         : base(dataAccess, mapper, unitOfWorkSACAR)
+      public OwnedRepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper)
+         : base(dataAccess, mapper)
       {
       }
 

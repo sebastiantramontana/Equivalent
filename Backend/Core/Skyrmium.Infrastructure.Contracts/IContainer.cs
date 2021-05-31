@@ -12,11 +12,11 @@ namespace Skyrmium.Infrastructure.Contracts
          where TService : class
          where TImplementation : class, TService;
 
+      void Register<TService>(TService service) where TService : class;
+      void Register<TService>(Func<IServiceProvider, TService> serviceBuilder) where TService : class;
+      void Register(Type serviceType, Type implementationType);
       void RegisterTransient<TService, TImplementation>()
          where TService : class
          where TImplementation : class, TService;
-
-      void Register<TService>(TService service) where TService : class;
-      void Register(Type serviceType, Type implementationType);
    }
 }
