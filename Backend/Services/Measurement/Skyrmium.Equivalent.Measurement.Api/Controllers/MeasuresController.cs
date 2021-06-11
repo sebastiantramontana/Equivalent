@@ -7,8 +7,6 @@ using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
-   [ApiController]
-   [Route("api/v1/[controller]")]
    public class MeasuresController : OwnedCrudApiControllerBase<IMeasureService, Measure, MeasureDto>
    {
       public MeasuresController(IMeasureService measureService, IMapper<Measure, MeasureDto> mapper)

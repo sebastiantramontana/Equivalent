@@ -2,6 +2,7 @@
 
 namespace Skyrmium.Domain.Contracts.Exceptions
 {
+   /*
    public interface IBusinessException<TExceptionEnum, TExceptionValueEnum>
       where TExceptionEnum : Enum
       where TExceptionValueEnum : Enum
@@ -11,4 +12,5 @@ namespace Skyrmium.Domain.Contracts.Exceptions
 
       Exception ToException();
    }
+   */
 }

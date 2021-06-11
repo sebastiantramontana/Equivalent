@@ -37,7 +37,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public Task<TEntity> GetById(Guid id)
       {
-         return GetEntity(d => d.Id == id);
+         return GetEntity(d => d.Id == id,"Dato no encontrado");
       }
 
       public async Task<TEntity> Create(TEntity entity)
@@ -65,7 +65,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public Task Update(TEntity entity)
       {
-         ValidateIdIsNotEmpty(entity);
+         RepositoryBase<TEntity, TDao>.ValidateIdIsNotEmpty(entity);
 
          var dao = this.Mapper.Map(entity);
          return ContinueUpdate(dao);
@@ -74,7 +74,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       public Task Update(IEnumerable<TEntity> entities)
       {
          foreach (var entity in entities)
-            ValidateIdIsNotEmpty(entity);
+            RepositoryBase<TEntity, TDao>.ValidateIdIsNotEmpty(entity);
 
          var daos = this.Mapper.Map(entities);
          return ContinueUpdate(daos);
@@ -82,45 +82,45 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public Task Delete(Guid id)
       {
-         ValidateIdIsNotEmpty(id);
+         RepositoryBase<TEntity, TDao>.ValidateIdIsNotEmpty(id);
          return ContinueDelete(id);
       }
 
       public Task Delete(IEnumerable<Guid> ids)
       {
          foreach (var id in ids)
-            ValidateIdIsNotEmpty(id);
+            RepositoryBase<TEntity, TDao>.ValidateIdIsNotEmpty(id);
 
          return ContinueDelete(ids);
       }
 
-      protected async Task<TEntity> GetEntity(Expression<Func<TDao, bool>> expressionCondition)
+      protected async Task<TEntity> GetEntity(Expression<Func<TDao, bool>> expressionCondition, string errorMessage)
       {
          var dao = await this.DataAccess
            .Query<TDao>()
            .SingleOrDefaultAsync(expressionCondition)
-           ?? throw new DataObjectNotFoundException();
+           ?? throw new DataObjectNotFoundException(errorMessage);
 
          var entity = this.Mapper.Map(dao);
          return entity;
       }
 
-      private void ValidateIdIsNotEmpty(TEntity entity)
+      private static void ValidateIdIsNotEmpty(TEntity entity)
       {
          if (entity.Id == Guid.Empty)
-            throw new MissingEntityIdException(entity);
+            throw new MissingIdForUpdateException();
       }
 
-      private void ValidateIdIsNotEmpty(Guid id)
+      private static void ValidateIdIsNotEmpty(Guid id)
       {
          if (id == Guid.Empty)
-            throw new MissingIdException(id);
+            throw new MissingIdForDeleteException();
       }
 
-      private void ValidateIdIsEmpty(TEntity entity)
+      private static void ValidateIdIsEmpty(TEntity entity)
       {
          if (entity.Id != default)
-            throw new EntityAlreadyHasIdException(entity);
+            throw new EntityAlreadyExistsException($"La entidad ya existe");
       }
 
       protected abstract Task<TDao> ContinueCreate(TDao dao);

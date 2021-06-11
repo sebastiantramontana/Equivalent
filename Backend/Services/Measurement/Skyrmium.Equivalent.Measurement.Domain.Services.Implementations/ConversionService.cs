@@ -1,4 +1,4 @@
-﻿using Skyrmium.Domain.Implementations.Exceptions;
+﻿using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
@@ -35,21 +35,21 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       {
          //TODO: REVIEW
          var conversion = await this.Repository.Search(from.Id, to.Id)
-            ?? throw CreateConversionNotFoundException(from, to);
+            ?? throw new BusinessException ("Conversión no encontrada","No se encontró una conversión para las equivalencias dadas"); //CreateConversionNotFoundException(from, to);
 
          return Convert(conversion, quantity);
       }
 
-      private static Exception CreateConversionNotFoundException(MeasureEquivalence from, MeasureEquivalence to)
-      {
-         return BusinessExceptionFactory
-            .Create(MeasurementServiceExceptions.ConversionNotFound, "Conversion",
-               new Dictionary<ConversionNotFoundExceptionValues, object>()
-               {
-                  { ConversionNotFoundExceptionValues.From, from },
-                  { ConversionNotFoundExceptionValues.To, to }
-               })
-            .ToException();
-      }
+      //private static Exception CreateConversionNotFoundException(MeasureEquivalence from, MeasureEquivalence to)
+      //{
+      //   return BusinessExceptionFactory
+      //      .Create(MeasurementServiceExceptions.ConversionNotFound, "Conversion",
+      //         new Dictionary<ConversionNotFoundExceptionValues, object>()
+      //         {
+      //            { ConversionNotFoundExceptionValues.From, from },
+      //            { ConversionNotFoundExceptionValues.To, to }
+      //         })
+      //      .ToException();
+      //}
    }
 }

@@ -1,4 +1,5 @@
-﻿using Skyrmium.Dal.Implementations;
+﻿using Skyrmium.Api.Implementations;
+using Skyrmium.Dal.Implementations;
 using Skyrmium.Infrastructure.Contracts;
 using System.Collections.Generic;
 
@@ -17,7 +18,8 @@ namespace Skyrmium.Ioc
       private static IEnumerable<IIocBulkRegistrar> GetCoreRegistrars()
       {
          return new IIocBulkRegistrar[] {
-            new IocBulkRegistrarCoreDal()
+            new IocBulkRegistrarCoreDal(),
+            new IocBulkRegistrarCoreApi()
          };
       }
    }

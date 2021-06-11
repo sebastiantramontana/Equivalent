@@ -1,11 +1,9 @@
-﻿using Skyrmium.Domain.Implementations.Exceptions;
+﻿using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
-using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
@@ -58,15 +56,16 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       {
          if (measureFrom == Guid.Empty || measureTo == Guid.Empty)
          {
-            var info = new BusinessExceptionInfo<MeasurementServiceExceptions, InvalidNullMeasure>(
-               MeasurementServiceExceptions.InvalidNullMeasure,
-               new Dictionary<InvalidNullMeasure, object>
-               {
-                  { InvalidNullMeasure.From, measureFrom},
-                  { InvalidNullMeasure.To, measureTo}
-               });
+            throw new BusinessException("Equivalencia Inválida", "Las medidas no pueden ser nulas o vacías");
+            //var info = new BusinessExceptionInfo<MeasurementServiceExceptions, InvalidNullMeasure>(
+            //   MeasurementServiceExceptions.InvalidNullMeasure,
+            //   new Dictionary<InvalidNullMeasure, object>
+            //   {
+            //      { InvalidNullMeasure.From, measureFrom},
+            //      { InvalidNullMeasure.To, measureTo}
+            //   });
 
-            throw new BusinessException<MeasurementServiceExceptions, InvalidNullMeasure>("Invalid Null Measure", info);
+            //throw new BusinessException<MeasurementServiceExceptions, InvalidNullMeasure>("Invalid Null Measure", info);
          }
       }
 

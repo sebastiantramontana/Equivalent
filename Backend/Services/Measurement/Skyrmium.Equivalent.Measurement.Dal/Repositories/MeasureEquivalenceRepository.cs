@@ -39,7 +39,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
                   (d.MeasureTo.Id == measureFromId
                   && d.IngredientTo == ingredientFrom
                   && d.MeasureFrom.Id == measureToId
-                  && d.IngredientFrom == ingredientTo));
+                  && d.IngredientFrom == ingredientTo),
+                  "Equivalencia no encontrada");
       }
 
       protected override Task<MeasureEquivalenceDao> ContinueCreate(MeasureEquivalenceDao dao)

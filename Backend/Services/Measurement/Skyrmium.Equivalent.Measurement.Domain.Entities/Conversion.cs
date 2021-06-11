@@ -1,6 +1,5 @@
-﻿using Skyrmium.Domain.Implementations.Entities;
-using Skyrmium.Domain.Implementations.Exceptions;
-using Skyrmium.Equivalent.Measurement.Domain.Entities.Exceptions;
+﻿using Skyrmium.Domain.Contracts.Exceptions;
+using Skyrmium.Domain.Implementations.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +10,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
    {
       public static Conversion Create(Guid id, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
       {
-         if (!Validate(equivalences))
-         {
-            var exceptionValues = new Dictionary<InvalidConversionExceptionValues, object>(1)
-            {
-               { InvalidConversionExceptionValues.Name, name }
-            };
-
-            throw BusinessExceptionFactory
-               .Create(MeasurementEntityExceptions.InvalidConversion, "Conversion", exceptionValues)
-               .ToException();
-         }
+         Validate(equivalences, name);
 
          return new Conversion(id, ownedBy, name, equivalences);
       }
@@ -35,13 +24,13 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
       public string Name { get; }
       public IEnumerable<OrderedMeasureEquivalence> Equivalences { get; }
 
-      private static bool Validate(IEnumerable<OrderedMeasureEquivalence> equivalences)
+      private static void Validate(IEnumerable<OrderedMeasureEquivalence> equivalences, string conversionName)
       {
          if (!CheckIsNotEmpty(equivalences))
-            return false;
+            throw new BusinessException("Conversión Inválida", $"A la conversión {conversionName} le faltan las equivalencias");
 
          if (!CheckOrderIsUnique(equivalences))
-            return false;
+            throw new BusinessException("Conversión Inválida", $"La conversión {conversionName} tiene distintas equivalencias en el mismo orden");
 
          var orderedEquivalences = equivalences.OrderBy(e => e.Order);
 
@@ -51,14 +40,12 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          foreach (var orderedEquivalence in fromSecondOrderedEquivalences)
          {
             if (!CheckPreviousToWithNextFrom(prevTo, orderedEquivalence))
-               return false;
+               throw new BusinessException("Conversión Inválida", $"La conversión {conversionName} tiene equivalencias mal ordenadas. El origen de una equivalencia debe ser el mismo del destino de la equivalencia anterior.");
 
             prevTo = (orderedEquivalence.InvertEquivalence)
                ? orderedEquivalence.MeasureEquivalence.From
                : orderedEquivalence.MeasureEquivalence.To;
          }
-
-         return true;
       }
 
       private static IEnumerable<OrderedMeasureEquivalence> StartFromSecondOrderedEquivalence(IEnumerable<OrderedMeasureEquivalence> orderedEquivalences)

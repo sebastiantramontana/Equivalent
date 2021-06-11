@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Api.Controllers
 {
-   [Route("api/v1/[controller]")]
-   [ApiController]
    public class EquivalencesController : OwnedCrudApiControllerBase<IEquivalenceService, MeasureEquivalence, MeasureEquivalenceDto>
    {
       public EquivalencesController(IEquivalenceService measureEquivalenceService, IMapper<MeasureEquivalence, MeasureEquivalenceDto> mapper)
