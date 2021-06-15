@@ -1,14 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {

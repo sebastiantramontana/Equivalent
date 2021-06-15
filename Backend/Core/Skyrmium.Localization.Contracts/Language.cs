@@ -6,7 +6,7 @@ namespace Skyrmium.Localization.Contracts
    {
       private readonly LanguagesEnum _languagesEnum;
 
-      internal Language(LanguagesEnum languagesEnum, string isoCode)
+      public Language(LanguagesEnum languagesEnum, string isoCode)
       {
          _languagesEnum = languagesEnum;
          this.IsoCode = isoCode;

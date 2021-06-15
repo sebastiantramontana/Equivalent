@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
 using Skyrmium.Dal.Contracts.Exceptions;
@@ -6,11 +11,6 @@ using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Skyrmium.Dal.Implementations.Repositories
 {
@@ -18,16 +18,17 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IEntity
       where TDao : class, IDao
    {
+      private readonly IRepositoryLocalizer _localizer;
+
       public RepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper, IRepositoryLocalizer Localizer)
       {
          this.DataAccess = dataAccess;
          this.Mapper = mapper;
-         this.Localizer = Localizer;
+         _localizer = Localizer;
       }
 
       protected IDataAccess DataAccess { get; }
       protected IMapper<TEntity, TDao> Mapper { get; }
-      protected IRepositoryLocalizer Localizer { get; }
 
       public async Task<IEnumerable<TEntity>> GetAll()
       {
@@ -40,7 +41,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
 
       public Task<TEntity> GetById(Guid id)
       {
-         return GetEntity(d => d.Id == id, this.Localizer.DataNotFound);
+         return GetEntity(d => d.Id == id, _localizer.DataNotFound);
       }
 
       public async Task<TEntity> Create(TEntity entity)
@@ -123,7 +124,7 @@ namespace Skyrmium.Dal.Implementations.Repositories
       private void ValidateIdIsEmpty(TEntity entity)
       {
          if (entity.Id != default)
-            throw new EntityAlreadyExistsException(this.Localizer.EntityAlreadyExists);
+            throw new EntityAlreadyExistsException(_localizer.EntityAlreadyExists);
       }
 
       protected abstract Task<TDao> ContinueCreate(TDao dao);

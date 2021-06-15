@@ -1,21 +1,25 @@
-﻿using Skyrmium.Dal.Contracts;
-using Skyrmium.Dal.Implementations.Repositories;
-using Skyrmium.Equivalent.Measurement.Dal.Daos;
-using Skyrmium.Equivalent.Measurement.Domain.Entities;
-using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
-using Skyrmium.Infrastructure.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Implementations.Repositories;
+using Skyrmium.Equivalent.Measurement.Dal.Daos;
+using Skyrmium.Equivalent.Measurement.Dal.Localization.MeasureEquivalence;
+using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
+using Skyrmium.Infrastructure.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureEquivalenceRepository : OwnedRepositoryBase<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
-      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper)
-         : base(dataAccess, mapper)
+      private readonly IMeasureEquivalenceRepositoryLocalizer _localizer;
+
+      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper, IMeasureEquivalenceRepositoryLocalizer localizer)
+         : base(dataAccess, mapper, localizer)
       {
+         _localizer = localizer;
       }
 
       public Task<MeasureEquivalence> GetByMeasuresCrossed(Guid meaureFrom, Guid measureTo)
@@ -40,7 +44,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
                   && d.IngredientTo == ingredientFrom
                   && d.MeasureFrom.Id == measureToId
                   && d.IngredientFrom == ingredientTo),
-                  "Equivalencia no encontrada");
+                  _localizer.EquivalenceNotFound);
       }
 
       protected override Task<MeasureEquivalenceDao> ContinueCreate(MeasureEquivalenceDao dao)

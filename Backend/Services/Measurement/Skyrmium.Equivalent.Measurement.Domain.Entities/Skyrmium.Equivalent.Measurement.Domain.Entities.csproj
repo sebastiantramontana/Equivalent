@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Skyrmium.Domain.Implementations\Skyrmium.Domain.Implementations.csproj" />
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Localization.Abstractions\Skyrmium.Localization.Abstractions.csproj" />
+    <ProjectReference Include="..\..\..\Core\Skyrmium.Localization.Contracts\Skyrmium.Localization.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

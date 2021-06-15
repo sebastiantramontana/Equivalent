@@ -1,16 +1,17 @@
-﻿using Skyrmium.Domain.Contracts.Exceptions;
-using Skyrmium.Domain.Implementations.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Skyrmium.Domain.Contracts.Exceptions;
+using Skyrmium.Domain.Implementations.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities
 {
    public class Conversion : OwnedEntityBase
    {
-      public static Conversion Create(Guid id, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences)
+      public static Conversion Create(Guid id, Guid ownedBy, string name, IEnumerable<OrderedMeasureEquivalence> equivalences, IConversionLocalizer conversionLocalizer)
       {
-         Validate(equivalences, name);
+         Validate(equivalences, name, conversionLocalizer);
 
          return new Conversion(id, ownedBy, name, equivalences);
       }
@@ -24,13 +25,13 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
       public string Name { get; }
       public IEnumerable<OrderedMeasureEquivalence> Equivalences { get; }
 
-      private static void Validate(IEnumerable<OrderedMeasureEquivalence> equivalences, string conversionName)
+      private static void Validate(IEnumerable<OrderedMeasureEquivalence> equivalences, string conversionName, IConversionLocalizer conversionLocalizer)
       {
          if (!CheckIsNotEmpty(equivalences))
-            throw new BusinessException("Conversión Inválida", $"A la conversión {conversionName} le faltan las equivalencias");
+            throw new BusinessException(conversionLocalizer.InvalidConversion, conversionLocalizer.BuildConversionEmptyOfEquivalences(conversionName));
 
          if (!CheckOrderIsUnique(equivalences))
-            throw new BusinessException("Conversión Inválida", $"La conversión {conversionName} tiene distintas equivalencias en el mismo orden");
+            throw new BusinessException(conversionLocalizer.InvalidConversion, conversionLocalizer.BuildDuplicatedOrder(conversionName));
 
          var orderedEquivalences = equivalences.OrderBy(e => e.Order);
 
@@ -40,7 +41,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities
          foreach (var orderedEquivalence in fromSecondOrderedEquivalences)
          {
             if (!CheckPreviousToWithNextFrom(prevTo, orderedEquivalence))
-               throw new BusinessException("Conversión Inválida", $"La conversión {conversionName} tiene equivalencias mal ordenadas. El origen de una equivalencia debe ser el mismo del destino de la equivalencia anterior.");
+               throw new BusinessException(conversionLocalizer.InvalidConversion, conversionLocalizer.BuildUnorderedEquivalences(conversionName));
 
             prevTo = (orderedEquivalence.InvertEquivalence)
                ? orderedEquivalence.MeasureEquivalence.From

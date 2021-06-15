@@ -1,18 +1,22 @@
-﻿using Skyrmium.Domain.Contracts.Exceptions;
+﻿using System;
+using System.Threading.Tasks;
+using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
-using System;
-using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    internal class EquivalenceService : OwnedCrudServiceBase<IMeasureEquivalenceRepository, MeasureEquivalence>, IEquivalenceService
    {
-      public EquivalenceService(IMeasureEquivalenceRepository repository)
+      private readonly IMeasureEquivalenceLocalizer _localizer;
+
+      public EquivalenceService(IMeasureEquivalenceRepository repository, IMeasureEquivalenceLocalizer localizer)
          : base(repository)
       {
+         _localizer = localizer;
       }
 
       public Task<double> GetFactor(Guid measureFrom, Guid measureTo)
@@ -30,7 +34,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          return GetFactor(measureFrom, measureTo, () => this.Repository.GetByMeasureIngredientsCrossed(measureFrom, ingredientFrom, measureTo, ingredientTo));
       }
 
-      private static async Task<double> GetFactor(Guid measureFrom, Guid measureTo, Func<Task<MeasureEquivalence>> getMeasureEquivalenceFunc)
+      private async Task<double> GetFactor(Guid measureFrom, Guid measureTo, Func<Task<MeasureEquivalence>> getMeasureEquivalenceFunc)
       {
          ValidateMeasures(measureFrom, measureTo);
 
@@ -52,21 +56,10 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          return factor;
       }
 
-      private static void ValidateMeasures(Guid measureFrom, Guid measureTo)
+      private void ValidateMeasures(Guid measureFrom, Guid measureTo)
       {
          if (measureFrom == Guid.Empty || measureTo == Guid.Empty)
-         {
-            throw new BusinessException("Equivalencia Inválida", "Las medidas no pueden ser nulas o vacías");
-            //var info = new BusinessExceptionInfo<MeasurementServiceExceptions, InvalidNullMeasure>(
-            //   MeasurementServiceExceptions.InvalidNullMeasure,
-            //   new Dictionary<InvalidNullMeasure, object>
-            //   {
-            //      { InvalidNullMeasure.From, measureFrom},
-            //      { InvalidNullMeasure.To, measureTo}
-            //   });
-
-            //throw new BusinessException<MeasurementServiceExceptions, InvalidNullMeasure>("Invalid Null Measure", info);
-         }
+            throw new BusinessException(_localizer.InvalidEquivalence, _localizer.EmptyMeasures);
       }
 
       private static bool CheckMeasuresAreCrossed(MeasureEquivalence measureEquivalence, Guid originalMeasureFrom, Guid originalMeasureTo)

@@ -1,19 +1,20 @@
-﻿using Skyrmium.Domain.Contracts.Exceptions;
+﻿using System.Threading.Tasks;
+using Skyrmium.Domain.Contracts.Exceptions;
 using Skyrmium.Domain.Services.Implementations;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
-using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Exceptions;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
    internal class ConversionService : OwnedCrudServiceBase<IConversionRepository, Conversion>, IConversionService
    {
-      public ConversionService(IConversionRepository repository) : base(repository)
+      private readonly IConversionLocalizer _localizer;
+
+      public ConversionService(IConversionRepository repository, IConversionLocalizer localizer) : base(repository)
       {
+         _localizer = localizer;
       }
 
       public double Convert(Conversion conversion)
@@ -35,7 +36,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
       {
          //TODO: REVIEW
          var conversion = await this.Repository.Search(from.Id, to.Id)
-            ?? throw new BusinessException ("Conversión no encontrada","No se encontró una conversión para las equivalencias dadas"); //CreateConversionNotFoundException(from, to);
+            ?? throw new BusinessException(_localizer.SerachedConversionNotFound, _localizer.SerachedConversionNotFoundForGivenEquivalences); //CreateConversionNotFoundException(from, to);
 
          return Convert(conversion, quantity);
       }

@@ -1,12 +1,11 @@
 ﻿using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Localization.Abstractions;
-using Skyrmium.Localization.Contracts;
 
-namespace Skyrmium.Dal.Implementations.Localizations
+namespace Skyrmium.Dal.Implementations.Localization
 {
-   public abstract class EsEsRepositoryLocalizerBase : LocalizerBase, IRepositoryLocalizer
+   public sealed class EsEsRepositoryLocalizer : LocalizerBase, IRepositoryLocalizer
    {
-      public EsEsRepositoryLocalizerBase() : base(SupportedLanguajes.EsES)
+      public EsEsRepositoryLocalizer() : base(SupportedLanguages.EsES)
       {
       }
 
