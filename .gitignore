@@ -3,8 +3,6 @@
 /Backend/Services/Measurement/.vs
 /Backend/Core/.vs
 
-/Backend/OLD SCACAR
-
 /Backend/Core/Skyrmium.Infrastructure.Contracts/bin
 /Backend/Core/Skyrmium.Dal.Contracts/bin
 /Backend/Core/Skyrmium.Dal.Implementations/bin
@@ -17,6 +15,8 @@
 /Backend/Core/Skyrmium.Api.Contracts/bin
 /Backend/Core/Skyrmium.Api.Implementations/bin
 /Backend/Core/Skyrmium.IoC/bin
+/Backend/Core/Skyrmium.Localization.Contracts/bin
+/Backend/Core/Skyrmium.Localization.Abstractions/bin
 
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/bin
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/bin
@@ -41,6 +41,8 @@
 /Backend/Core/Skyrmium.Api.Contracts/obj
 /Backend/Core/Skyrmium.Api.Implementations/obj
 /Backend/Core/Skyrmium.IoC/obj
+/Backend/Core/Skyrmium.Localization.Contracts/obj
+/Backend/Core/Skyrmium.Localization.Abstractions/obj
 
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Api/obj
 /Backend/Services/Accounts/Skyrmium.Equivalent.Accounts.Domain.Entities/obj

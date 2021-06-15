@@ -23,6 +23,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Implementation
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{23E33A3D-52DC-4DDF-9172-DFD4720094E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Localization.Contracts", "Skyrmium.Localization.Contracts\Skyrmium.Localization.Contracts.csproj", "{5665D6FC-F0A1-4BC7-AECB-DDF091B7CF89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skyrmium.Localization.Abstractions", "Skyrmium.Localization.Abstractions\Skyrmium.Localization.Abstractions.csproj", "{665A4EFB-0EF1-414A-AAFD-38E253AFA2F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{23E33A3D-52DC-4DDF-9172-DFD4720094E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E33A3D-52DC-4DDF-9172-DFD4720094E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E33A3D-52DC-4DDF-9172-DFD4720094E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5665D6FC-F0A1-4BC7-AECB-DDF091B7CF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5665D6FC-F0A1-4BC7-AECB-DDF091B7CF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5665D6FC-F0A1-4BC7-AECB-DDF091B7CF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5665D6FC-F0A1-4BC7-AECB-DDF091B7CF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665A4EFB-0EF1-414A-AAFD-38E253AFA2F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665A4EFB-0EF1-414A-AAFD-38E253AFA2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665A4EFB-0EF1-414A-AAFD-38E253AFA2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665A4EFB-0EF1-414A-AAFD-38E253AFA2F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

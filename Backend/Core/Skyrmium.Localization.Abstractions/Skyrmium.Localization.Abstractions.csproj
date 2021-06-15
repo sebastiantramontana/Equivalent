@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Localization.Contracts\Skyrmium.Localization.Contracts.csproj" />
   </ItemGroup>
+
 </Project>

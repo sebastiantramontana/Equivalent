@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Skyrmium.Dal.Contracts;
 using Skyrmium.Dal.Contracts.Daos;
+using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Domain.Contracts.Entities;
 using Skyrmium.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
@@ -15,8 +16,8 @@ namespace Skyrmium.Dal.Implementations.Repositories
       where TEntity : class, IOwnedEntity
       where TDao : class, IOwnedDao, new()
    {
-      public OwnedRepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper)
-         : base(dataAccess, mapper)
+      public OwnedRepositoryBase(IDataAccess dataAccess, IMapper<TEntity, TDao> mapper, IRepositoryLocalizer localizer)
+         : base(dataAccess, mapper, localizer)
       {
       }
 
