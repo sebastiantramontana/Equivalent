@@ -1,20 +1,21 @@
-﻿using Skyrmium.Dal.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureRepository : OwnedRepositoryBase<Measure, MeasureDao>, IMeasureRepository
    {
-      public MeasureRepository(IDataAccess dataAccess, IMapper<Measure, MeasureDao> mapper)
-         : base(dataAccess, mapper)
+      public MeasureRepository(IDataAccess dataAccess, IMapper<Measure, MeasureDao> mapper, IRepositoryLocalizer repositoryLocalizer)
+         : base(dataAccess, mapper, repositoryLocalizer)
       {
       }
 

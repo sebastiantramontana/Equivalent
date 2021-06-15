@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
-using Skyrmium.Equivalent.Measurement.Dal.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
+using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 using Skyrmium.Infrastructure.Contracts;
 
@@ -14,10 +15,10 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class MeasureEquivalenceRepository : OwnedRepositoryBase<MeasureEquivalence, MeasureEquivalenceDao>, IMeasureEquivalenceRepository
    {
-      private readonly IMeasureEquivalenceRepositoryLocalizer _localizer;
+      private readonly IMeasureEquivalenceLocalizer _localizer;
 
-      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper, IMeasureEquivalenceRepositoryLocalizer localizer)
-         : base(dataAccess, mapper, localizer)
+      public MeasureEquivalenceRepository(IDataAccess dataAccess, IMapper<MeasureEquivalence, MeasureEquivalenceDao> mapper, IMeasureEquivalenceLocalizer localizer, IRepositoryLocalizer repositoryLocalizer)
+         : base(dataAccess, mapper, repositoryLocalizer)
       {
          _localizer = localizer;
       }

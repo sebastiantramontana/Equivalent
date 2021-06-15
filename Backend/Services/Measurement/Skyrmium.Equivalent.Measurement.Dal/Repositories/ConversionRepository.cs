@@ -1,4 +1,5 @@
 ﻿using Skyrmium.Dal.Contracts;
+using Skyrmium.Dal.Contracts.Localization;
 using Skyrmium.Dal.Implementations.Repositories;
 using Skyrmium.Equivalent.Measurement.Dal.Daos;
 using Skyrmium.Equivalent.Measurement.Domain.Entities;
@@ -13,7 +14,8 @@ namespace Skyrmium.Equivalent.Measurement.Dal.Repositories
 {
    internal class ConversionRepository : OwnedRepositoryBase<Conversion, ConversionDao>, IConversionRepository
    {
-      public ConversionRepository(IDataAccess dataAccess, IMapper<Conversion, ConversionDao> mapper) : base(dataAccess, mapper)
+      public ConversionRepository(IDataAccess dataAccess, IMapper<Conversion, ConversionDao> mapper, IRepositoryLocalizer repositoryLocalizer)
+         : base(dataAccess, mapper, repositoryLocalizer)
       {
       }
 
