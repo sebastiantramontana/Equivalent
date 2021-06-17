@@ -1,10 +1,11 @@
 ﻿using Skyrmium.Localization.Abstractions;
+using Skyrmium.Localization.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence
 {
    internal class EnUsMeasureEquivalenceLocalizer : LocalizerBase, IMeasureEquivalenceLocalizer
    {
-      public EnUsMeasureEquivalenceLocalizer() : base(SupportedLanguages.EnUS)
+      public EnUsMeasureEquivalenceLocalizer() : base(Languages.enUS)
       {
       }
 

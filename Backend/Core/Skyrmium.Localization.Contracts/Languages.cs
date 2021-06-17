@@ -1,6 +1,6 @@
 ﻿namespace Skyrmium.Localization.Contracts
 {
-   public enum LanguagesEnum
+   public enum Languages
    {
       enUS,
       esES

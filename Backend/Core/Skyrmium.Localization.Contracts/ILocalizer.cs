@@ -2,6 +2,6 @@
 {
    public interface ILocalizer
    {
-      Language Language { get; }
+      Languages Language { get; }
    }
 }

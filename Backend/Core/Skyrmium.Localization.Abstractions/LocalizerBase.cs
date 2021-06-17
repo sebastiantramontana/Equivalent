@@ -4,11 +4,11 @@ namespace Skyrmium.Localization.Abstractions
 {
    public abstract class LocalizerBase : ILocalizer
    {
-      protected LocalizerBase(Language Language)
+      protected LocalizerBase(Languages language)
       {
-         this.Language = Language;
+         this.Language = language;
       }
 
-      public Language Language { get; }
+      public Languages Language { get; }
    }
 }
