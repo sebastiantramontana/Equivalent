@@ -3,9 +3,9 @@ using Skyrmium.Localization.Contracts;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence
 {
-   internal class EnUsMeasureEquivalenceLocalizer : LocalizerBase, IMeasureEquivalenceLocalizer
+   public class EnUsMeasureEquivalenceLocalizer : LocalizerBase, IMeasureEquivalenceLocalizer
    {
-      public EnUsMeasureEquivalenceLocalizer() : base(Languages.enUS)
+      public EnUsMeasureEquivalenceLocalizer() : base(CulturesEnum.enUS)
       {
       }
 

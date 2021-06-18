@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj" />
     <ProjectReference Include="..\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\Skyrmium.Localization.Abstractions\Skyrmium.Localization.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

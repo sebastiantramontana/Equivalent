@@ -13,15 +13,15 @@ namespace Skyrmium.Dal.Implementations
       public void Register(IContainer container)
       {
          container.Register<IUnitOfWork, UnitOfWork>();
-         container.Register(sp => CreateLocalizer(sp.GetRequiredService<Languages>()));
+         container.Register(sp => CreateLocalizer(sp.GetRequiredService<CulturesEnum>()));
       }
 
-      private static IRepositoryLocalizer CreateLocalizer(Languages language)
+      private static IRepositoryLocalizer CreateLocalizer(CulturesEnum language)
       {
          IRepositoryLocalizer repositoryLocalizer = language switch
          {
-            Languages.enUS => new EnUsRepositoryLocalizer(),
-            Languages.esES => new EsEsRepositoryLocalizer(),
+            CulturesEnum.enUS => new EnUsRepositoryLocalizer(),
+            CulturesEnum.esES => new EsEsRepositoryLocalizer(),
             _ => throw new NotImplementedException($"Language {language} not implemented"),
          };
          return repositoryLocalizer;

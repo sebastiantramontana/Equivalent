@@ -5,7 +5,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversio
 {
    public class EsEsConversionLocalizer : LocalizerBase, IConversionLocalizer
    {
-      public EsEsConversionLocalizer() : base(Languages.esES)
+      public EsEsConversionLocalizer() : base(CulturesEnum.esES)
       {
       }
 

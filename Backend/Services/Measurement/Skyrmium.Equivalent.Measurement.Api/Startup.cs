@@ -47,6 +47,7 @@ namespace Skyrmium.Equivalent.Measurement.Api
                endpoints.MapControllers();
             });
 
+         app.UseLocalizationMiddleware();
          app.UseFinishUnitOfWorkMiddleware();
       }
    }

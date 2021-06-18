@@ -6,7 +6,7 @@ namespace Skyrmium.Dal.Implementations.Localization
 {
    public sealed class EnUsRepositoryLocalizer : LocalizerBase, IRepositoryLocalizer
    {
-      public EnUsRepositoryLocalizer() : base(Languages.enUS)
+      public EnUsRepositoryLocalizer() : base(CulturesEnum.enUS)
       {
       }
 

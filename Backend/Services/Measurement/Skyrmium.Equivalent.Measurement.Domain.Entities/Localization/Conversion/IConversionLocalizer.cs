@@ -1,6 +1,8 @@
-﻿namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion
+﻿using Skyrmium.Localization.Contracts;
+
+namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion
 {
-   public interface IConversionLocalizer
+   public interface IConversionLocalizer : ILocalizer
    {
       string InvalidConversion { get; }
       string SerachedConversionNotFound { get; }

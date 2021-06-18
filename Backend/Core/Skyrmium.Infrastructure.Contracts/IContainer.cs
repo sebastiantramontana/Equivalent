@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Skyrmium.Infrastructure.Contracts
 {
@@ -15,6 +16,7 @@ namespace Skyrmium.Infrastructure.Contracts
       void Register<TService>(TService service) where TService : class;
       void Register<TService>(Func<IServiceProvider, TService> serviceBuilder) where TService : class;
       void Register(Type serviceType, Type implementationType);
+      void Register(Type type, Func<IServiceProvider, object> serviceBuilder);
       void RegisterTransient<TService, TImplementation>()
          where TService : class
          where TImplementation : class, TService;
