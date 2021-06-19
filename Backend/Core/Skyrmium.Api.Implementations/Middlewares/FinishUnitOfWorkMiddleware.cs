@@ -12,7 +12,7 @@ namespace Skyrmium.Api.Implementations.Middlewares
       {
          _next = next;
       }
-      public async Task Invoke(HttpContext context, IUnitOfWork unitOfWork)
+      public async Task InvokeAsync(HttpContext context, IUnitOfWork unitOfWork)
       {
          await _next.Invoke(context);
 

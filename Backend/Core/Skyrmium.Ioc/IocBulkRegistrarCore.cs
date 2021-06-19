@@ -1,6 +1,7 @@
 ﻿using Skyrmium.Api.Implementations;
 using Skyrmium.Dal.Implementations;
 using Skyrmium.Infrastructure.Contracts;
+using Skyrmium.Localization.Abstractions;
 using System.Collections.Generic;
 
 namespace Skyrmium.Ioc
@@ -19,7 +20,8 @@ namespace Skyrmium.Ioc
       {
          return new IIocBulkRegistrar[] {
             new IocBulkRegistrarCoreDal(),
-            new IocBulkRegistrarCoreApi()
+            new IocBulkRegistrarCoreApi(),
+            new IocBulkRegistrarLocalization()
          };
       }
    }

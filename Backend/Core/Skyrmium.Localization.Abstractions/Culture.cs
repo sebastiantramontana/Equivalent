@@ -1,23 +1,27 @@
-﻿using System.Linq;
-using Skyrmium.Localization.Contracts;
+﻿using Skyrmium.Localization.Contracts;
 
 namespace Skyrmium.Localization.Abstractions
 {
-   public sealed class Culture
+   internal sealed class Culture : ICulture
    {
-      internal Culture(CulturesEnum languagesEnum, string isoCode)
+      internal Culture(CulturesEnum cultureEnum, string isoCode)
       {
-         LanguagesEnum = languagesEnum;
+         CultureEnum = cultureEnum;
          IsoCode = isoCode;
       }
 
-      public CulturesEnum LanguagesEnum { get; }
-      public string IsoCode { get; }
+      public CulturesEnum CultureEnum { get; private set; }
+      public string IsoCode { get; private set; }
 
-      public static Culture FromIsoCode(string isoCode)
+      public void SetNewCulture(CulturesEnum culturesEnum, string isoCode)
       {
-         return SupportedCultures.All.SingleOrDefault(sc => sc.IsoCode == isoCode)
-            ?? throw new BadIsoCodeCultureException();
+         this.CultureEnum = culturesEnum;
+         this.IsoCode = isoCode;
+      }
+
+      public override string ToString()
+      {
+         return this.IsoCode;
       }
    }
 }

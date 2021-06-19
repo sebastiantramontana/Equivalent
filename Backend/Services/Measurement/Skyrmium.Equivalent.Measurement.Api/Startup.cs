@@ -39,16 +39,15 @@ namespace Skyrmium.Equivalent.Measurement.Api
                .UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Skyrmium.Equivalent.Measurement.Api v1"));
          }
 
-         app.UseHttpsRedirection()
+         app.UseFinishUnitOfWorkMiddleware()
+            .UseLocalizationMiddleware()
+            .UseHttpsRedirection()
             .UseRouting()
             .UseAuthorization()
             .UseEndpoints(endpoints =>
             {
                endpoints.MapControllers();
             });
-
-         app.UseLocalizationMiddleware();
-         app.UseFinishUnitOfWorkMiddleware();
       }
    }
 }

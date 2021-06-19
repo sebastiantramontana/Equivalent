@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion;
+﻿using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion;
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Localization.Contracts;
+using System;
+using System.Collections.Generic;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
@@ -23,19 +23,19 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          yield return (typeof(IConversionLocalizer), sp => CreateLocalizer<IConversionLocalizer>(GetCulture(sp), new EnUsConversionLocalizer(), new EsEsConversionLocalizer()));
       }
 
-      private static CulturesEnum GetCulture(IServiceProvider serviceProvider)
+      private static ICulture GetCulture(IServiceProvider serviceProvider)
       {
-         return (CulturesEnum)serviceProvider.GetService(typeof(CulturesEnum))!;
+         return (ICulture)serviceProvider.GetService(typeof(ICulture))!;
       }
 
-      private static TLocalizer CreateLocalizer<TLocalizer>(CulturesEnum language, TLocalizer enUs, TLocalizer esES)
+      private static TLocalizer CreateLocalizer<TLocalizer>(ICulture culture, TLocalizer enUs, TLocalizer esES)
          where TLocalizer : ILocalizer
       {
-         TLocalizer localizer = language switch
+         TLocalizer localizer = culture.CultureEnum switch
          {
             CulturesEnum.enUS => enUs,
             CulturesEnum.esES => esES,
-            _ => throw new NotImplementedException($"Language {language} not implemented"),
+            _ => throw new NotImplementedException($"Culture {culture} not implemented"),
          };
 
          return localizer;

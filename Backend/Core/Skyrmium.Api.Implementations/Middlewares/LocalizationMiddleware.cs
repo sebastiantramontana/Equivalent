@@ -1,28 +1,24 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Skyrmium.Infrastructure.Contracts;
 using Skyrmium.Localization.Abstractions;
+using Skyrmium.Localization.Contracts;
+using System.Threading.Tasks;
 
 namespace Skyrmium.Api.Implementations.Middlewares
 {
-   public class LocalizationMiddleware
+   public class LocalizationMiddleware : IMiddleware
    {
-      private readonly RequestDelegate _next;
-
-      public LocalizationMiddleware(RequestDelegate next)
-      {
-         _next = next;
-      }
-      public async Task Invoke(HttpContext context)
+      public async Task InvokeAsync(HttpContext context, RequestDelegate next)
       {
          var cultureQuery = context.Request.Query["culture"];
-         var culture = cultureQuery.Count == 0 ? SupportedCultures.EnUS : Culture.FromIsoCode(cultureQuery[0]);
+         var requestCulture = cultureQuery.Count == 0 ? SupportedCultures.EnUS : SupportedCultures.FromIsoCode(cultureQuery[0]);
 
-         var container = context.RequestServices.GetRequiredService<IContainer>();
-         container.Register(culture);
+         var currentCulture = context.RequestServices.GetRequiredService<ICulture>();
 
-         await _next.Invoke(context);
+         if (currentCulture != requestCulture)
+            currentCulture.SetNewCulture(requestCulture.CultureEnum, requestCulture.IsoCode);
+
+         await next.Invoke(context);
       }
    }
 }

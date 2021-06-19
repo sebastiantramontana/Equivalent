@@ -47,11 +47,14 @@ namespace Skyrmium.Equivalent.Measurement.Api
          _serviceCollection.AddScoped(type, serviceBuilder);
       }
 
-      public void RegisterTransient<TService, TImplementation>()
-         where TService : class
-         where TImplementation : class, TService
+      public void Register<TImplementation>() where TImplementation : class
       {
-         _serviceCollection.AddTransient<TService, TImplementation>();
+         _serviceCollection.AddScoped<TImplementation>();
+      }
+
+      public void RegisterTransient<TImplementation>() where TImplementation : class
+      {
+         _serviceCollection.AddTransient<TImplementation>();
       }
    }
 }

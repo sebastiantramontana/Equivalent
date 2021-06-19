@@ -2,6 +2,6 @@
 {
    public interface ILocalizer
    {
-      CulturesEnum Language { get; }
+      ICulture Culture { get; }
    }
 }

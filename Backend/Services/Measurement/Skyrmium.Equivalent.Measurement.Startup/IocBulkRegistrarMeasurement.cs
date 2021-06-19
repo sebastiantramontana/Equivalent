@@ -2,7 +2,6 @@
 using Skyrmium.Equivalent.Measurement.Domain.Services.Implementations;
 using Skyrmium.Infrastructure.Contracts;
 using Skyrmium.Ioc;
-using Skyrmium.Localization.Contracts;
 using System.Collections.Generic;
 
 namespace Skyrmium.Measurement.IoC
@@ -20,8 +19,6 @@ namespace Skyrmium.Measurement.IoC
 
       public void Register(IContainer container)
       {
-         container.Register(container);
-
          var registrars = GetRegistrars();
 
          foreach (var registrar in registrars)
