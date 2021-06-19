@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Skyrmium.Infrastructure.Contracts;
+using System;
 
 namespace Skyrmium.Equivalent.Measurement.Api
 {
@@ -37,14 +38,14 @@ namespace Skyrmium.Equivalent.Measurement.Api
          _serviceCollection.AddScoped(serviceType, implementationType);
       }
 
-      public void Register<TService>(Func<IServiceProvider, TService> serviceBuilder) where TService : class
+      public void Register<TService>(Func<IServiceLocator, TService> serviceBuilder) where TService : class
       {
-         _serviceCollection.AddScoped(serviceBuilder);
+         _serviceCollection.AddScoped(sp => serviceBuilder(new ServiceLocator(sp)));
       }
 
-      public void Register(Type type, Func<IServiceProvider, object> serviceBuilder)
+      public void Register(Type type, Func<IServiceLocator, object> serviceBuilder)
       {
-         _serviceCollection.AddScoped(type, serviceBuilder);
+         _serviceCollection.AddScoped(type, sp => serviceBuilder(new ServiceLocator(sp)));
       }
 
       public void Register<TImplementation>() where TImplementation : class

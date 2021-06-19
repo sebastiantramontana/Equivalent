@@ -1,10 +1,10 @@
-﻿namespace Skyrmium.Localization.Contracts
+﻿using System;
+
+namespace Skyrmium.Localization.Contracts
 {
-   public interface ICulture
+   public interface ICulture : IEquatable<ICulture>
    {
       CulturesEnum CultureEnum { get; }
       string IsoCode { get; }
-
-      void SetNewCulture(CulturesEnum culturesEnum, string isoCode);
    }
 }

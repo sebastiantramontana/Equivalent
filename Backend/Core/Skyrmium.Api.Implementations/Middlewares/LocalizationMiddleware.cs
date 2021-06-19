@@ -1,24 +1,37 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Skyrmium.Localization.Abstractions;
 using Skyrmium.Localization.Contracts;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Skyrmium.Api.Implementations.Middlewares
 {
-   public class LocalizationMiddleware : IMiddleware
+   public class LocalizationMiddleware
    {
-      public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+      private readonly RequestDelegate _next;
+
+      public LocalizationMiddleware(RequestDelegate next)
+      {
+         _next = next;
+      }
+
+      public Task InvokeAsync(HttpContext context, ISupportedCultures supportedCultures, ICurrentCulture currentCulture)
       {
          var cultureQuery = context.Request.Query["culture"];
-         var requestCulture = cultureQuery.Count == 0 ? SupportedCultures.EnUS : SupportedCultures.FromIsoCode(cultureQuery[0]);
 
-         var currentCulture = context.RequestServices.GetRequiredService<ICulture>();
+         if (cultureQuery.Any())
+         {
+            ModifyCulture(cultureQuery.First(), supportedCultures, currentCulture);
+         }
 
-         if (currentCulture != requestCulture)
-            currentCulture.SetNewCulture(requestCulture.CultureEnum, requestCulture.IsoCode);
+         return _next.Invoke(context);
+      }
 
-         await next.Invoke(context);
+      private void ModifyCulture(string newIsoCodeCulture, ISupportedCultures supportedCultures, ICurrentCulture currentCulture)
+      {
+         var requestCulture = supportedCultures.FromIsoCode(newIsoCodeCulture);
+
+         if (currentCulture.Culture != requestCulture)
+            currentCulture.Culture = requestCulture;
       }
    }
 }

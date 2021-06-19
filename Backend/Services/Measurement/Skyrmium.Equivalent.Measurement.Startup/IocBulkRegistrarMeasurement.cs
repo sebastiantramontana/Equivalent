@@ -19,12 +19,12 @@ namespace Skyrmium.Measurement.IoC
 
       public void Register(IContainer container)
       {
+         container.Register(container);
+
          var registrars = GetRegistrars();
 
          foreach (var registrar in registrars)
             registrar.Register(container);
-
-         RegisterDomain(container);
 
          container.Register(_configImplementation);
       }
@@ -35,21 +35,10 @@ namespace Skyrmium.Measurement.IoC
          {
             new IocBulkRegistrarCore(),
             new IocBulkRegistrarMeasurementDal(),
+            new IocMeasurementDomain(),
             _apiRegistrar
          };
       }
-
-      private static void RegisterDomain(IContainer container)
-      {
-         foreach (var (Interfaz, Implementation) in IocMeasurementDomainServices.TypePairs)
-         {
-            container.Register(Interfaz, Implementation);
-         }
-
-         foreach (var localizerBuilders in IocMeasurementDomainServices.CreateLocalizerBuilders())
-         {
-            container.Register(localizerBuilders.Type, localizerBuilders.Builder);
-         }
-      }
    }
 }
+

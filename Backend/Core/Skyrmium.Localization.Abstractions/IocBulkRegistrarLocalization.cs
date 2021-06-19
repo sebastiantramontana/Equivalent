@@ -1,4 +1,5 @@
 ﻿using Skyrmium.Infrastructure.Contracts;
+using Skyrmium.Localization.Contracts;
 
 namespace Skyrmium.Localization.Abstractions
 {
@@ -6,7 +7,8 @@ namespace Skyrmium.Localization.Abstractions
    {
       public void Register(IContainer container)
       {
-         container.Register(SupportedCultures.EnUS);
+         container.Register<ISupportedCultures, SupportedCultures>();
+         container.Register<ICurrentCulture, CurrentCulture>();
       }
    }
 }

@@ -13,15 +13,34 @@ namespace Skyrmium.Localization.Abstractions
       public CulturesEnum CultureEnum { get; private set; }
       public string IsoCode { get; private set; }
 
-      public void SetNewCulture(CulturesEnum culturesEnum, string isoCode)
+      public bool Equals(ICulture? other)
       {
-         this.CultureEnum = culturesEnum;
-         this.IsoCode = isoCode;
+         return other is not null && this.CultureEnum == other.CultureEnum;
+      }
+
+      public override bool Equals(object? obj)
+      {
+         return Equals(obj as Culture);
+      }
+
+      public override int GetHashCode()
+      {
+         return this.CultureEnum.GetHashCode();
       }
 
       public override string ToString()
       {
          return this.IsoCode;
+      }
+
+      public static bool operator ==(Culture? left, Culture? right)
+      {
+         return left is not null && left.Equals(right);
+      }
+
+      public static bool operator !=(Culture? left, Culture? right)
+      {
+         return !(left == right);
       }
    }
 }

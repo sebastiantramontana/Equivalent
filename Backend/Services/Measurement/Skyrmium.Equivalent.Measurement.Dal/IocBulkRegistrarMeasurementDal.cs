@@ -14,7 +14,7 @@ namespace Skyrmium.Equivalent.Measurement.Dal
       public void Register(IContainer container)
       {
          container.Register<IDataAccess, MeasurementDbContext>();
-         container.Register((sp) => (DbContext)sp.GetService(typeof(IDataAccess))!);
+         container.Register((sp) => (DbContext)sp.Resolve(typeof(IDataAccess))!);
 
          container.Register<IMeasureRepository, MeasureRepository>();
          container.Register<IMeasureEquivalenceRepository, MeasureEquivalenceRepository>();
