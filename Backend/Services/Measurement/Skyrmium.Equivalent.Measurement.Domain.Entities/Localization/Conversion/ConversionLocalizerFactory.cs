@@ -5,11 +5,11 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversio
 {
    public class ConversionLocalizerFactory : LocalizerFactoryBase<IConversionLocalizer>
    {
-      public ConversionLocalizerFactory(ISupportedCultures supportedCultures)
+      public ConversionLocalizerFactory(EnUsConversionLocalizer enUs, EsEsConversionLocalizer esEs)
          : base(new IConversionLocalizer[]
          {
-            new EnUsConversionLocalizer(supportedCultures),
-            new EsEsConversionLocalizer(supportedCultures)
+            enUs,
+            esEs
          })
       {
       }

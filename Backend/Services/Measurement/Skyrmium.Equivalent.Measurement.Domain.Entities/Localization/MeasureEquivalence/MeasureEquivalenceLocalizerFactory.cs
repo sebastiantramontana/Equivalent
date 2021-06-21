@@ -5,11 +5,11 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEq
 {
    public class MeasureEquivalenceLocalizerFactory : LocalizerFactoryBase<IMeasureEquivalenceLocalizer>
    {
-      public MeasureEquivalenceLocalizerFactory(ISupportedCultures supportedCultures)
+      public MeasureEquivalenceLocalizerFactory(EnUsMeasureEquivalenceLocalizer enUs, EsEsMeasureEquivalenceLocalizer esEs)
          : base(new IMeasureEquivalenceLocalizer[]
          {
-            new EnUsMeasureEquivalenceLocalizer(supportedCultures),
-            new EsEsMeasureEquivalenceLocalizer(supportedCultures)
+            enUs,
+            esEs
          })
       {
       }

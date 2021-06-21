@@ -16,11 +16,20 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
       private void RegisterLocalization(IContainer container)
       {
-         container.Register<ILocalizerFactory<IConversionLocalizer>, ConversionLocalizerFactory>();
-         container.Register(locator => CreateLocalizer<IConversionLocalizer>(locator));
+         RegisterLocalizationForEntity<IConversionLocalizer, ConversionLocalizerFactory, EnUsConversionLocalizer, EsEsConversionLocalizer>(container);
+         RegisterLocalizationForEntity<IMeasureEquivalenceLocalizer, MeasureEquivalenceLocalizerFactory, EnUsMeasureEquivalenceLocalizer, EsEsMeasureEquivalenceLocalizer>(container);
+      }
 
-         container.Register<ILocalizerFactory<IMeasureEquivalenceLocalizer>, MeasureEquivalenceLocalizerFactory>();
-         container.Register(locator => CreateLocalizer<IMeasureEquivalenceLocalizer>(locator));
+      private void RegisterLocalizationForEntity<TLocalizer, TFactory, TEnUs, TEsEs>(IContainer container)
+         where TLocalizer : class, ILocalizer
+         where TFactory : class, ILocalizerFactory<TLocalizer>
+         where TEnUs : class, TLocalizer
+         where TEsEs : class, TLocalizer
+      {
+         container.Register<TEnUs>();
+         container.Register<TEsEs>();
+         container.Register<ILocalizerFactory<TLocalizer>, TFactory>();
+         container.Register(locator => CreateLocalizer<TLocalizer>(locator));
       }
 
       private void RegisterServices(IContainer container)

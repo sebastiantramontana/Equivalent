@@ -40,17 +40,5 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 
          return Convert(conversion, quantity);
       }
-
-      //private static Exception CreateConversionNotFoundException(MeasureEquivalence from, MeasureEquivalence to)
-      //{
-      //   return BusinessExceptionFactory
-      //      .Create(MeasurementServiceExceptions.ConversionNotFound, "Conversion",
-      //         new Dictionary<ConversionNotFoundExceptionValues, object>()
-      //         {
-      //            { ConversionNotFoundExceptionValues.From, from },
-      //            { ConversionNotFoundExceptionValues.To, to }
-      //         })
-      //      .ToException();
-      //}
    }
 }

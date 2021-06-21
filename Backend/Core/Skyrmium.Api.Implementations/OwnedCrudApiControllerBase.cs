@@ -19,7 +19,6 @@ namespace Skyrmium.Api.Implementations
       {
       }
 
-      // GET api/<MeasureEquivalencesController>/5
       [HttpGet("owned/{ownedById}")]
       public async Task<IEnumerable<TDto>> GetByOwned(Guid ownedById)
       {

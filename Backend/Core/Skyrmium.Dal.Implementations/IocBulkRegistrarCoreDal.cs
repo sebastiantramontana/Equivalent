@@ -10,8 +10,8 @@ namespace Skyrmium.Dal.Implementations
    {
       public void Register(IContainer container)
       {
-         //container.Register<EnUsRepositoryLocalizer>();
-         //container.Register<EsEsRepositoryLocalizer>();
+         container.Register<EnUsRepositoryLocalizer>();
+         container.Register<EsEsRepositoryLocalizer>();
          container.Register<ILocalizerFactory<IRepositoryLocalizer>, RepositoryLocalizerFactory>();
          container.Register(locator => CreateLocalizer(locator));
 

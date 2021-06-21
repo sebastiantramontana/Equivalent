@@ -55,7 +55,6 @@ namespace Skyrmium.Api.Implementations
          return this.Mapper.Map(entities);
       }
 
-      // PUT api/<Controller>
       [HttpPut]
       public Task Update([FromBody] TDto dto)
       {
@@ -70,7 +69,6 @@ namespace Skyrmium.Api.Implementations
          return this.Service.Update(entities);
       }
 
-      // DELETE api/<Controller>/5
       [HttpDelete("{id}")]
       public Task Delete(Guid id)
       {
