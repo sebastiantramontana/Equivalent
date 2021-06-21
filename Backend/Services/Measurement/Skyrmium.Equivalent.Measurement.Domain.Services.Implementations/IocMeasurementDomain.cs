@@ -1,4 +1,5 @@
 ﻿using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Conversion;
+using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Measure;
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
 using Skyrmium.Infrastructure.Contracts;
@@ -14,13 +15,14 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          RegisterServices(container);
       }
 
-      private void RegisterLocalization(IContainer container)
+      private static void RegisterLocalization(IContainer container)
       {
          RegisterLocalizationForEntity<IConversionLocalizer, ConversionLocalizerFactory, EnUsConversionLocalizer, EsEsConversionLocalizer>(container);
          RegisterLocalizationForEntity<IMeasureEquivalenceLocalizer, MeasureEquivalenceLocalizerFactory, EnUsMeasureEquivalenceLocalizer, EsEsMeasureEquivalenceLocalizer>(container);
+         RegisterLocalizationForEntity<IMeasureLocalizer, MeasureLocalizerFactory, EnUsMeasureLocalizer, EsEsMeasureLocalizer>(container);
       }
 
-      private void RegisterLocalizationForEntity<TLocalizer, TFactory, TEnUs, TEsEs>(IContainer container)
+      private static void RegisterLocalizationForEntity<TLocalizer, TFactory, TEnUs, TEsEs>(IContainer container)
          where TLocalizer : class, ILocalizer
          where TFactory : class, ILocalizerFactory<TLocalizer>
          where TEnUs : class, TLocalizer
@@ -32,7 +34,7 @@ namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
          container.Register(locator => CreateLocalizer<TLocalizer>(locator));
       }
 
-      private void RegisterServices(IContainer container)
+      private static void RegisterServices(IContainer container)
       {
          container.Register<IConversionService, ConversionService>();
          container.Register<IEquivalenceService, EquivalenceService>();

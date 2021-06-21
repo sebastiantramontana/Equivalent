@@ -26,7 +26,7 @@ namespace Skyrmium.Api.Implementations.Middlewares
          return _next.Invoke(context);
       }
 
-      private void ModifyCulture(string newIsoCodeCulture, ISupportedCultures supportedCultures, ICurrentCulture currentCulture)
+      private static void ModifyCulture(string newIsoCodeCulture, ISupportedCultures supportedCultures, ICurrentCulture currentCulture)
       {
          var requestCulture = supportedCultures.FromIsoCode(newIsoCodeCulture);
 
