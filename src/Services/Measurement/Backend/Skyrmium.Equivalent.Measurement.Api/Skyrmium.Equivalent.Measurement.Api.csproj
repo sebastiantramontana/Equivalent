@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Entities\Skyrmium.Equivalent.Measurement.Domain.Entities.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Startup\Skyrmium.Equivalent.Measurement.Startup.csproj" />
   </ItemGroup>

@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Entities\Skyrmium.Equivalent.Measurement.Domain.Entities.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts\Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.csproj" />
   </ItemGroup>

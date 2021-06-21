@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B3F1571B-7952-4768-BF0F-6BE779BF0490}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Contracts", "..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj", "{55EAE0DE-8959-40F1-B5D8-F98819413066}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Contracts", "..\..\..\Core\Skyrmium.Dal.Contracts\Skyrmium.Dal.Contracts.csproj", "{55EAE0DE-8959-40F1-B5D8-F98819413066}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Infrastructure.Contracts", "..\..\Core\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj", "{AB4853A2-0DA3-4BDE-9FC5-273EC299487C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Infrastructure.Contracts", "..\..\..\Core\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj", "{AB4853A2-0DA3-4BDE-9FC5-273EC299487C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Api", "Skyrmium.Equivalent.Measurement.Api\Skyrmium.Equivalent.Measurement.Api.csproj", "{440EFEB9-F483-44DA-B476-73330B6AA500}"
 EndProject
@@ -17,29 +17,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations", "Skyrmium.Equivalent.Measurement.Domain.Services.Implementations\Skyrmium.Equivalent.Measurement.Domain.Services.Implementations.csproj", "{9DB7990D-70E7-4F39-8BDC-477EC03CBA35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Implementations", "..\..\Core\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj", "{9D05BBEB-B368-48D0-8575-41E22B02EF08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Dal.Implementations", "..\..\..\Core\Skyrmium.Dal.Implementations\Skyrmium.Dal.Implementations.csproj", "{9D05BBEB-B368-48D0-8575-41E22B02EF08}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Contracts", "..\..\Core\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj", "{82A3477C-72AC-454C-8683-47B83DD9238C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Contracts", "..\..\..\Core\Skyrmium.Domain.Services.Contracts\Skyrmium.Domain.Services.Contracts.csproj", "{82A3477C-72AC-454C-8683-47B83DD9238C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "..\..\Core\Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{34B17394-D6CA-474D-A1D2-72B6CAF52225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Services.Implementations", "..\..\..\Core\Skyrmium.Domain.Services.Implementations\Skyrmium.Domain.Services.Implementations.csproj", "{34B17394-D6CA-474D-A1D2-72B6CAF52225}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Dal", "Skyrmium.Equivalent.Measurement.Dal\Skyrmium.Equivalent.Measurement.Dal.csproj", "{49C9C3E0-33C2-480A-8ADA-89C3F8300DEC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Implementations", "..\..\Core\Skyrmium.Domain.Implementations\Skyrmium.Domain.Implementations.csproj", "{BC8DFA40-E953-4674-9AAF-59C695FB6F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Implementations", "..\..\..\Core\Skyrmium.Domain.Implementations\Skyrmium.Domain.Implementations.csproj", "{BC8DFA40-E953-4674-9AAF-59C695FB6F5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts", "..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj", "{F854658E-3979-4B2B-AF38-16A4D25D001A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Domain.Contracts", "..\..\..\Core\Skyrmium.Domain.Contracts\Skyrmium.Domain.Contracts.csproj", "{F854658E-3979-4B2B-AF38-16A4D25D001A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Contracts", "..\..\Core\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj", "{173A3AEA-4DFB-4CE8-8FE3-CF80E3745511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Contracts", "..\..\..\Core\Skyrmium.Api.Contracts\Skyrmium.Api.Contracts.csproj", "{173A3AEA-4DFB-4CE8-8FE3-CF80E3745511}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Implementations", "..\..\Core\Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj", "{E2A92B79-6398-4AD9-A655-DE48B96F86CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Api.Implementations", "..\..\..\Core\Skyrmium.Api.Implementations\Skyrmium.Api.Implementations.csproj", "{E2A92B79-6398-4AD9-A655-DE48B96F86CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{4D18571C-8B42-4EAD-860B-03239E2F8414}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Ioc", "..\..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj", "{4D18571C-8B42-4EAD-860B-03239E2F8414}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Equivalent.Measurement.Startup", "Skyrmium.Equivalent.Measurement.Startup\Skyrmium.Equivalent.Measurement.Startup.csproj", "{FFD77CCC-91EC-46A2-B246-874F690C1B0C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Localization.Abstractions", "..\..\Core\Skyrmium.Localization.Abstractions\Skyrmium.Localization.Abstractions.csproj", "{E3E39CB8-EEC9-4033-B97A-F5FC0793D412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Localization.Abstractions", "..\..\..\Core\Skyrmium.Localization.Abstractions\Skyrmium.Localization.Abstractions.csproj", "{E3E39CB8-EEC9-4033-B97A-F5FC0793D412}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Localization.Contracts", "..\..\Core\Skyrmium.Localization.Contracts\Skyrmium.Localization.Contracts.csproj", "{D0BC4DC9-4EBA-4583-AD31-936298E034EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Skyrmium.Localization.Contracts", "..\..\..\Core\Skyrmium.Localization.Contracts\Skyrmium.Localization.Contracts.csproj", "{D0BC4DC9-4EBA-4583-AD31-936298E034EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Skyrmium.Infrastructure.Contracts\Skyrmium.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\Core\Skyrmium.Ioc\Skyrmium.Ioc.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Dal\Skyrmium.Equivalent.Measurement.Dal.csproj" />
     <ProjectReference Include="..\Skyrmium.Equivalent.Measurement.Domain.Services.Implementations\Skyrmium.Equivalent.Measurement.Domain.Services.Implementations.csproj" />
   </ItemGroup>
