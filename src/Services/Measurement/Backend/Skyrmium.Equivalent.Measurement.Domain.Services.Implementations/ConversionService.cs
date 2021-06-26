@@ -8,7 +8,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   internal class ConversionService : OwnedCrudServiceBase<IConversionRepository, Conversion>, IConversionService
+   public class ConversionService : OwnedCrudServiceBase<IConversionRepository, Conversion>, IConversionService
    {
       private readonly IConversionLocalizer _localizer;
 

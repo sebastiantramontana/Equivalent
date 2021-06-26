@@ -9,7 +9,7 @@ using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts.Repositories;
 
 namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
 {
-   internal class EquivalenceService : OwnedCrudServiceBase<IMeasureEquivalenceRepository, MeasureEquivalence>, IEquivalenceService
+   public class EquivalenceService : OwnedCrudServiceBase<IMeasureEquivalenceRepository, MeasureEquivalence>, IEquivalenceService
    {
       private readonly IMeasureEquivalenceLocalizer _localizer;
 

@@ -2,10 +2,11 @@
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.Measure;
 using Skyrmium.Equivalent.Measurement.Domain.Entities.Localization.MeasureEquivalence;
 using Skyrmium.Equivalent.Measurement.Domain.Services.Contracts;
+using Skyrmium.Equivalent.Measurement.Domain.Services.Implementations;
 using Skyrmium.Infrastructure.Contracts;
 using Skyrmium.Localization.Contracts;
 
-namespace Skyrmium.Equivalent.Measurement.Domain.Services.Implementations
+namespace Skyrmium.Equivalent.Measurement.Startup
 {
    public class IocMeasurementDomain : IIocBulkRegistrar
    {
